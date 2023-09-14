@@ -53,6 +53,7 @@ public class GameViewModel extends ViewModel {
     public final LiveData<Event<Boolean>> getGameoverFlag(){ return this._gameoverFlag;}
     public final LiveData<Event<Boolean>> getGameClearFlag(){ return this._gameClearFlag;}
 
+    // 스테이지 정보 설정 - difficulty, deathCount, gameScore 초기화
     public void setStageInfo(int difficulty){
         _difficulty.setValue(difficulty);
         switch (difficulty) {
@@ -63,6 +64,7 @@ public class GameViewModel extends ViewModel {
         _gameScore.setValue(0);
     }
 
+    // 웨이브 정보 설정 - wordLength, remainingAlphabetCount(남은 알파벳 개수), printingIndex(현재 그림 번호) 초기화
     public void setWaveInfo(Context context) throws Exception {
         switch (_difficulty.getValue()) {
             case 1 -> _wordLength.setValue(4 + random.nextInt(4)); // 4 ~ 7 길이의 단어 생성
@@ -75,6 +77,7 @@ public class GameViewModel extends ViewModel {
         _printingIndex.setValue(new Event<>(0));
     }
 
+    // 리소스 정보 설정 - printingIdList (출력할 그림 리스트), imageviewList (알파벳 이미지 뷰 리스트) 초기화
     public void setResourceInfo() throws Exception{
         switch (_difficulty.getValue()) {
             case 1 -> _printingIdList.setValue(imageManager.getPrintingEasyImageList());
@@ -85,6 +88,7 @@ public class GameViewModel extends ViewModel {
         _imageviewList.setValue(new ArrayList<>());
     }
 
+    // 목표 단어 설정 (DB 스레드 이용)
     private void setTargetWord(Context context, int wordLength){
         Runnable runnable = () -> {
             WordDao wordDao = WordDatabase.getInstance(context).wordDao();
@@ -103,18 +107,22 @@ public class GameViewModel extends ViewModel {
         return _gameScore.getValue();
     }
 
+    //
     public int getPrintingIdListSize(){
         return Objects.requireNonNull(_printingIdList.getValue()).size();
     }
 
+    // 그림 이미지 id 반환
     public int getPrintingImageId(){
         return Objects.requireNonNull(_printingIdList.getValue()).get(Objects.requireNonNull(_printingIndex.getValue()).peekContent());
     }
 
+    // 알파벳 이미지 id 반환
     public int getAlphabetImageId(char alphabet){
         return _alphabetIdList.get(alphabet - 'a');
     }
 
+    // 특수문자 이미지 id 반환
     public int getImageIdByTag(String tag) throws Exception {
         if ("question".equals(tag)) {
             return _questionImageId;
@@ -125,6 +133,7 @@ public class GameViewModel extends ViewModel {
         }
     }
 
+    // 주어진 인덱스에 해당하는 이미지뷰 객체 반환
     public ImageView getImageView(int index){
         return Objects.requireNonNull(_imageviewList.getValue()).get(index);
     }
@@ -137,6 +146,7 @@ public class GameViewModel extends ViewModel {
         return _inputAlphabet.getValue();
     }
 
+    // 주어진 태그에 해당하는 레이아웃 파라미터 객체 반환
     public LinearLayout.LayoutParams getLayoutParams(String tag) throws Exception{
         switch (tag){
             case "question" -> {
@@ -150,6 +160,7 @@ public class GameViewModel extends ViewModel {
         }
     }
 
+    // 게임 점수 갱신
     public void updateGameScore(){
         _gameScore.setValue(_gameScore.getValue() + 1);
     }
@@ -175,29 +186,34 @@ public class GameViewModel extends ViewModel {
         Log.d("MyTAG", "남아있는 알파벳 개수: " + _remainingAlphabetCount.getValue());
         Log.d("MyTAG", "프린트 인덱스: " + Objects.requireNonNull(_printingIndex.getValue()).peekContent());
 
+        // 단어를 맞추는데 실패하면
         if (isGameover()){
             _gameoverFlag.setValue(new Event<>(true));
         }
-        if (isGameClear()){
+        if (isGameClear()){ // 단어를 맞췄다면
             _gameClearFlag.setValue(new Event<>(true));
         }
 
     }
 
+    // 이미지 뷰 리스트에 이미지 뷰를 순차적으로 추가
     public void addImageView(ImageView view){
         Objects.requireNonNull(_imageviewList.getValue()).add(view);
     }
 
+    // 이미지 뷰 리스트 초기화
     public void clearImageViewList(){
         if (Objects.requireNonNull(_imageviewList.getValue()).size()!=0){
             _imageviewList.getValue().clear();
         }
     }
 
+    // 게임오버인지 확인
     private boolean isGameover(){
         return Objects.equals(Objects.requireNonNull(_printingIndex.getValue()).peekContent(), _deathCount.getValue());
     }
 
+    // 게임 클리어가 되었는지 확인
     private boolean isGameClear(){
         return _remainingAlphabetCount.getValue()==0;
     }
