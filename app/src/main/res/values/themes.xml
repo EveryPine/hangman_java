@@ -3,6 +3,7 @@
     <style name="Base.Theme.Hangman_java" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="Theme.Hangman_java" parent="Base.Theme.Hangman_java" />

@@ -19,6 +19,13 @@ public class MainActivity extends BaseActivity{
     }
 
     @Override
+    public void onWindowFocusChanged(boolean hasFocus){
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus){
+        }
+    }
+
+    @Override
     void initUi() {
         setButton();
     }

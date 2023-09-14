@@ -43,6 +43,13 @@ public class GameActivity extends BaseActivity{
         initGameEndObserver();
         setContentView(binding.getRoot());
     }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus){
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus){
+        }
+    }
     @Override
     void initUi() throws Exception {
         Log.d("MyTAG", "게임 초기화 시작");

@@ -46,6 +46,13 @@ public class GameoverActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus){
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus){
+        }
+    }
+
     // 뒤로가기 기능 삭제
     @Override
     public void onBackPressed(){
