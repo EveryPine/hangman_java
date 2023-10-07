@@ -6,6 +6,10 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="Theme.Hangman_java" parent="Base.Theme.Hangman_java" />
 
     <style name="Transparent" parent="Theme.AppCompat.NoActionBar">
