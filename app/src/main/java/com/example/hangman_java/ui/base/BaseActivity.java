@@ -1,14 +1,26 @@
-package com.example.hangman_java.ui.activity;
+package com.example.hangman_java.ui.base;
 
 import android.os.Build;
+import android.os.Bundle;
 import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.hangman_java.databinding.ActivityMainBinding;
+
 public abstract class BaseActivity extends AppCompatActivity {
-    abstract void initUi() throws Exception;
+    public abstract void initUi() throws Exception;
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus){
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus){
+            setFullScreen();
+        }
+    }
+
     public void setFullScreen(){
         //상단에 Action Bar 사라지게 하기
         //getSupportActionBar().hide();
@@ -35,5 +47,5 @@ public abstract class BaseActivity extends AppCompatActivity {
                 View.SYSTEM_UI_FLAG_FULLSCREEN
             );
         }
-    }
+    } // setFullScreen()
 }
