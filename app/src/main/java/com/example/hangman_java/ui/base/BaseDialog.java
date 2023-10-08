@@ -12,4 +12,6 @@ public abstract class BaseDialog extends DialogFragment {
     }
 
     public abstract void initUi();
+
+    public abstract void setView();
 }
