@@ -1,0 +1,9 @@
+<!--볼륨 설정 음소거 여부 커스텀 체크박스-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 체크박스 해제 상태 -->
+    <item android:state_checked="false"
+        android:drawable=""/>
+    <!-- 체크박스 선택 상태 -->
+    <item android:state_checked="true"
+        android:drawable=""/>
+</selector>
