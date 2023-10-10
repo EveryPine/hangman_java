@@ -38,4 +38,5 @@ public class SettingDialog extends BaseDialog {
     private void exitApplication(){
         requireActivity().finish();
     }
+
 }

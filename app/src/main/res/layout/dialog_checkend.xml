@@ -23,15 +23,18 @@
         android:layout_height="60dp"
         android:layout_marginTop="30dp">
 
-        <ImageButton
+        <Button
             android:id="@+id/imgBtnYes"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_weight="1"
             android:scaleType="centerCrop"
-            android:src="@drawable/main_yes">
+            android:background="@drawable/main_white"
+            android:text="예"
+            android:textSize="20sp"
+            android:textStyle="bold">
 
-        </ImageButton>
+        </Button>
 
         <ImageButton
             android:id="@+id/imgBtnNo"

@@ -24,10 +24,10 @@ public class CheckEndDialog extends BaseDialog {
 
     @Override
     public void initUi() {
-        setButton();
+        setView();
     }
 
-    private void setButton(){
+    public void setView(){
         chkEndBinding.imgBtnYes.setOnClickListener(view -> {
             exitApplication();
         });
