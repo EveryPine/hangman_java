@@ -1,17 +1,18 @@
-package com.example.hangman_java.ui.activity;
+package com.example.hangman_java.hangman.view;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import com.example.hangman_java.databinding.ActivityGameoverBinding;
+import com.example.hangman_java.base.BaseActivity;
+import com.example.hangman_java.main.view.MainActivity;
 
 public class GameoverActivity extends BaseActivity {
     private ActivityGameoverBinding binding = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityGameoverBinding.inflate(getLayoutInflater());
@@ -24,7 +25,7 @@ public class GameoverActivity extends BaseActivity {
         setContentView(binding.getRoot());
     }
     @Override
-    void initUi() throws Exception {
+    public void initUi() throws Exception {
         setButtonListener();
     }
 
@@ -37,7 +38,7 @@ public class GameoverActivity extends BaseActivity {
         binding.gotoGame.setOnClickListener(view -> {
 
             if (getIntent().hasExtra("difficulty")){
-                Intent nextIntent = new Intent(getApplicationContext(), GameActivity.class);
+                Intent nextIntent = new Intent(getApplicationContext(), HangmanActivity.class);
                 nextIntent.putExtra("difficulty", getIntent().getIntExtra("difficulty", -1));
                 startActivity(nextIntent);
             } else {

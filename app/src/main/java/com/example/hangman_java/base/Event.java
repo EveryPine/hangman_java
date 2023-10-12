@@ -1,4 +1,4 @@
-package com.example.hangman_java.mvvm.viewmodel;
+package com.example.hangman_java.base;
 
 public class Event<T> {
     private final T content;

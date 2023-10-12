@@ -1,15 +1,13 @@
-package com.example.hangman_java.ui.main;
+package com.example.hangman_java.main.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.fragment.app.FragmentManager;
 
 import com.example.hangman_java.databinding.ActivityMainBinding;
-import com.example.hangman_java.ui.base.BaseActivity;
-import com.example.hangman_java.ui.game.SetGameActivity;
-import com.example.hangman_java.ui.record.RecordActivity;
+import com.example.hangman_java.base.BaseActivity;
+import com.example.hangman_java.record.view.RecordActivity;
 
 public class MainActivity extends BaseActivity {
     private ActivityMainBinding mainBinding = null;
@@ -38,8 +36,8 @@ public class MainActivity extends BaseActivity {
         });
 
         mainBinding.imgBtnRecord.setOnClickListener(view -> {
-            // Intent intent = new Intent(getApplicationContext(), RecordActivity.class);
-            // startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), RecordActivity.class);
+            startActivity(intent);
         });
 
         mainBinding.imgBtnSetting.setOnClickListener(view -> {

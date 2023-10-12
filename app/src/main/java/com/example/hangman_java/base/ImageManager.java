@@ -1,4 +1,4 @@
-package com.example.hangman_java.mvvm.model;
+package com.example.hangman_java.base;
 
 import com.example.hangman_java.R;
 import java.util.List;

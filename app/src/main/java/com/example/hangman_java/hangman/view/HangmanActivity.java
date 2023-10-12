@@ -1,4 +1,4 @@
-package com.example.hangman_java.ui.activity;
+package com.example.hangman_java.hangman.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,29 +9,26 @@ import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.hangman_java.databinding.ActivityGameBinding;
-import com.example.hangman_java.mvvm.viewmodel.GameViewModel;
-import com.example.hangman_java.ui.fragment.KeyboardFragment;
-import com.example.hangman_java.ui.fragment.PrintingFragment;
-import com.example.hangman_java.ui.fragment.WordspaceFragment;
+import com.example.hangman_java.databinding.ActivityHangmanBinding;
+import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
+import com.example.hangman_java.base.BaseActivity;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
-public class GameActivity extends BaseActivity{
-    private ActivityGameBinding binding = null;
-    private GameViewModel gameViewModel = null;
+public class HangmanActivity extends BaseActivity {
+    private ActivityHangmanBinding binding = null;
+    private HangmanViewModel hangmanViewModel = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        binding = ActivityGameBinding.inflate(getLayoutInflater());
-        gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
+        binding = ActivityHangmanBinding.inflate(getLayoutInflater());
+        hangmanViewModel = new ViewModelProvider(this).get(HangmanViewModel.class);
 
         if (getIntent().hasExtra("difficulty")){
-            gameViewModel.setStageInfo(getIntent().getIntExtra("difficulty", 0));
+            hangmanViewModel.setStageInfo(getIntent().getIntExtra("difficulty", 0));
         } else {
             Log.e("MyTAG", "GameActivity에서 difficulty값을 가져오는데 실패했습니다.");
         }
@@ -51,23 +48,23 @@ public class GameActivity extends BaseActivity{
         }
     }
     @Override
-    void initUi() throws Exception {
+    public void initUi() throws Exception {
         Log.d("MyTAG", "게임 초기화 시작");
         HashMap<FragmentContainerView, Fragment> inputHashMap = new HashMap<>(){{
             put(binding.fragmentContainerViewPrinting, new PrintingFragment());
             put(binding.fragmentContainerViewKeyboard, new KeyboardFragment());
             put(binding.fragmentContainerViewWordspace, new WordspaceFragment());
         }};
-        gameViewModel.setWaveInfo(this);
-        gameViewModel.setResourceInfo();
+        hangmanViewModel.setWaveInfo(this);
+        hangmanViewModel.setResourceInfo();
         replaceFragments(inputHashMap);
 
     }
 
     private void initGameEndObserver(){
-        gameViewModel.getGameClearFlag().observe(this, gameClearFlag -> {
-            gameViewModel.updateGameScore();
-            binding.textCurrentScore.setText(Integer.toString(gameViewModel.getGameScore()));
+        hangmanViewModel.getGameClearFlag().observe(this, gameClearFlag -> {
+            hangmanViewModel.updateGameScore();
+            binding.textCurrentScore.setText(Integer.toString(hangmanViewModel.getGameScore()));
             try {
                 initUi();
             } catch (Exception e) {
@@ -75,21 +72,19 @@ public class GameActivity extends BaseActivity{
             }
         });
 
-        gameViewModel.getGameoverFlag().observe(this, gameoverFlag -> startGameoverActivity());
+        hangmanViewModel.getGameoverFlag().observe(this, gameoverFlag -> startGameoverActivity());
 
     }
 
     private void startGameoverActivity(){
         Intent nextIntent = new Intent(this, GameoverActivity.class);
-        nextIntent.putExtra("difficulty", gameViewModel.getDifficulty());
+        nextIntent.putExtra("difficulty", hangmanViewModel.getDifficulty());
         startActivity(nextIntent);
     }
 
     private void replaceFragments(HashMap<FragmentContainerView, Fragment> inputMap){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        Iterator<Map.Entry<FragmentContainerView, Fragment>> iterator = inputMap.entrySet().iterator();
-        while (iterator.hasNext()){
-            Map.Entry<FragmentContainerView, Fragment> entrySet = iterator.next();
+        for (Map.Entry<FragmentContainerView, Fragment> entrySet : inputMap.entrySet()) {
             fragmentTransaction.replace(entrySet.getKey().getId(), entrySet.getValue());
         }
         fragmentTransaction.commit();

@@ -1,4 +1,4 @@
-package com.example.hangman_java.ui.fragment;
+package com.example.hangman_java.hangman.view;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -10,11 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hangman_java.databinding.FragmentPrintingBinding;
-import com.example.hangman_java.mvvm.viewmodel.GameViewModel;
+import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
+import com.example.hangman_java.base.BaseFragment;
 
 public class PrintingFragment extends BaseFragment {
     private FragmentPrintingBinding binding = null;
-    private GameViewModel gameViewModel = null;
+    private HangmanViewModel hangmanViewModel = null;
 
     @Override
     public View onCreateView(
@@ -35,18 +36,18 @@ public class PrintingFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        gameViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
+        hangmanViewModel = new ViewModelProvider(requireActivity()).get(HangmanViewModel.class);
         updateUi();
     }
     @Override
-    void initUi() {
+    public void initUi() {
 
     }
 
     private void updateUi(){
-        gameViewModel.getPrintingIndex().observe(getViewLifecycleOwner(), printingIndex -> {
-            if (printingIndex.peekContent() < gameViewModel.getPrintingIdListSize()){
-                binding.printing.setImageResource(gameViewModel.getPrintingImageId());
+        hangmanViewModel.getPrintingIndex().observe(getViewLifecycleOwner(), printingIndex -> {
+            if (printingIndex.peekContent() < hangmanViewModel.getPrintingIdListSize()){
+                binding.printing.setImageResource(hangmanViewModel.getPrintingImageId());
             }
             Log.d("MyTAG", "그림 ui가 업데이트 됨");
         });

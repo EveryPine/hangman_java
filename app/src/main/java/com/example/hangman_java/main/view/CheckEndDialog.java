@@ -1,4 +1,4 @@
-package com.example.hangman_java.ui.main;
+package com.example.hangman_java.main.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.hangman_java.databinding.DialogCheckendBinding;
-import com.example.hangman_java.ui.base.BaseDialog;
+import com.example.hangman_java.base.BaseDialog;
 
 public class CheckEndDialog extends BaseDialog {
     private DialogCheckendBinding chkEndBinding = null;

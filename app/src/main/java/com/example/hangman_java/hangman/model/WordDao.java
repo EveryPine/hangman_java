@@ -1,7 +1,8 @@
-package com.example.hangman_java.mvvm.model;
+package com.example.hangman_java.hangman.model;
 
 import androidx.room.Dao;
 import androidx.room.Query;
+
 import java.util.List;
 
 @Dao

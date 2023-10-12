@@ -1,4 +1,4 @@
-package com.example.hangman_java.ui.fragment;
+package com.example.hangman_java.hangman.view;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -10,19 +10,20 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.hangman_java.databinding.FragmentKeyboardBinding;
-import com.example.hangman_java.mvvm.viewmodel.GameViewModel;
+import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
+import com.example.hangman_java.base.BaseFragment;
 
 import java.util.List;
 
-public class KeyboardFragment extends BaseFragment{
+public class KeyboardFragment extends BaseFragment {
     private FragmentKeyboardBinding binding = null;
-    private GameViewModel gameViewModel = null;
+    private HangmanViewModel hangmanViewModel = null;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         binding = FragmentKeyboardBinding.inflate(inflater, container, false);
-        gameViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
+        hangmanViewModel = new ViewModelProvider(requireActivity()).get(HangmanViewModel.class);
         initUi();
 
         return binding.getRoot();
@@ -31,11 +32,11 @@ public class KeyboardFragment extends BaseFragment{
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        gameViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
+        hangmanViewModel = new ViewModelProvider(requireActivity()).get(HangmanViewModel.class);
         setButtonListener();
     }
     @Override
-    void initUi() {
+    public void initUi() {
 
     }
 
@@ -108,7 +109,7 @@ public class KeyboardFragment extends BaseFragment{
 
                 if (alphabet!='0'){
                     buttonDisabled((ImageButton) view);
-                    gameViewModel.inputAlphabetListener(alphabet);
+                    hangmanViewModel.inputAlphabetListener(alphabet);
                 } else {
                     Log.e("MyTAG", "KeyboardFragment의 alphabet에 잘못된 값이 참조되었습니다.");
                 }

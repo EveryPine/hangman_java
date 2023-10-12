@@ -1,4 +1,4 @@
-package com.example.hangman_java.mvvm.viewmodel;
+package com.example.hangman_java.hangman.viewmodel;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,16 +8,19 @@ import android.widget.LinearLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.hangman_java.mvvm.model.ImageManager;
-import com.example.hangman_java.mvvm.model.WordDao;
-import com.example.hangman_java.mvvm.model.WordDatabase;
+
+import com.example.hangman_java.base.AppDatabase;
+import com.example.hangman_java.base.BaseViewModel;
+import com.example.hangman_java.base.ImageManager;
+import com.example.hangman_java.hangman.model.WordDao;
+import com.example.hangman_java.base.Event;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-public class GameViewModel extends ViewModel {
+public class HangmanViewModel extends BaseViewModel {
     private final Random random = new Random();
     private final ImageManager imageManager = ImageManager.getInstance();
 
@@ -91,7 +94,7 @@ public class GameViewModel extends ViewModel {
     // 목표 단어 설정 (DB 스레드 이용)
     private void setTargetWord(Context context, int wordLength){
         Runnable runnable = () -> {
-            WordDao wordDao = WordDatabase.getInstance(context).wordDao();
+            WordDao wordDao = AppDatabase.getInstance(context).wordDao();
             List<Integer> wordIdList = wordDao.getWordByLength(wordLength);
             _word.postValue(wordDao.getWordById(wordIdList.get(random.nextInt(wordIdList.size()))));
         };

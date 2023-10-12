@@ -1,4 +1,4 @@
-package com.example.hangman_java.mvvm.model;
+package com.example.hangman_java.hangman.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
