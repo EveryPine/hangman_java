@@ -1,4 +1,4 @@
-package com.example.hangman_java.ui.base;
+package com.example.hangman_java.base;
 
 import android.os.Build;
 import android.os.Bundle;
