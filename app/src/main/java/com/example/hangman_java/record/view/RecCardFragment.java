@@ -11,14 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hangman_java.base.EventObserver;
-import com.example.hangman_java.databinding.FragmentRechangmanBinding;
+import com.example.hangman_java.databinding.FragmentReccardBinding;
 import com.example.hangman_java.record.model.Record;
 import com.example.hangman_java.record.viewmodel.RecordViewModel;
 
 import java.util.List;
 
-public class RecHangmanFragment extends RecordFragment {
-    private FragmentRechangmanBinding frRecBinding = null;
+public class RecCardFragment extends RecordFragment {
+    private FragmentReccardBinding frRecBinding = null;
     private Context parentContext = null;
     private RecordViewModel recordViewModel = null;
 
@@ -31,7 +31,7 @@ public class RecHangmanFragment extends RecordFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
-        frRecBinding = FragmentRechangmanBinding.inflate(inflater, container, false);
+        frRecBinding = FragmentReccardBinding.inflate(inflater, container, false);
         try {
             initUi();
         } catch (Exception e) {
@@ -45,26 +45,22 @@ public class RecHangmanFragment extends RecordFragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         recordViewModel = new ViewModelProvider(requireActivity()).get(RecordViewModel.class);
-        try {
-            updateUi();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        updateUi();
     }
     @Override
     protected void initUi() throws Exception {
 
     }
 
-    private void updateUi() throws InterruptedException {
-        recordViewModel.getBestRecord(parentContext, "hangman");
-        recordViewModel.getRecentRecord(parentContext, "hangman");
+    private void updateUi(){
+        recordViewModel.getBestRecord(parentContext, "card");
+        recordViewModel.getRecentRecord(parentContext, "card");
         setBestRecord();
         setRecentRecord();
     }
 
     private void setBestRecord(){
-        recordViewModel.hangmanBestRecordList().observe(getViewLifecycleOwner(), new EventObserver<>(bestRecordList -> {
+        recordViewModel.cardBestRecordList().observe(getViewLifecycleOwner(), new EventObserver<>(bestRecordList -> {
             boolean[] isExist = {false, false, false};
             for (Record rec : bestRecordList) {
                 switch (rec.difficulty) {
@@ -108,7 +104,7 @@ public class RecHangmanFragment extends RecordFragment {
     }
 
     private void setRecentRecord(){
-        recordViewModel.hangmanRecentRecordList().observe(getViewLifecycleOwner(), new EventObserver<>(recentRecord -> {
+        recordViewModel.cardRecentRecordList().observe(getViewLifecycleOwner(), new EventObserver<>(recentRecord -> {
             if (recentRecord.size()==0){
                 frRecBinding.tvGoneMessage.setVisibility(View.VISIBLE);
                 frRecBinding.tlRecentRecord.setVisibility(View.GONE);

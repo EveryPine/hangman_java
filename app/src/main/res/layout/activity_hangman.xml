@@ -47,7 +47,7 @@
         <!--그림 레이아웃-->
 
         <androidx.fragment.app.FragmentContainerView android:id="@+id/fragmentContainerViewPrinting"
-            android:name="com.example.hangman_java.ui.fragment.PrintingFragment"
+            android:name="com.example.hangman_java.hangman.view.PrintingFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/textCurrentScore"
@@ -60,7 +60,7 @@
 
         <!--맞출 단어 표시 레이아웃-->
         <androidx.fragment.app.FragmentContainerView android:id="@+id/fragmentContainerViewWordspace"
-            android:name="com.example.hangman_java.ui.fragment.WordspaceFragment"
+            android:name="com.example.hangman_java.hangman.view.WordspaceFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/fragmentContainerViewPrinting"
@@ -74,7 +74,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.fragment.app.FragmentContainerView android:id="@+id/fragmentContainerViewKeyboard"
-        android:name="com.example.hangman_java.ui.fragment.KeyboardFragment"
+        android:name="com.example.hangman_java.hangman.view.KeyboardFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

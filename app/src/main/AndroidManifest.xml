@@ -7,13 +7,13 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="행맨"
+        android:label="미니게임세상"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Hangman_java"
+        android:theme="@style/FullScreenTheme"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".main.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.GameActivity"/>
-        <activity android:name=".ui.activity.GameoverActivity"
-            android:theme="@style/Transparent"
-            android:exported="true"/>
+        <activity android:name=".record.view.RecordActivity"
+            android:exported="true">
+
+        </activity>
+
     </application>
 
 </manifest>

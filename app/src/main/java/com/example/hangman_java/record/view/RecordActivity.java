@@ -38,9 +38,9 @@ public class RecordActivity extends BaseActivity {
     }
 
     public void setView(){
-        recordBinding.imgBtnGame1.setOnClickListener(view -> {
+        recordBinding.imgBtnCard.setOnClickListener(view -> {
             if (frGame1==null){
-                frGame1 = new RecHangmanFragment();
+                frGame1 = new RecCardFragment();
                 fragmentManager.beginTransaction().add(fcRecord.getId(), frGame1).commit();
             }
             if (frGame1!=null) fragmentManager.beginTransaction().show(frGame1).commit();
@@ -48,7 +48,7 @@ public class RecordActivity extends BaseActivity {
             if (frGame3!=null) fragmentManager.beginTransaction().hide(frGame3).commit();
         });
 
-        recordBinding.imgBtnGame2.setOnClickListener(view -> {
+        recordBinding.imgBtnHangman.setOnClickListener(view -> {
             if (frGame2==null){
                 frGame2 = new RecHangmanFragment();
                 fragmentManager.beginTransaction().add(fcRecord.getId(), frGame2).commit();
@@ -58,9 +58,9 @@ public class RecordActivity extends BaseActivity {
             if (frGame3!=null) fragmentManager.beginTransaction().hide(frGame3).commit();
         });
 
-        recordBinding.imgBtnGame3.setOnClickListener(view -> {
+        recordBinding.imgBtnMemory.setOnClickListener(view -> {
             if (frGame3==null){
-                frGame3 = new RecHangmanFragment();
+                frGame3 = new RecMemoryFragment();
                 fragmentManager.beginTransaction().add(fcRecord.getId(), frGame3).commit();
             }
             if (frGame1!=null) fragmentManager.beginTransaction().hide(frGame1).commit();

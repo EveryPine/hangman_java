@@ -16,17 +16,29 @@ import java.util.List;
 public class RecordViewModel extends BaseViewModel {
     // MutableLiveData
     private MutableLiveData<Event<String>> _selectedGame = new MutableLiveData<>();
-    private MutableLiveData<Event<List<Record>>> _bestRecordList = new MutableLiveData<>();
-    private MutableLiveData<Event<List<Record>>> _recentRecordList = new MutableLiveData<>();
+    private MutableLiveData<Event<List<Record>>> _cardBestRecordList = new MutableLiveData<>();
+    private MutableLiveData<Event<List<Record>>> _hangmanBestRecordList = new MutableLiveData<>();
+    private MutableLiveData<Event<List<Record>>> _memoryBestRecordList = new MutableLiveData<>();
+    private MutableLiveData<Event<List<Record>>> _cardRecentRecordList = new MutableLiveData<>();
+    private MutableLiveData<Event<List<Record>>> _hangmanRecentRecordList = new MutableLiveData<>();
+    private MutableLiveData<Event<List<Record>>> _memoryRecentRecordList = new MutableLiveData<>();
     // LiveData
     public final LiveData<Event<String>> getSelectedGame(){return this._selectedGame;}
-    public final LiveData<Event<List<Record>>> bestRecordList(){return this._bestRecordList;}
-    public final LiveData<Event<List<Record>>> recentRecordList(){return this._recentRecordList;}
+    public final LiveData<Event<List<Record>>> cardBestRecordList(){return this._cardBestRecordList;}
+    public final LiveData<Event<List<Record>>> hangmanBestRecordList(){return this._hangmanBestRecordList;}
+    public final LiveData<Event<List<Record>>> memoryBestRecordList(){return this._memoryBestRecordList;}
+    public final LiveData<Event<List<Record>>> cardRecentRecordList(){return this._cardRecentRecordList;}
+    public final LiveData<Event<List<Record>>> hangmanRecentRecordList(){return this._hangmanRecentRecordList;}
+    public final LiveData<Event<List<Record>>> memoryRecentRecordList(){return this._memoryRecentRecordList;}
 
     public void getBestRecord(Context context, String game){
         Runnable runnable = () -> {
             RecordDao recordDao = AppDatabase.getInstance(context).recordDao();
-            _bestRecordList.postValue(new Event<>(recordDao.getBestRecord(game)));;
+            switch (game){
+                case "card" -> _cardBestRecordList.postValue(new Event<>(recordDao.getBestRecord(game)));
+                case "hangman" -> _hangmanBestRecordList.postValue(new Event<>(recordDao.getBestRecord(game)));
+                case "memory" -> _memoryBestRecordList.postValue(new Event<>(recordDao.getBestRecord(game)));
+            }
         };
         Thread thread = new Thread(runnable);
         thread.start();
@@ -35,7 +47,11 @@ public class RecordViewModel extends BaseViewModel {
     public void getRecentRecord(Context context, String game){
         Runnable runnable = () -> {
             RecordDao recordDao = AppDatabase.getInstance(context).recordDao();
-            _recentRecordList.postValue(new Event<>(recordDao.getRecentRecord(game)));
+            switch (game){
+                case "card" -> _cardRecentRecordList.postValue(new Event<>(recordDao.getRecentRecord(game)));
+                case "hangman" -> _hangmanRecentRecordList.postValue(new Event<>(recordDao.getRecentRecord(game)));
+                case "memory" -> _memoryRecentRecordList.postValue(new Event<>(recordDao.getRecentRecord(game)));
+            }
         };
         Thread thread = new Thread(runnable);
         thread.start();

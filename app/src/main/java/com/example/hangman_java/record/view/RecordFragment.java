@@ -22,12 +22,12 @@ public class RecordFragment extends BaseFragment {
 
     }
 
-    List<TableRow> createTableRow(Event<List<Record>> recentRecord){
+    List<TableRow> createTableRow(List<Record> recentRecord){
         List<TableRow> resultTableRow = new ArrayList<>();
         TableRow.LayoutParams trParams = new TableRow.LayoutParams();
-        trParams.bottomMargin = convertToDP();
-        trParams.topMargin = convertToDP();
-        for (Record rec : recentRecord.getContentIfNotHandled()){
+        trParams.bottomMargin = convertToDP(5);
+        trParams.topMargin = convertToDP(5);
+        for (Record rec : recentRecord){
             TableRow tableRow = new TableRow(getContext());
             tableRow.setLayoutParams(trParams);
             // 이곳에 tableRow 배경 설정 코드 삽입
@@ -42,8 +42,8 @@ public class RecordFragment extends BaseFragment {
                 TableRow.LayoutParams params = new TableRow.LayoutParams(
                     0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
                 if (i==2) params.weight = 2f;
-                params.bottomMargin = convertToDP();
-                params.topMargin = convertToDP();
+                params.bottomMargin = convertToDP(5);
+                params.topMargin = convertToDP(5);
                 textView.setText(textData[i]);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
                 textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -62,8 +62,8 @@ public class RecordFragment extends BaseFragment {
         tvDate.setVisibility(View.GONE);
     }
 
-    int convertToDP(){
+    int convertToDP(int px){
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        return Math.round(5 * displayMetrics.density);
+        return Math.round(px * displayMetrics.density);
     }
 }
