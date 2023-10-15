@@ -22,8 +22,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".record.view.RecordActivity"
-            android:exported="true">
+        <activity android:name=".record.view.RecordActivity">
+
+        </activity>
+
+        <activity android:name=".game.view.GameActivity">
+
+        </activity>
+
+        <activity android:name=".hangman.view.HangmanActivity">
 
         </activity>
 
