@@ -15,10 +15,8 @@ import com.example.hangman_java.databinding.FragmentRechangmanBinding;
 import com.example.hangman_java.record.model.Record;
 import com.example.hangman_java.record.viewmodel.RecordViewModel;
 
-import java.util.List;
-
 public class RecHangmanFragment extends RecordFragment {
-    private FragmentRechangmanBinding frRecBinding = null;
+    private FragmentRechangmanBinding recHangmanBinding = null;
     private Context parentContext = null;
     private RecordViewModel recordViewModel = null;
 
@@ -31,14 +29,14 @@ public class RecHangmanFragment extends RecordFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
-        frRecBinding = FragmentRechangmanBinding.inflate(inflater, container, false);
+        recHangmanBinding = FragmentRechangmanBinding.inflate(inflater, container, false);
         try {
             initUi();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        return frRecBinding.getRoot();
+        return recHangmanBinding.getRoot();
     }
 
     @Override
@@ -69,18 +67,18 @@ public class RecHangmanFragment extends RecordFragment {
             for (Record rec : bestRecordList) {
                 switch (rec.difficulty) {
                     case "easy" -> {
-                        frRecBinding.tvEasyRecord.setText(rec.record + " 점");
-                        frRecBinding.tvEasyDate.setText(rec.date);
+                        recHangmanBinding.tvEasyRecord.setText(rec.record + " 점");
+                        recHangmanBinding.tvEasyDate.setText(rec.date);
                         isExist[0] = true;
                     }
                     case "normal" -> {
-                        frRecBinding.tvNormalRecord.setText(rec.record + " 점");
-                        frRecBinding.tvNormalDate.setText(rec.date);
+                        recHangmanBinding.tvNormalRecord.setText(rec.record + " 점");
+                        recHangmanBinding.tvNormalDate.setText(rec.date);
                         isExist[1] = true;
                     }
                     case "hard" -> {
-                        frRecBinding.tvHardRecord.setText(rec.record + " 점");
-                        frRecBinding.tvHardDate.setText(rec.date);
+                        recHangmanBinding.tvHardRecord.setText(rec.record + " 점");
+                        recHangmanBinding.tvHardDate.setText(rec.date);
                         isExist[2] = true;
                     }
                 }
@@ -89,16 +87,16 @@ public class RecHangmanFragment extends RecordFragment {
                 if (!isExist[i]) {
                     switch (i) {
                         case 0 -> {
-                            mergeCell(frRecBinding.tvEasyRecord, frRecBinding.tvEasyDate);
-                            frRecBinding.tvEasyRecord.setText("기록이 없습니다");
+                            mergeCell(recHangmanBinding.tvEasyRecord, recHangmanBinding.tvEasyDate);
+                            recHangmanBinding.tvEasyRecord.setText("기록이 없습니다");
                         }
                         case 1 -> {
-                            mergeCell(frRecBinding.tvNormalRecord, frRecBinding.tvNormalDate);
-                            frRecBinding.tvNormalRecord.setText("기록이 없습니다");
+                            mergeCell(recHangmanBinding.tvNormalRecord, recHangmanBinding.tvNormalDate);
+                            recHangmanBinding.tvNormalRecord.setText("기록이 없습니다");
                         }
                         case 2 -> {
-                            mergeCell(frRecBinding.tvHardRecord, frRecBinding.tvHardDate);
-                            frRecBinding.tvHardRecord.setText("기록이 없습니다");
+                            mergeCell(recHangmanBinding.tvHardRecord, recHangmanBinding.tvHardDate);
+                            recHangmanBinding.tvHardRecord.setText("기록이 없습니다");
                         }
                     }
                 }
@@ -110,12 +108,12 @@ public class RecHangmanFragment extends RecordFragment {
     private void setRecentRecord(){
         recordViewModel.hangmanRecentRecordList().observe(getViewLifecycleOwner(), new EventObserver<>(recentRecord -> {
             if (recentRecord.size()==0){
-                frRecBinding.tvGoneMessage.setVisibility(View.VISIBLE);
-                frRecBinding.tlRecentRecord.setVisibility(View.GONE);
+                recHangmanBinding.tvGoneMessage.setVisibility(View.VISIBLE);
+                recHangmanBinding.tlRecentRecord.setVisibility(View.GONE);
                 return;
             }
             for (TableRow tr : createTableRow(recentRecord)){
-                frRecBinding.tlRecentRecord.addView(tr);
+                recHangmanBinding.tlRecentRecord.addView(tr);
             }
         }));
     }

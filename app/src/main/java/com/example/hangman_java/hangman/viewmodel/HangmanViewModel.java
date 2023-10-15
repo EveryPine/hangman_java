@@ -5,15 +5,15 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.hangman_java.base.AppDatabase;
 import com.example.hangman_java.base.BaseViewModel;
+import com.example.hangman_java.base.Event;
 import com.example.hangman_java.base.ImageManager;
 import com.example.hangman_java.hangman.model.WordDao;
-import com.example.hangman_java.base.Event;
 
 import java.util.ArrayList;
 import java.util.List;
