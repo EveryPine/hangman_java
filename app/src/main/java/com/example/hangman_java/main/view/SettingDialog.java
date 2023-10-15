@@ -5,8 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.hangman_java.databinding.DialogSettingBinding;
 import com.example.hangman_java.base.BaseDialog;
+import com.example.hangman_java.databinding.DialogSettingBinding;
 
 public class SettingDialog extends BaseDialog {
     private DialogSettingBinding settingBinding = null;

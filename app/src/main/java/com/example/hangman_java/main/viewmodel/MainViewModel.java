@@ -1,4 +1,4 @@
-package com.example.hangman_java.main;
+package com.example.hangman_java.main.viewmodel;
 
 import androidx.lifecycle.MutableLiveData;
 

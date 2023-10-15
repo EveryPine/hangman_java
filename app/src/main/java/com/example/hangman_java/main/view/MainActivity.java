@@ -5,8 +5,9 @@ import android.os.Bundle;
 
 import androidx.fragment.app.FragmentManager;
 
-import com.example.hangman_java.databinding.ActivityMainBinding;
 import com.example.hangman_java.base.BaseActivity;
+import com.example.hangman_java.databinding.ActivityMainBinding;
+import com.example.hangman_java.game.view.GameActivity;
 import com.example.hangman_java.record.view.RecordActivity;
 
 public class MainActivity extends BaseActivity {
@@ -31,8 +32,8 @@ public class MainActivity extends BaseActivity {
 
     private void setButton(){
         mainBinding.imgBtnGamestart.setOnClickListener(view -> {
-            // Intent intent = new Intent(getApplicationContext(), SetGameActivity.class);
-            // startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), GameActivity.class);
+            startActivity(intent);
         });
 
         mainBinding.imgBtnRecord.setOnClickListener(view -> {

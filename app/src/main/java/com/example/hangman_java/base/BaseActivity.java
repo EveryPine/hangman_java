@@ -1,14 +1,11 @@
 package com.example.hangman_java.base;
 
 import android.os.Build;
-import android.os.Bundle;
 import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.hangman_java.databinding.ActivityMainBinding;
 
 public abstract class BaseActivity extends AppCompatActivity {
     public abstract void initUi() throws Exception;

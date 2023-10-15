@@ -1,7 +1,5 @@
 package com.example.hangman_java.base;
 
-import androidx.lifecycle.Observer;
-
 public class Event<T> {
     private final T content;
     private boolean hasbeenHandled = false;

@@ -9,7 +9,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.hangman_java.base.BaseFragment;
-import com.example.hangman_java.base.Event;
 import com.example.hangman_java.record.model.Record;
 
 import java.util.ArrayList;

@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.hangman_java.databinding.ActivityGameoverBinding;
 import com.example.hangman_java.base.BaseActivity;
+import com.example.hangman_java.databinding.ActivityGameoverBinding;
 import com.example.hangman_java.main.view.MainActivity;
 
 public class GameoverActivity extends BaseActivity {

@@ -15,8 +15,6 @@ import com.example.hangman_java.databinding.FragmentRecmemoryBinding;
 import com.example.hangman_java.record.model.Record;
 import com.example.hangman_java.record.viewmodel.RecordViewModel;
 
-import java.util.List;
-
 public class RecMemoryFragment extends RecordFragment {
     private FragmentRecmemoryBinding frRecBinding = null;
     private Context parentContext = null;

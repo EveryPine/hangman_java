@@ -1,6 +1,5 @@
 package com.example.hangman_java.record.model;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

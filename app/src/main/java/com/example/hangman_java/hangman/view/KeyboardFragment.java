@@ -9,9 +9,10 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.example.hangman_java.base.BaseFragment;
 import com.example.hangman_java.databinding.FragmentKeyboardBinding;
 import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
-import com.example.hangman_java.base.BaseFragment;
 
 import java.util.List;
 

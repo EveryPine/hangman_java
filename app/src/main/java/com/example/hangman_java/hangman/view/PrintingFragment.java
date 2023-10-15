@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hangman_java.base.BaseFragment;
 import com.example.hangman_java.databinding.FragmentPrintingBinding;
 import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
-import com.example.hangman_java.base.BaseFragment;
 
 public class PrintingFragment extends BaseFragment {
     private FragmentPrintingBinding binding = null;

@@ -9,9 +9,9 @@ import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hangman_java.base.BaseActivity;
 import com.example.hangman_java.databinding.ActivityHangmanBinding;
 import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
-import com.example.hangman_java.base.BaseActivity;
 
 import java.util.HashMap;
 import java.util.Map;

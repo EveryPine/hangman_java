@@ -12,9 +12,9 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hangman_java.base.BaseFragment;
 import com.example.hangman_java.databinding.FragmentWordspaceBinding;
 import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
-import com.example.hangman_java.base.BaseFragment;
 
 public class WordspaceFragment extends BaseFragment {
     private FragmentWordspaceBinding binding = null;

@@ -1,15 +1,13 @@
 package com.example.hangman_java.record.view;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.hangman_java.databinding.ActivityRecordBinding;
 import com.example.hangman_java.base.BaseActivity;
-import com.example.hangman_java.record.view.RecHangmanFragment;
+import com.example.hangman_java.databinding.ActivityRecordBinding;
 
 public class RecordActivity extends BaseActivity {
     private ActivityRecordBinding recordBinding = null;
