@@ -1,0 +1,67 @@
+package com.example.hangman_java.game.view;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.hangman_java.base.BaseFragment;
+import com.example.hangman_java.databinding.FragmentSetdifficultyBinding;
+import com.example.hangman_java.game.viewmodel.GameViewModel;
+import com.example.hangman_java.hangman.view.HangmanActivity;
+
+public class SetDifficultyFragment extends BaseFragment{
+    private FragmentSetdifficultyBinding setdifficultyBinding;
+    private GameViewModel gameViewModel;
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState){
+        setdifficultyBinding = FragmentSetdifficultyBinding.inflate(inflater, container, false);
+        return setdifficultyBinding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+        gameViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
+        try {
+            initUi();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Override
+    protected void initUi() throws Exception {
+        setView();
+    }
+
+    private void setView(){
+        setdifficultyBinding.btnEasy.setOnClickListener(view -> gameViewModel.setDifficulty(0));
+        setdifficultyBinding.btnNormal.setOnClickListener(view -> gameViewModel.setDifficulty(1));
+        setdifficultyBinding.btnHard.setOnClickListener(view -> gameViewModel.setDifficulty(2));
+        setdifficultyBinding.btnGamestart.setOnClickListener(view -> {
+            Intent intent = null;
+            String game = gameViewModel.getSelectedGame();
+            int difficulty = gameViewModel.getDifficulty();
+            if (difficulty==-1){
+                // 난이도 미설정 오류 메세지 출력
+                return;
+            }
+            switch (game){
+                case "card" -> Toast.makeText(getContext(), "아직 만들어지지 않은 게임입니다", Toast.LENGTH_SHORT).show();// intent = new Intent(getActivity(), classname.class);
+                case "hangman" -> intent = new Intent(getActivity(), HangmanActivity.class);
+                case "memory" -> Toast.makeText(getContext(), "아직 만들어지지 않은 게임입니다", Toast.LENGTH_SHORT).show();
+            }
+            if (intent!=null){
+                intent.putExtra("difficulty", difficulty);
+                startActivity(intent);
+            }
+        });
+    }
+}
