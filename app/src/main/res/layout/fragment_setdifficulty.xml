@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="난이도 선택"
+        android:fontFamily="@font/system_font"
         android:textSize="40dp"
         android:textAlignment="center"
         android:layout_marginTop="30dp"
@@ -33,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="쉬움"
+                android:fontFamily="@font/system_font"
                 android:textSize="30dp"
                 android:textAlignment="center"/>
 
@@ -47,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="관련 정보 description\n(ex. 단어 길이)"
+                android:fontFamily="@font/system_font"
                 android:textSize="20dp"
                 android:layout_margin="10dp"/>
 
@@ -66,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="보통"
+                android:fontFamily="@font/system_font"
                 android:textSize="30dp"
                 android:textAlignment="center"/>
 
@@ -80,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="관련 정보 description\n(ex. 단어 길이)"
+                android:fontFamily="@font/system_font"
                 android:textSize="20dp"
                 android:layout_margin="10dp"/>
 
@@ -98,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="어려움"
+                android:fontFamily="@font/system_font"
                 android:textSize="30dp"
                 android:textAlignment="center"/>
 
@@ -112,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="관련 정보 description\n(ex. 단어 길이)"
+                android:fontFamily="@font/system_font"
                 android:textSize="20dp"
                 android:layout_margin="10dp"/>
 

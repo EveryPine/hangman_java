@@ -1,5 +1,6 @@
 package com.example.hangman_java.record.view;
 
+import android.graphics.Typeface;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
@@ -8,11 +9,15 @@ import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.core.content.res.ResourcesCompat;
+
+import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseFragment;
 import com.example.hangman_java.record.model.Record;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RecordFragment extends BaseFragment {
     @Override
@@ -23,7 +28,9 @@ public class RecordFragment extends BaseFragment {
 
     List<TableRow> createTableRow(List<Record> recentRecord){
         List<TableRow> resultTableRow = new ArrayList<>();
+        // 관련 파라미터 변수 생성
         TableRow.LayoutParams trParams = new TableRow.LayoutParams();
+        Typeface font = ResourcesCompat.getFont(requireContext(), R.font.system_font);
         trParams.bottomMargin = convertToDP(5);
         trParams.topMargin = convertToDP(5);
         for (Record rec : recentRecord){
@@ -46,6 +53,7 @@ public class RecordFragment extends BaseFragment {
                 textView.setText(textData[i]);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
                 textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                textView.setTypeface(font);
                 textView.setLayoutParams(params);
                 tableRow.addView(textView);
             }

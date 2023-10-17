@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:text="정말로 종료하시겠습니까?"
+        android:fontFamily="@font/system_font"
         android:textSize="20dp"
         android:textAlignment="center"
         android:gravity="center"/>

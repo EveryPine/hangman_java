@@ -30,6 +30,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:text="현재 맞춘 단어 수"
+            android:fontFamily="@font/system_font"
             android:textColor="@color/black"
             android:textSize="20sp"/>
 
@@ -41,6 +42,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:text="0"
+            android:fontFamily="@font/system_font"
             android:textColor="@color/black"
             android:textSize="20sp"/>
 
