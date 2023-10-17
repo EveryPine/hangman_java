@@ -1,5 +1,6 @@
 package com.example.hangman_java.record.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.hangman_java.base.BaseActivity;
 import com.example.hangman_java.databinding.ActivityRecordBinding;
+import com.example.hangman_java.main.view.MainActivity;
 
 public class RecordActivity extends BaseActivity {
     private ActivityRecordBinding recordBinding = null;
@@ -36,6 +38,11 @@ public class RecordActivity extends BaseActivity {
     }
 
     public void setView(){
+        recordBinding.btnGoback.setOnClickListener(view -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        });
+
         recordBinding.imgBtnCard.setOnClickListener(view -> {
             if (frGame1==null){
                 frGame1 = new RecCardFragment();

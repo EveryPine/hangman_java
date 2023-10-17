@@ -2,9 +2,11 @@ package com.example.hangman_java.game.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hangman_java.base.BaseActivity;
@@ -41,15 +43,20 @@ public class GameActivity extends BaseActivity {
             .add(gameBinding.frContainer.getId(), frSetDifficulty)
             .hide(frSetDifficulty)
             .commit();
-        gameViewModel.selectedGame().observe(this, new EventObserver<>(game ->
-            fragmentManager.beginTransaction().hide(frSetGame).show(frSetDifficulty).commit()));
+        gameViewModel.selectedGame().observe(this, new EventObserver<>(game -> {
+            gameViewModel.setCurrentFragment("difficulty");
+            fragmentManager.beginTransaction().hide(frSetGame).show(frSetDifficulty).commit();
+        }));
+        gameViewModel.setCurrentFragment("game");
         setView();
     }
 
     private void setView(){
         gameBinding.btnGoback.setOnClickListener(view -> {
             // 게임 난이도 설정 화면이 올라와 있으면
-            if (fragmentManager.getFragments().get(0) instanceof SetDifficultyFragment){
+            if (gameViewModel.getCurrentFragment().equals("difficulty")){
+                Log.d("MyTAG", "난이도 설정 화면에서 게임 선택 화면으로 돌아감");
+                gameViewModel.setCurrentFragment("game");
                 fragmentManager.beginTransaction().hide(frSetDifficulty).show(frSetGame).commit();
             //  게임 선택 화면이 올라와있으면
             } else {

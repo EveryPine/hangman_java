@@ -60,4 +60,12 @@ public class RecordViewModel extends BaseViewModel {
     public void setDisplayingGame(String game){
         _selectedGame.setValue(new Event<>(game));
     }
+
+    public void updateBestRecord(Record record){
+
+    }
+
+    public void updateRecentRecord(Record record){
+
+    }
 }
