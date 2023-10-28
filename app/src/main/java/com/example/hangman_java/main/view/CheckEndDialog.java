@@ -29,7 +29,7 @@ public class CheckEndDialog extends BaseDialog {
 
     public void setView(){
         chkEndBinding.imgBtnYes.setOnClickListener(view -> {
-            exitApplication();
+            android.os.Process.killProcess(android.os.Process.myPid());
         });
 
         chkEndBinding.imgBtnNo.setOnClickListener(view -> {

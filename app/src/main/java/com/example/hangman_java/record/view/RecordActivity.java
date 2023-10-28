@@ -39,8 +39,7 @@ public class RecordActivity extends BaseActivity {
 
     public void setView(){
         recordBinding.btnGoback.setOnClickListener(view -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            finish();
         });
 
         recordBinding.imgBtnCard.setOnClickListener(view -> {

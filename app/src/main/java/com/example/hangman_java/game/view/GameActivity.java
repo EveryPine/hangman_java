@@ -60,8 +60,7 @@ public class GameActivity extends BaseActivity {
                 fragmentManager.beginTransaction().hide(frSetDifficulty).show(frSetGame).commit();
             //  게임 선택 화면이 올라와있으면
             } else {
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
