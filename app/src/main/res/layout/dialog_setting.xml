@@ -33,19 +33,25 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="음소거"
-            android:textSize="10dp"
-            android:layout_marginHorizontal="10dp"
+            android:fontFamily="@font/system_font"
+            android:textSize="14dp"
+            android:layout_marginHorizontal="5dp"
             android:layout_marginVertical="30dp">
 
         </CheckBox>
 
         <SeekBar
             android:id="@+id/sbBackgroundVolume"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="30dp">
+            android:layout_width="205dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@null"
+            android:max="10"
+            android:progress="0"
+            android:thumbOffset="-0.01dp"
+            android:thumb="@drawable/seekbar_thumb"
+            android:progressDrawable="@drawable/seekbar_progress"
+            android:splitTrack="true">
 
         </SeekBar>
 
