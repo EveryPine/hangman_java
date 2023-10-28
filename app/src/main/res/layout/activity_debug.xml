@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:text="생성된 데이터"
+        android:textSize="20dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/tvGenData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:text="생성된 데이터가 보여집니다"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/square_background_border_black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:text="DB 쿼리 결과창"
+        android:textSize="20dp"
+        android:layout_gravity="center"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/square_background_border_black">
+
+        <TextView
+            android:id="@+id/tvShowDb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"/>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnGenData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_gravity="center"
+            android:text="기록 랜덤 생성"/>
+
+        <Button
+            android:id="@+id/btnInsertData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DB에 기록 insert"
+            android:layout_marginVertical="10dp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnShowBest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BestRecord 보기"
+            android:layout_marginVertical="10dp"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btnShowRecent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RecentRecord 보기"
+            android:layout_marginVertical="10dp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="카드 뒤집기 시작"
+            android:layout_marginVertical="10dp"/>
+
+        <Button
+            android:id="@+id/btnHangman"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="행맨 시작"
+            android:layout_marginVertical="10dp"/>
+
+        <Button
+            android:id="@+id/btnMemory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="기억력 테스트 시작"
+            android:layout_marginVertical="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="난이도 선택"
+            android:textSize="15dp"
+            android:layout_marginRight="30dp"/>
+
+        <Spinner
+            android:id="@+id/sprDifficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

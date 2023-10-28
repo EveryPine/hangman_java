@@ -22,6 +22,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".debug.view.DebugActivity"/>
+
         <activity android:name=".record.view.RecordActivity">
 
         </activity>
