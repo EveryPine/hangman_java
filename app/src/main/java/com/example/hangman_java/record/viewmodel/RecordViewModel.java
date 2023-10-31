@@ -83,6 +83,7 @@ public class RecordViewModel extends BaseViewModel {
         _selectedGame.setValue(new Event<>(game));
     }
 
+
     public void insertRecord(Context context, Record record){
         updateBestRecord(context, record);
         updateRecentRecord(context, record);

@@ -38,8 +38,6 @@
 
         </activity>
 
-        <activity android:name=".memory.view.CardActivity"/>
-
     </application>
 
 </manifest>
