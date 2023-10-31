@@ -4,35 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.hangman_java.selectLevel">
+    tools:context="com.example.hangman_java.gameView">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/easy"
-            android:layout_weight="2"
+        <TextView
+            android:id="@+id/score"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick = "onButtonClicked"
-            android:text="easy" />
+            android:layout_height="51dp"
+            android:text="TextView" />
 
-        <Button
-            android:id="@+id/normal"
-            android:layout_weight="2"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick = "onButtonClicked"
-            android:text="normal" />
+            android:layout_height="69dp" />
 
-        <Button
-            android:id="@+id/hard"
-            android:layout_weight="2"
+        <GridView
+            android:id="@+id/gridView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick = "onButtonClicked"
-            android:text="hard" />
+            android:layout_margin="10dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
