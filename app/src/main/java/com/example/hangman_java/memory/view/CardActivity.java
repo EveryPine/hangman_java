@@ -1,21 +1,22 @@
-package com.example.hangman_java;
+package com.example.hangman_java.memory.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class gameView extends AppCompatActivity {
+import com.example.hangman_java.R;
+import com.example.hangman_java.memory.controller.logic;
+import com.example.hangman_java.memory.model.model;
+
+public class CardActivity extends AppCompatActivity {
 
     Intent intent;
     int level = -1;  // 적절한 기본값으로 초기화
@@ -37,10 +38,10 @@ public class gameView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_view);
+        setContentView(R.layout.activity_card);
 
         intent = getIntent();
-        level = intent.getIntExtra("level", -1);
+        level = intent.getIntExtra("difficulty", -1) + 3;
         scoreText = findViewById(R.id.score); scoreText.setText("Score: " + 0);
         LocalBroadcastManager.getInstance(this).registerReceiver(scoreUpdateReceiver, new IntentFilter("update_score"));
 
