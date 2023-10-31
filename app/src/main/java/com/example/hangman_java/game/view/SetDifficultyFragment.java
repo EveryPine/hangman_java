@@ -13,10 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hangman_java.base.BaseFragment;
-import com.example.hangman_java.card.view.CardActivity;
 import com.example.hangman_java.databinding.FragmentSetdifficultyBinding;
 import com.example.hangman_java.game.viewmodel.GameViewModel;
 import com.example.hangman_java.hangman.view.HangmanActivity;
+import com.example.hangman_java.card.view.CardActivity;
 
 public class SetDifficultyFragment extends BaseFragment{
     private FragmentSetdifficultyBinding setdifficultyBinding;

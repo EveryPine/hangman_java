@@ -76,6 +76,7 @@ public class WordspaceFragment extends BaseFragment {
                     hangmanViewModel.getImageView(index).setImageResource(imageId);
                 }
                 Log.d("MyTAG", "단어 ui가 업데이트 됨");
+                Log.d("MyTAG", "target단어: " + hangmanViewModel.getWord());
             }
         });
     }

@@ -163,6 +163,11 @@ public class HangmanViewModel extends BaseViewModel {
         }
     }
 
+    public String getWord(){
+        if (_word.getValue()==null) return "error";
+        return _word.getValue();
+    }
+
     // 게임 점수 갱신
     public void updateGameScore(){
         _gameScore.setValue(_gameScore.getValue() + 1);
