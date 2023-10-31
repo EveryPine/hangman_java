@@ -1,5 +1,7 @@
 package com.example.hangman_java.game.view;
 
+import static com.example.hangman_java.main.view.MainActivity.mainActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -60,7 +62,9 @@ public class SetDifficultyFragment extends BaseFragment{
             }
             if (intent!=null){
                 intent.putExtra("difficulty", difficulty);
+                mainActivity.finish(); // 메인액티비티 종료
                 startActivity(intent);
+                requireActivity().finish(); // 현재액티비티 종료
             }
         });
     }

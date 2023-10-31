@@ -25,35 +25,51 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="5dp"
         android:gravity="center"
+        android:orientation="vertical"
         android:background="@color/transparent_10">
 
-        <CheckBox
-            android:id="@+id/chkIsBackgroundMuted"
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="음소거"
+            android:text="배경음"
             android:fontFamily="@font/system_font"
-            android:textSize="14dp"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="30dp">
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"/>
 
-        </CheckBox>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginVertical="10dp">
 
-        <SeekBar
-            android:id="@+id/sbBackgroundVolume"
-            android:layout_width="205dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="5dp"
-            android:background="@null"
-            android:max="10"
-            android:progress="0"
-            android:thumbOffset="-0.01dp"
-            android:thumb="@drawable/seekbar_thumb"
-            android:progressDrawable="@drawable/seekbar_progress"
-            android:splitTrack="true">
+            <CheckBox
+                android:id="@+id/chkIsBackgroundMuted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/checkbox_volume"
+                android:layout_marginHorizontal="10dp"
+                android:checked="false">
 
-        </SeekBar>
+            </CheckBox>
+
+            <SeekBar
+                android:id="@+id/sbBackgroundVolume"
+                android:layout_width="205dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@null"
+                android:max="10"
+                android:progress="10"
+                android:thumbOffset="-0.01dp"
+                android:thumb="@drawable/seekbar_thumb"
+                android:progressDrawable="@drawable/seekbar_progress"
+                android:splitTrack="true">
+
+            </SeekBar>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
@@ -65,29 +81,53 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
+        android:orientation="vertical"
         android:background="@color/transparent_10">
 
-        <CheckBox
-            android:id="@+id/chkIsEffectMuted"
-            android:layout_width="0dp"
+
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="음소거"
-            android:textSize="10dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="30dp">
+            android:text="효과음"
+            android:fontFamily="@font/system_font"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"/>
 
-        </CheckBox>
-
-        <SeekBar
-            android:id="@+id/sbEffectVolume"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="30dp">
+            android:gravity="center"
+            android:layout_marginVertical="10dp">
 
-        </SeekBar>
+            <CheckBox
+                android:id="@+id/chkIsEffectMuted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/checkbox_volume"
+                android:layout_marginHorizontal="10dp"
+                android:checked="false">
+
+            </CheckBox>
+
+            <SeekBar
+                android:id="@+id/sbEffectVolume"
+                android:layout_width="205dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@null"
+                android:max="10"
+                android:progress="10"
+                android:thumbOffset="-0.01dp"
+                android:thumb="@drawable/seekbar_thumb"
+                android:progressDrawable="@drawable/seekbar_progress"
+                android:splitTrack="true">
+
+            </SeekBar>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

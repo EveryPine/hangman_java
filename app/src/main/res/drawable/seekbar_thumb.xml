@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/seekbar_thumb_img" android:width="30dp" android:height="40dp">
-
-    </item>
-</layer-list>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true" android:drawable="@drawable/seekbar_enabledthumb"/>
+    <item android:state_enabled="false" android:drawable="@drawable/seekbar_disabledthumb"/>
+</selector>
