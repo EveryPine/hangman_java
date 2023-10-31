@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hangman_java.base.BaseFragment;
+import com.example.hangman_java.card.view.CardActivity;
 import com.example.hangman_java.databinding.FragmentSetdifficultyBinding;
 import com.example.hangman_java.game.viewmodel.GameViewModel;
 import com.example.hangman_java.hangman.view.HangmanActivity;
@@ -56,7 +57,7 @@ public class SetDifficultyFragment extends BaseFragment{
                 return;
             }
             switch (game){
-                case "card" -> Toast.makeText(getContext(), "아직 만들어지지 않은 게임입니다", Toast.LENGTH_SHORT).show();// intent = new Intent(getActivity(), classname.class);
+                case "card" -> intent = new Intent(getActivity(), CardActivity.class);
                 case "hangman" -> intent = new Intent(getActivity(), HangmanActivity.class);
                 case "memory" -> Toast.makeText(getContext(), "아직 만들어지지 않은 게임입니다", Toast.LENGTH_SHORT).show();
             }
