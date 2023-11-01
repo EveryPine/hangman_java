@@ -1,8 +1,8 @@
-package com.example.hangman_java.memory.controller;
+package com.example.hangman_java.card.controller;
 
 import android.os.Handler;
 
-import com.example.hangman_java.memory.model.model;
+import com.example.hangman_java.card.model.model;
 
 import java.util.ArrayList;
 import java.util.Collections;

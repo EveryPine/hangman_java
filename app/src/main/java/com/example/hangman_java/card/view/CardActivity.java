@@ -1,4 +1,4 @@
-package com.example.hangman_java.memory.view;
+package com.example.hangman_java.card.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hangman_java.R;
-import com.example.hangman_java.memory.controller.logic;
-import com.example.hangman_java.memory.model.model;
+import com.example.hangman_java.card.controller.logic;
+import com.example.hangman_java.card.model.model;
 
 public class CardActivity extends AppCompatActivity {
 

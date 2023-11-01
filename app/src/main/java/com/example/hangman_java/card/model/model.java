@@ -1,4 +1,4 @@
-package com.example.hangman_java.memory.model;
+package com.example.hangman_java.card.model;
 
 import java.util.ArrayList;
 import java.util.HashSet;

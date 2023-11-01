@@ -1,4 +1,4 @@
-package com.example.hangman_java.memory.view;
+package com.example.hangman_java.card.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.hangman_java.R;
-import com.example.hangman_java.memory.controller.logic;
+import com.example.hangman_java.card.controller.logic;
 
 import java.util.ArrayList;
 
