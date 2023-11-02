@@ -1,92 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent">
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/SysOutput"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fragmentContainerViewKeyboard"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_weight="3">
+        android:layout_weight="1.25"
+        android:gravity="center_vertical">
 
-        <TextView android:id="@+id/textNoticeScore"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/textCurrentScore"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:text="현재 맞춘 단어 수"
-            android:fontFamily="@font/system_font"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="획득 점수"
+                android:textAlignment="center"
+                android:fontFamily="@font/system_font"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_marginBottom="5dp"/>
 
-        <TextView android:id="@+id/textCurrentScore"
-            android:layout_width="wrap_content"
+            <TextView android:id="@+id/tvCurrentScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textAlignment="center"
+                android:fontFamily="@font/system_font"
+                android:textColor="@color/black"
+                android:textSize="20dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/textNoticeScore"
-            app:layout_constraintBottom_toTopOf="@id/fragmentContainerViewPrinting"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:text="0"
-            android:fontFamily="@font/system_font"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="남은 시간"
+                android:textAlignment="center"
+                android:fontFamily="@font/system_font"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_marginBottom="5dp"/>
 
-        <!--그림 레이아웃-->
+            <TextView android:id="@+id/tvRemainingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"
+                android:textAlignment="center"
+                android:fontFamily="@font/system_font"
+                android:textColor="@color/black"
+                android:textSize="40dp"/>
+        </LinearLayout>
 
-        <androidx.fragment.app.FragmentContainerView android:id="@+id/fragmentContainerViewPrinting"
-            android:name="com.example.hangman_java.hangman.view.PrintingFragment"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/textCurrentScore"
-            app:layout_constraintBottom_toTopOf="@id/fragmentContainerViewWordspace"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout="@layout/fragment_printing">
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="최고 점수"
+                android:textAlignment="center"
+                android:fontFamily="@font/system_font"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_marginBottom="5dp"/>
 
-        </androidx.fragment.app.FragmentContainerView>
+            <TextView android:id="@+id/tvBestScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textAlignment="center"
+                android:fontFamily="@font/system_font"
+                android:textColor="@color/black"
+                android:textSize="20dp"/>
+        </LinearLayout>
+    </LinearLayout>
+    <!--그림 레이아웃-->
 
-        <!--맞출 단어 표시 레이아웃-->
-        <androidx.fragment.app.FragmentContainerView android:id="@+id/fragmentContainerViewWordspace"
-            android:name="com.example.hangman_java.hangman.view.WordspaceFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/fragmentContainerViewPrinting"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout="@layout/fragment_wordspace">
+    <androidx.fragment.app.FragmentContainerView android:id="@+id/fragmentContainerViewPrinting"
+        android:name="com.example.hangman_java.hangman.view.PrintingFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:background="#ECD3D3"
+        tools:layout="@layout/fragment_printing"
+        android:layout_marginHorizontal="10dp">
 
-        </androidx.fragment.app.FragmentContainerView>
+    </androidx.fragment.app.FragmentContainerView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--맞출 단어 표시 레이아웃-->
+    <androidx.fragment.app.FragmentContainerView android:id="@+id/fragmentContainerViewWordspace"
+        android:name="com.example.hangman_java.hangman.view.WordspaceFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        tools:layout="@layout/fragment_wordspace"
+        android:layout_marginVertical="20dp">
+
+    </androidx.fragment.app.FragmentContainerView>
 
     <androidx.fragment.app.FragmentContainerView android:id="@+id/fragmentContainerViewKeyboard"
         android:name="com.example.hangman_java.hangman.view.KeyboardFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/SysOutput"
-        app:layout_constraintVertical_weight="2"
+        android:layout_weight="5"
         tools:layout="@layout/fragment_keyboard">
 
     </androidx.fragment.app.FragmentContainerView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

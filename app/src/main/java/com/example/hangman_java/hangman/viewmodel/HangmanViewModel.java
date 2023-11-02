@@ -22,6 +22,7 @@ import java.util.Random;
 
 public class HangmanViewModel extends BaseViewModel {
     private final Random random = new Random();
+    private Thread timerThread;
     private final ImageManager imageManager = ImageManager.getInstance();
 
     // stageInfo
@@ -36,6 +37,7 @@ public class HangmanViewModel extends BaseViewModel {
     private final MutableLiveData<Event<Integer>> _printingIndex = new MutableLiveData<>(); // 현재 그림 번호
     private final MutableLiveData<Event<Boolean>> _gameoverFlag = new MutableLiveData<>(); // 게임 오버 플래그
     private final MutableLiveData<Event<Boolean>> _gameClearFlag = new MutableLiveData<>(); // 게임 성공 플래그
+    private final MutableLiveData<Event<Integer>> _remainingTime = new MutableLiveData<>(); // 남은 시간
 
     // eventInfo
     private final MutableLiveData<Character> _inputAlphabet = new MutableLiveData<>(); // 입력한 알파벳
@@ -55,6 +57,7 @@ public class HangmanViewModel extends BaseViewModel {
     public final LiveData<Event<ArrayList<Integer>>> getCorrectAlphabetIndexList(){ return this._correctAlphabetIndexList;}
     public final LiveData<Event<Boolean>> getGameoverFlag(){ return this._gameoverFlag;}
     public final LiveData<Event<Boolean>> getGameClearFlag(){ return this._gameClearFlag;}
+    public final LiveData<Event<Integer>> remainingTime(){ return this._remainingTime;}
 
     // 스테이지 정보 설정 - difficulty, deathCount, gameScore 초기화
     public void setStageInfo(int difficulty){
@@ -70,9 +73,9 @@ public class HangmanViewModel extends BaseViewModel {
     // 웨이브 정보 설정 - wordLength, remainingAlphabetCount(남은 알파벳 개수), printingIndex(현재 그림 번호) 초기화
     public void setWaveInfo(Context context) throws Exception {
         switch (_difficulty.getValue()) {
-            case 1 -> _wordLength.setValue(4 + random.nextInt(4)); // 4 ~ 7 길이의 단어 생성
-            case 2 -> _wordLength.setValue(5 + random.nextInt(4)); // 5 ~ 8 길이의 단어 생성
-            case 3 -> _wordLength.setValue(6 + random.nextInt(5)); // 6 ~ 10 길이의 단어 생성
+            case 0 -> _wordLength.setValue(4 + random.nextInt(4)); // 4 ~ 7 길이의 단어 생성
+            case 1 -> _wordLength.setValue(5 + random.nextInt(4)); // 5 ~ 8 길이의 단어 생성
+            case 2 -> _wordLength.setValue(6 + random.nextInt(5)); // 6 ~ 10 길이의 단어 생성
             default -> throw new Exception("viewModel의 difficulty값이 null입니다.");
         }
         setTargetWord(context, _wordLength.getValue());
@@ -83,9 +86,9 @@ public class HangmanViewModel extends BaseViewModel {
     // 리소스 정보 설정 - printingIdList (출력할 그림 리스트), imageviewList (알파벳 이미지 뷰 리스트) 초기화
     public void setResourceInfo() throws Exception{
         switch (_difficulty.getValue()) {
-            case 1 -> _printingIdList.setValue(imageManager.getPrintingEasyImageList());
-            case 2 -> _printingIdList.setValue(imageManager.getPrintingNormalImageList());
-            case 3 -> _printingIdList.setValue(imageManager.getPrintingHardImageList());
+            case 0 -> _printingIdList.setValue(imageManager.getPrintingEasyImageList());
+            case 1 -> _printingIdList.setValue(imageManager.getPrintingNormalImageList());
+            case 2 -> _printingIdList.setValue(imageManager.getPrintingHardImageList());
             default -> throw new Exception("viewModel의 difficulty값이 null입니다.");
         }
         _imageviewList.setValue(new ArrayList<>());
@@ -102,8 +105,30 @@ public class HangmanViewModel extends BaseViewModel {
         thread.start();
     }
 
-    public int getDifficulty(){
-        return _difficulty.getValue();
+    public void setTimer(){
+        if (timerThread!=null) timerThread.interrupt();
+        timerThread = new Thread(() -> {
+            int time = 31;
+            while (time >= 0){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Log.d("MyTAG", "timerThread 종료");
+                }
+                _remainingTime.postValue(new Event<>(time - 1));
+                time--;
+            }
+        });
+        timerThread.start();
+    }
+
+    public String getDifficulty(){
+        switch (_difficulty.getValue()){
+            case 0 -> {return "easy";}
+            case 1 -> {return "normal";}
+            case 2 -> {return "hard";}
+            default -> {return "error";}
+        }
     }
 
     public int getGameScore(){
@@ -191,7 +216,6 @@ public class HangmanViewModel extends BaseViewModel {
         if (correctAlphabetIndexList.size()==0 && !isGameover()){ // 실패
             _printingIndex.setValue(new Event<>(Objects.requireNonNull(_printingIndex.getValue()).peekContent() + 1));
         }
-        Log.d("MyTAG", "남아있는 알파벳 개수: " + _remainingAlphabetCount.getValue());
         Log.d("MyTAG", "프린트 인덱스: " + Objects.requireNonNull(_printingIndex.getValue()).peekContent());
 
         // 단어를 맞추는데 실패하면

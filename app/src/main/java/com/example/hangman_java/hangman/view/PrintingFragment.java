@@ -46,9 +46,9 @@ public class PrintingFragment extends BaseFragment {
 
     private void updateUi(){
         hangmanViewModel.getPrintingIndex().observe(getViewLifecycleOwner(), printingIndex -> {
-            if (printingIndex.peekContent() < hangmanViewModel.getPrintingIdListSize()){
+            if (printingIndex.peekContent() < hangmanViewModel.getPrintingIdListSize())
                 binding.printing.setImageResource(hangmanViewModel.getPrintingImageId());
-            }
+
             Log.d("MyTAG", "그림 ui가 업데이트 됨");
         });
     }

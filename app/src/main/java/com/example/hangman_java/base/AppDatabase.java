@@ -15,7 +15,6 @@ import com.example.hangman_java.record.model.RecordDao;
 @Database(entities = {Word.class, RecentRecord.class, BestRecord.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase{
     private static AppDatabase INSTANCE;
-
     public abstract WordDao wordDao();
     public abstract RecordDao recordDao();
 

@@ -65,6 +65,7 @@ public class WordspaceFragment extends BaseFragment {
                 }
             }
         }
+        Log.d("MyTAG", "WordspaceFragment 초기화 완료");
 
     }
 

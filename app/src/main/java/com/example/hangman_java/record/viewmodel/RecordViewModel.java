@@ -27,6 +27,7 @@ public class RecordViewModel extends BaseViewModel {
     private MutableLiveData<Event<List<Record>>> _cardRecentRecordList = new MutableLiveData<>();
     private MutableLiveData<Event<List<Record>>> _hangmanRecentRecordList = new MutableLiveData<>();
     private MutableLiveData<Event<List<Record>>> _memoryRecentRecordList = new MutableLiveData<>();
+    private MutableLiveData<Event<Integer>> _bestScore = new MutableLiveData<>();
     // LiveData
     public final LiveData<Event<String>> getSelectedGame(){return this._selectedGame;}
     public final LiveData<Event<List<Record>>> getDebugRecordList(){return this._debugRecordList;}
@@ -36,6 +37,7 @@ public class RecordViewModel extends BaseViewModel {
     public final LiveData<Event<List<Record>>> cardRecentRecordList(){return this._cardRecentRecordList;}
     public final LiveData<Event<List<Record>>> hangmanRecentRecordList(){return this._hangmanRecentRecordList;}
     public final LiveData<Event<List<Record>>> memoryRecentRecordList(){return this._memoryRecentRecordList;}
+    public final LiveData<Event<Integer>> bestScore(){return this._bestScore;}
 
     public void getAllBestRecord(Context context){
         Thread thread = new Thread(() -> {
@@ -76,6 +78,14 @@ public class RecordViewModel extends BaseViewModel {
             }
         };
         Thread thread = new Thread(runnable);
+        thread.start();
+    }
+
+    public void getBestScore(Context context, String game, String difficulty){
+        Thread thread = new Thread(() -> {
+            RecordDao recordDao = AppDatabase.getInstance(context).recordDao();
+            _bestScore.postValue(new Event<>(recordDao.getBestScore(game, difficulty)));
+        });
         thread.start();
     }
 
