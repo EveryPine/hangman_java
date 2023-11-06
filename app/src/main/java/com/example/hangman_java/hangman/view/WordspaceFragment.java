@@ -2,6 +2,7 @@ package com.example.hangman_java.hangman.view;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hangman_java.base.BaseFragment;
+import com.example.hangman_java.base.EventObserver;
 import com.example.hangman_java.databinding.FragmentWordspaceBinding;
 import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
 
@@ -45,40 +47,43 @@ public class WordspaceFragment extends BaseFragment {
 
     @Override
     public void initUi() throws Exception {
-        int wordLength = hangmanViewModel.getWordLength();
-        GridLayout gridLayoutWordspace = binding.getRoot();
-        LinearLayout.LayoutParams questionLayoutParams = hangmanViewModel.getLayoutParams("question");
-        ViewGroup.LayoutParams underbarLayoutParams = hangmanViewModel.getLayoutParams("underbar");
-        gridLayoutWordspace.setColumnCount(wordLength);
-        hangmanViewModel.clearImageViewList();
+        hangmanViewModel.word().observe(getViewLifecycleOwner(), new EventObserver<>(word -> {
+            Log.d("MyTAG", "목표 단어 설정됨: " + word);
+            GridLayout layout = binding.getRoot();
+            int wordLength = hangmanViewModel.getWordLength();
+            layout.removeAllViews();
+            layout.setColumnCount(wordLength);
+            LinearLayout.LayoutParams questionLayoutParams = new LinearLayout.LayoutParams(60, 70); // '?' 이미지 레이아웃 파라미터
+            LinearLayout.LayoutParams underbarLayoutParams = new LinearLayout.LayoutParams(55, 20); // '_' 이미지 레이아웃 파라미터
+            underbarLayoutParams.gravity = Gravity.CENTER;
+            Log.d("MyTAG", "단어의 길이: " + wordLength);
+            hangmanViewModel.clearImageViewList();
+            hangmanViewModel.updateRemainingAlphabetCount();
 
-        for (int i=0; i<2; i++){
-            for (int j=0; j<wordLength; j++){
-                ImageView newImageView = new ImageView(this.getContext());
-                if (i==0){
-                    newImageView.setImageResource(hangmanViewModel.getImageIdByTag("question"));
-                    hangmanViewModel.addImageView(newImageView);
-                    gridLayoutWordspace.addView(newImageView, questionLayoutParams);
-                } else {
-                    newImageView.setImageResource(hangmanViewModel.getImageIdByTag("underbar"));
-                    gridLayoutWordspace.addView(newImageView, underbarLayoutParams);
+            for (int i=0; i<2; i++){
+                for (int j=0; j<wordLength; j++){
+                    ImageView newImageView = new ImageView(this.getContext());
+                    if (i==0){
+                        newImageView.setImageResource(hangmanViewModel.getImageIdByTag("question"));
+                        hangmanViewModel.addImageView(newImageView);
+                        layout.addView(newImageView, questionLayoutParams);
+                    } else {
+                        newImageView.setImageResource(hangmanViewModel.getImageIdByTag("underbar"));
+                        layout.addView(newImageView, underbarLayoutParams);
+                    }
                 }
             }
-        }
-        Log.d("MyTAG", "WordspaceFragment 초기화 완료");
+            Log.d("MyTAG", "WordspaceFragment 초기화 완료");
+        }));
+
 
     }
 
     private void updateUi(){
-        hangmanViewModel.getCorrectAlphabetIndexList().observe(getViewLifecycleOwner(), correctAlphabetIndexList -> {
+        hangmanViewModel.correctAlphabetIndexList().observe(getViewLifecycleOwner(), new EventObserver<>(list -> {
             int imageId = hangmanViewModel.getAlphabetImageId(hangmanViewModel.getInputAlphabet());
-            if (!correctAlphabetIndexList.isHasbeenHandled()){
-                for (int index: correctAlphabetIndexList.getContentIfNotHandled()){
-                    hangmanViewModel.getImageView(index).setImageResource(imageId);
-                }
-                Log.d("MyTAG", "단어 ui가 업데이트 됨");
-                Log.d("MyTAG", "target단어: " + hangmanViewModel.getWord());
-            }
-        });
+            for (int index: list)
+                hangmanViewModel.getImageView(index).setImageResource(imageId);
+        }));
     }
 }

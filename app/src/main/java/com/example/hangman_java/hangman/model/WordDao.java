@@ -8,14 +8,10 @@ import java.util.List;
 @Dao
 public interface WordDao {
 
-    @Query("SELECT * FROM words")
+    @Query("SELECT * FROM word")
     List<Word> getAll();
 
-    // length 길이를 가지는 단어들의 id를 모두 조회
-    @Query("SELECT id FROM words WHERE LENGTH(word) = :length")
-    List<Integer> getWordByLength(int length);
-
-    // 해당 id의 단어를 가져옴
-    @Query("SELECT word FROM words WHERE id = :targetId")
-    String getWordById(int targetId);
+    // 주어진 난이도에 맞는 단어를 랜덤으로 가져옴
+    @Query("SELECT word FROM word WHERE difficulty = :difficulty ORDER BY RANDOM() LIMIT 1")
+    String getWord(String difficulty);
 }

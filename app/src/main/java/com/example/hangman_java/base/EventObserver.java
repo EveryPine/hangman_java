@@ -14,7 +14,11 @@ public class EventObserver<T> implements Observer<Event<T>> {
         if (event != null) {
             T value = event.getContentIfNotHandled();
             if (value != null) {
-                onEventUnhandledContent.invoke(value);
+                try {
+                    onEventUnhandledContent.invoke(value);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
