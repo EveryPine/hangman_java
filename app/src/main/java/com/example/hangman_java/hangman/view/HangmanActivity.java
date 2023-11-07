@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class HangmanActivity extends BaseActivity {
     public static int START_TIME = 30;
-    static HangmanActivity hangmanActivity;
+    public static HangmanActivity hangmanActivity;
     private ActivityHangmanBinding hangmanBinding = null;
     private HangmanViewModel hangmanViewModel = null;
     private RecordViewModel recordViewModel = null;

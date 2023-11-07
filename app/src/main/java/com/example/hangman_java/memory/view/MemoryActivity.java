@@ -8,17 +8,17 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.example.hangman_java.R;
-import com.example.myapplication01.databinding.ActivityGameBinding;
+import com.example.hangman_java.databinding.ActivityMemoryBinding;
 
 public class MemoryActivity extends AppCompatActivity {
-    private ActivityGameBinding binding;
+    private ActivityMemoryBinding binding;
     FragmentManager fragmentManager = getSupportFragmentManager();
     FragmentTransaction transaction = fragmentManager.beginTransaction();
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityGameBinding.inflate(getLayoutInflater());
+        binding = ActivityMemoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         HexaFragment hexaFragment = new HexaFragment();
         transaction.replace(R.layout.fragment_hexa,hexaFragment);
