@@ -17,6 +17,7 @@ import com.example.hangman_java.record.view.RecordActivity;
 
 public class MainActivity extends BaseActivity {
     private ActivityMainBinding mainBinding = null;
+    private MainViewModel mainViewModel = null;
     public static MainActivity mainActivity;
 
     @Override
@@ -24,6 +25,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mainActivity = this;
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         try {
             initUi();
         } catch (Exception e) {
@@ -34,6 +36,7 @@ public class MainActivity extends BaseActivity {
     }
     @Override
     public void initUi() throws Exception {
+        mainViewModel.setUserInfo();
         serviceStart();
         setButton();
     }
@@ -74,7 +77,7 @@ public class MainActivity extends BaseActivity {
 
     private void serviceStart(){
         Intent intent = new Intent(this, BgmService.class);
-        intent.putExtra("progress", 10);
+        intent.putExtra("progress", !mainViewModel.getBgmMuted() ? mainViewModel.getBgmVolume() : 0);
         startService(intent);
     }
 

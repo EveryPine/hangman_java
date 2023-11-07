@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginStart="20dp"
-                android:text="게임 설명..."
+                android:text="@string/explainCard"
                 android:fontFamily="@font/system_font"
                 android:textSize="20dp" />
 
@@ -85,9 +85,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="게임 설명..."
-                android:fontFamily="@font/system_font"
-                android:textSize="20dp"
+                android:text="@string/explainHangman"
+                android:textSize="18dp"
                 android:layout_marginStart="10dp"
                 android:layout_margin="10dp"/>
 
@@ -100,6 +99,7 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/square_background_border_black"
             android:clickable="true">
 
@@ -121,7 +121,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="게임 설명..."
+                android:text="@string/explainMemory"
                 android:fontFamily="@font/system_font"
                 android:textSize="20dp"
                 android:layout_marginStart="10dp"

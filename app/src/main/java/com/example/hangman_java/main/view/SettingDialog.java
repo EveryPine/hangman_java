@@ -10,10 +10,13 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseDialog;
+import com.example.hangman_java.base.Event;
+import com.example.hangman_java.base.EventObserver;
 import com.example.hangman_java.databinding.DialogSettingBinding;
 import com.example.hangman_java.game.viewmodel.GameViewModel;
 import com.example.hangman_java.main.viewmodel.MainViewModel;
@@ -22,7 +25,7 @@ public class SettingDialog extends BaseDialog {
     private DialogSettingBinding settingBinding = null;
     private MainViewModel mainViewModel = null;
     private SeekBar sbBgmVolume, sbEftVolume;
-    private CheckBox chkBgmMuted, chkEftVolume;
+    private CheckBox chkBgmMuted, chkEftMuted;
 
     @Override
     public View onCreateView(
@@ -38,13 +41,18 @@ public class SettingDialog extends BaseDialog {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
+        mainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+        mainViewModel.setUserInfo();
+        chkBgmMuted.setChecked(mainViewModel.getBgmMuted());
+        chkEftMuted.setChecked(mainViewModel.getEftMuted());
+        sbBgmVolume.setProgress(mainViewModel.getBgmVolume());
+        sbEftVolume.setProgress(mainViewModel.getEftVolume());
+    }
 
-        sbBgmVolume.setProgress(mainViewModel.getBackgroundVolume());
-        sbEftVolume.setProgress(mainViewModel.getEffectVolume());
-        Log.d("MyTAG", "isBgmMuted? : "+ mainViewModel.isBgmMuted());
-        chkBgmMuted.setChecked(mainViewModel.isBgmMuted());
-        chkBgmMuted.setChecked(mainViewModel.isEftMuted());
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        mainViewModel.updateUserInfo();
     }
 
     @Override
@@ -52,7 +60,7 @@ public class SettingDialog extends BaseDialog {
         sbBgmVolume = settingBinding.sbBackgroundVolume;
         sbEftVolume = settingBinding.sbEffectVolume;
         chkBgmMuted = settingBinding.chkIsBackgroundMuted;
-        chkEftVolume = settingBinding.chkIsEffectMuted;
+        chkEftMuted = settingBinding.chkIsEffectMuted;
         setView();
     }
 
@@ -62,17 +70,18 @@ public class SettingDialog extends BaseDialog {
         sbBgmVolume.setOnSeekBarChangeListener(new SeekBarListener());
         sbEftVolume.setOnSeekBarChangeListener(new SeekBarListener());
         chkBgmMuted.setOnCheckedChangeListener(new IsMutedListener());
-        chkEftVolume.setOnCheckedChangeListener(new IsMutedListener());
+        chkEftMuted.setOnCheckedChangeListener(new IsMutedListener());
         settingBinding.btnComplete.setOnClickListener(view -> dismiss());
     }
 
     private class SeekBarListener implements SeekBar.OnSeekBarChangeListener{
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            if (seekBar.equals(sbBgmVolume)){
+            if (seekBar.equals(sbBgmVolume) && !mainViewModel.getBgmMuted()){
+                Log.d("MyTAG", "배경음 변경됨 (progress: " + progress + ")");
                 mainViewModel.setBackgroundVolume(requireContext(), progress);
             }
-            else {
+            else if (!mainViewModel.getEftMuted()) {
                 Log.d("MyTAG", "효과음 변경됨 (progress: " + progress + ")");
                 mainViewModel.setEffectVolume(progress);
             }
@@ -90,21 +99,25 @@ public class SettingDialog extends BaseDialog {
             // 음소거 아닌 상태
             if (!isChecked) {
                 if (checkBox.equals(chkBgmMuted)) {
-                    mainViewModel.setBackgroundVolume(requireContext(), mainViewModel.getBackgroundVolume());
+                    Log.d("MyTAG", "배경음 볼륨 조절 실행.. (볼륨: " + mainViewModel.getBgmVolume() + ")");
+                    mainViewModel.setBackgroundVolume(requireContext(), mainViewModel.getBgmVolume());
                     sbBgmVolume.setEnabled(true);
                 }
                 else {
-                    mainViewModel.setEffectVolume(mainViewModel.getBackgroundVolume());
+                    Log.d("MyTAG", "효과음 볼륨 조절 실행.. (볼륨: " + mainViewModel.getEftVolume() + ")");
+                    mainViewModel.setEffectVolume(mainViewModel.getBgmVolume());
                     sbEftVolume.setEnabled(true);
                 }
                 // 음소거 상태
             } else {
                 if (checkBox.equals(chkBgmMuted)) {
+                    Log.d("MyTAG", "배경음 음소거 실행..");
                     mainViewModel.setBgmVolumeMuted(requireContext());
                     sbBgmVolume.setEnabled(false);
                 }
                 else {
-                    mainViewModel.setEffectVolumeMuted(requireContext());
+                    Log.d("MyTAG", "효과음 음소거 실행..");
+                    mainViewModel.setEffectVolumeMuted();
                     sbEftVolume.setEnabled(false);
                 }
             }

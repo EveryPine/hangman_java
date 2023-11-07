@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hangman_java.base.BaseFragment;
+import com.example.hangman_java.base.EventObserver;
 import com.example.hangman_java.databinding.FragmentPrintingBinding;
 import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
 
@@ -45,11 +46,10 @@ public class PrintingFragment extends BaseFragment {
     }
 
     private void updateUi(){
-        hangmanViewModel.getPrintingIndex().observe(getViewLifecycleOwner(), printingIndex -> {
-            if (printingIndex.peekContent() < hangmanViewModel.getPrintingIdListSize()){
+        hangmanViewModel.printingIndex().observe(getViewLifecycleOwner(), new EventObserver<>(index -> {
+            if (index < hangmanViewModel.DEATH_COUNT)
                 binding.printing.setImageResource(hangmanViewModel.getPrintingImageId());
-            }
             Log.d("MyTAG", "그림 ui가 업데이트 됨");
-        });
+        }));
     }
 }

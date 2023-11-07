@@ -33,6 +33,9 @@ public interface RecordDao {
     @Query("SELECT record_id, record FROM BestRecord WHERE gamename = :game AND difficulty = :difficulty")
     ReceivedRecord getBestRecordByDiff(String game, String difficulty);
 
+    @Query("SELECT record FROM BestRecord WHERE gamename = :game AND difficulty = :difficulty")
+    int getBestScore(String game, String difficulty);
+
 
     @Insert
     void insertRecentRecord(RecentRecord recentRecord);

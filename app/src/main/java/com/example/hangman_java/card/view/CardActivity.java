@@ -41,7 +41,7 @@ public class CardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_card);
 
         intent = getIntent();
-        level = intent.getIntExtra("difficulty", -1) + 3;
+        level = intent.getIntExtra("difficulty", -1) + 2;
         scoreText = findViewById(R.id.score); scoreText.setText("Score: " + 0);
         LocalBroadcastManager.getInstance(this).registerReceiver(scoreUpdateReceiver, new IntentFilter("update_score"));
 

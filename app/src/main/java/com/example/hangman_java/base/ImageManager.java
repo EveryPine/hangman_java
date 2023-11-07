@@ -16,20 +16,10 @@ public class ImageManager {
         return instance;
     }
 
-    private static List<Integer> printingEasyImageList =
-        List.of(R.drawable.empty_printing, R.drawable.easy_1, R.drawable.easy_2, R.drawable.easy_3,
-            R.drawable.easy_4, R.drawable.easy_5, R.drawable.easy_6, R.drawable.easy_7,
-            R.drawable.easy_8, R.drawable.easy_9, R.drawable.easy_10, R.drawable.easy_11,
-            R.drawable.easy_12, R.drawable.easy_13, R.drawable.easy_14, R.drawable.easy_15);
-
-    private static List<Integer> printingNormalImageList =
-        List.of(R.drawable.empty_printing, R.drawable.normal_1, R.drawable.normal_2, R.drawable.normal_3,
-            R.drawable.normal_4, R.drawable.normal_5, R.drawable.normal_6, R.drawable.normal_7,
-            R.drawable.normal_8, R.drawable.normal_9, R.drawable.normal_10);
-
-    private static List<Integer> printingHardImageList =
-        List.of(R.drawable.empty_printing, R.drawable.hard_1, R.drawable.hard_2,
-            R.drawable.hard_3, R.drawable.hard_4, R.drawable.hard_5);
+    private static List<Integer> printingImageList =
+        List.of(R.drawable.print_0, R.drawable.print_1, R.drawable.print_2, R.drawable.print_3,
+            R.drawable.print_4, R.drawable.print_5, R.drawable.print_6, R.drawable.print_7,
+            R.drawable.print_8, R.drawable.print_9, R.drawable.print_10, R.drawable.print_11);
 
     private static List<Integer> alphabetImageList =
         List.of(R.drawable.enabled_a, R.drawable.enabled_b, R.drawable.enabled_c, R.drawable.enabled_d,
@@ -43,18 +33,7 @@ public class ImageManager {
     private static int questionImage = R.drawable.question;
     private static int underbarImage = R.drawable.underbar;
 
-    public List<Integer> getPrintingEasyImageList(){
-        return printingEasyImageList;
-    }
-
-    public List<Integer> getPrintingNormalImageList(){
-        return printingNormalImageList;
-    }
-
-    public List<Integer> getPrintingHardImageList(){
-        return printingHardImageList;
-    }
-
+    public List<Integer> getPrintingImageList() { return printingImageList; }
     public List<Integer> getAlphabetImageList(){
         return alphabetImageList;
     }
