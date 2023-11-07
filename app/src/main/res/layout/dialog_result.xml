@@ -3,17 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/transparent_0">
+    android:gravity="center">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="50dp"
+        android:fontFamily="@font/system_font"
         android:text="게임오버"
-        android:textSize="50dp"
         android:textColor="#af00"
-        android:layout_marginVertical="30dp"
-        android:fontFamily="@font/system_font"/>
+        android:textSize="50dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -42,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginVertical="10dp">
+        android:layout_marginVertical="20dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,7 +66,7 @@
 
     <TextView
         android:id="@+id/tvNoticeBest"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="신기록 달성!"
         android:textSize="30dp"

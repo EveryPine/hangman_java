@@ -185,6 +185,7 @@
         android:fontFamily="@font/system_font"
         android:textSize="20dp"
         android:textAlignment="center"
+        android:layout_marginTop="5dp"
         android:visibility="gone"/>
 
     <TableLayout

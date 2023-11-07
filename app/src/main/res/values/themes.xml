@@ -20,4 +20,13 @@
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
         <item name="android:backgroundDimEnabled">false</item> <!--true: 반투명, false: 완전 투명-->
     </style>
+
+    <style name="semiTransparent" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:backgroundDimEnabled">true</item> <!--true: 반투명, false: 완전 투명-->
+    </style>
 </resources>

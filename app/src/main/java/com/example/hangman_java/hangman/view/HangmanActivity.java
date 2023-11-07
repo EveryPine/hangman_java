@@ -1,6 +1,5 @@
 package com.example.hangman_java.hangman.view;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +7,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,8 +16,9 @@ import com.example.hangman_java.base.BaseActivity;
 import com.example.hangman_java.base.Event;
 import com.example.hangman_java.base.EventObserver;
 import com.example.hangman_java.databinding.ActivityHangmanBinding;
-import com.example.hangman_java.game.view.ResultActivity;
+import com.example.hangman_java.game.view.ResultDialog;
 import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
+import com.example.hangman_java.record.model.Record;
 import com.example.hangman_java.record.viewmodel.RecordViewModel;
 
 import java.util.HashMap;
@@ -25,7 +26,6 @@ import java.util.Map;
 
 public class HangmanActivity extends BaseActivity {
     public static int START_TIME = 30;
-    public static HangmanActivity hangmanActivity;
     private ActivityHangmanBinding hangmanBinding = null;
     private HangmanViewModel hangmanViewModel = null;
     private RecordViewModel recordViewModel = null;
@@ -34,7 +34,6 @@ public class HangmanActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        hangmanActivity = this;
         hangmanBinding = ActivityHangmanBinding.inflate(getLayoutInflater());
         hangmanViewModel = new ViewModelProvider(this).get(HangmanViewModel.class);
         recordViewModel = new ViewModelProvider(this).get(RecordViewModel.class);
@@ -56,8 +55,7 @@ public class HangmanActivity extends BaseActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus){
         super.onWindowFocusChanged(hasFocus);
-        if (hasFocus){
-        }
+        if (hasFocus){}
     }
     @Override
     public void initUi() throws Exception {
@@ -75,9 +73,12 @@ public class HangmanActivity extends BaseActivity {
     }
 
     private void setView() throws Exception {
-        recordViewModel.getBestScore(this, "hangman", hangmanViewModel.getDifficulty());
-        recordViewModel.bestScore().observe(this, new EventObserver<>(bestScore -> hangmanBinding.tvBestScore.setText(bestScore.toString())));
-        hangmanViewModel.setTimer(START_TIME);
+        recordViewModel.getBestScore(this, "hangman", hangmanViewModel.getStrDifficulty());
+        recordViewModel.bestScore().observe(this, new EventObserver<>(bestScore -> {
+            hangmanBinding.tvBestScore.setText(bestScore.toString());
+            hangmanViewModel.setBestScore(bestScore);
+        }));
+        hangmanViewModel.setTimer(START_TIME, false);
         hangmanViewModel.remainingTime().observe(this, new EventObserver<>(time -> {
             hangmanBinding.tvRemainingTime.setTextColor(time > 10 ? Color.BLACK : Color.RED);
             if (time < 0) gameOver();
@@ -99,13 +100,22 @@ public class HangmanActivity extends BaseActivity {
             }
         });
 
-        hangmanViewModel.gameoverFlag().observe(this, gameoverFlag -> gameOver());
+        hangmanViewModel.gameoverFlag().observe(this, gameoverFlag -> {
+            try {
+                gameOver();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
 
     }
 
-    private void gameOver(){
-        Intent intent = new Intent(this, ResultActivity.class);
-        startActivity(intent);
+    private void gameOver() throws Exception {
+        recordViewModel.insertRecord(this, new Record("hangman", hangmanViewModel.getStrDifficulty(), hangmanViewModel.getGameScore()));
+        hangmanViewModel.setTimer(START_TIME, true);
+        FragmentManager fm = getSupportFragmentManager();
+        ResultDialog resultDialog = new ResultDialog();
+        resultDialog.show(fm, "test");
     }
 
     private void replaceFragments(@NonNull HashMap<FragmentContainerView, Fragment> inputMap){
@@ -131,6 +141,4 @@ public class HangmanActivity extends BaseActivity {
         thread.start();
         flag.observe(this, new EventObserver<>(bool -> hangmanBinding.tvCurrentScore.setTextColor(Color.BLACK)));
     }
-
-
 }

@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:text="디버그 모드 진입"
         android:textSize="20dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible"/>
 
     <LinearLayout
         android:layout_width="match_parent"

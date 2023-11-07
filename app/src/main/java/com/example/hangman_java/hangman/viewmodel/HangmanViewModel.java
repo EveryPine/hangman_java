@@ -2,9 +2,7 @@ package com.example.hangman_java.hangman.viewmodel;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.Gravity;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -30,6 +28,7 @@ public class HangmanViewModel extends BaseViewModel {
     // stageInfo
     private final MutableLiveData<Integer> _difficulty = new MutableLiveData<>();
     private final MutableLiveData<Integer> _gameScore = new MutableLiveData<>();
+    private final MutableLiveData<Integer> _bestScore = new MutableLiveData<>();
 
     // waveInfo
     private final MutableLiveData<Event<String>> _word = new MutableLiveData<>();
@@ -106,11 +105,13 @@ public class HangmanViewModel extends BaseViewModel {
         thread.start();
     }
 
-    public void setTimer(int inputTime){
+    public void setTimer(int inputTime, boolean isFinished){
         if (timerThread!=null) {
             timerThread.interrupt();
             timerThread = null;
         }
+        if (isFinished) return;
+
         timerThread = new Thread(() -> {
             int time = inputTime;
             time++;
@@ -128,13 +129,15 @@ public class HangmanViewModel extends BaseViewModel {
         timerThread.start();
     }
 
+    public void setBestScore(int bestScore) { _bestScore.setValue(bestScore); }
+
     // 남은 알파벳 개수 업데이트
     public void updateRemainingAlphabetCount() {
         if (_remainingAlphabetCount.getValue()==0) _remainingAlphabetCount.setValue(getWordLength());
         else _remainingAlphabetCount.setValue(_remainingAlphabetCount.getValue() - 1);
     }
 
-    public String getDifficulty() throws Exception{
+    public String getStrDifficulty() throws Exception{
         switch (_difficulty.getValue()){
             case 0 -> {return "easy";}
             case 1 -> {return "normal";}
@@ -142,8 +145,12 @@ public class HangmanViewModel extends BaseViewModel {
             default -> throw new Exception("SetDifficultyFragment에서 잘못된 difficulty 값이 전송되었습니다.");
         }
     }
+    
+    public int getIntDifficulty() { return _difficulty.getValue(); }
 
     public int getGameScore(){return _gameScore.getValue();}
+
+    public int getBestScore() { return _bestScore.getValue(); }
 
     // 그림 이미지 id 반환
     public int getPrintingImageId(){return imageManager.getPrintingImageList().get(_printingIndex.getValue().peekContent());}

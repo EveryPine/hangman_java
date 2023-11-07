@@ -36,6 +36,8 @@
 
         <activity android:name=".memory.view.MemoryActivity"/>
 
+        <activity android:name=".game.view.ResultActivity"/>
+
     </application>
 
 </manifest>
