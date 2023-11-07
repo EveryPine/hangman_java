@@ -17,6 +17,7 @@ import com.example.hangman_java.databinding.FragmentSetdifficultyBinding;
 import com.example.hangman_java.game.viewmodel.GameViewModel;
 import com.example.hangman_java.hangman.view.HangmanActivity;
 import com.example.hangman_java.card.view.CardActivity;
+import com.example.hangman_java.memory.view.MemoryActivity;
 
 public class SetDifficultyFragment extends BaseFragment{
     private FragmentSetdifficultyBinding setdifficultyBinding;
@@ -59,7 +60,7 @@ public class SetDifficultyFragment extends BaseFragment{
             switch (game){
                 case "card" -> intent = new Intent(getActivity(), CardActivity.class);
                 case "hangman" -> intent = new Intent(getActivity(), HangmanActivity.class);
-                case "memory" -> Toast.makeText(getContext(), "아직 만들어지지 않은 게임입니다", Toast.LENGTH_SHORT).show();
+                case "memory" -> intent = new Intent(getActivity(), MemoryActivity.class);
             }
             if (intent!=null){
                 intent.putExtra("difficulty", difficulty);
