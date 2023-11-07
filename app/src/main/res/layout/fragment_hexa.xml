@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_200">
+
+    <com.example.hangman_java.memory.view.HexagonView
+        android:id="@+id/hexa1"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_alignBottom="@+id/hexa4"
+        android:layout_marginRight="-110dp"
+        android:layout_marginBottom="104dp"
+        android:layout_toLeftOf="@+id/hexa4"
+        android:background="#00ffffff" />
+
+    <com.example.hangman_java.memory.view.HexagonView
+        android:id="@+id/hexa2"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_alignBottom="@+id/hexa4"
+        android:layout_marginRight="-24dp"
+        android:layout_marginBottom="57dp"
+        android:layout_toLeftOf="@+id/hexa4"
+        android:background="#00ffffff" />
+
+    <com.example.hangman_java.memory.view.HexagonView
+        android:id="@+id/hexa3"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_alignBottom="@+id/hexa4"
+        android:layout_marginRight="-195dp"
+        android:layout_marginBottom="59dp"
+        android:layout_toLeftOf="@+id/hexa4"
+        android:background="#00ffffff" />
+
+    <com.example.hangman_java.memory.view.HexagonView
+        android:id="@+id/hexa4"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="-110dp"
+        android:background="#00ffffff" />
+
+    <com.example.hangman_java.memory.view.HexagonView
+        android:id="@+id/hexa5"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_alignBottom="@+id/hexa4"
+        android:layout_marginRight="-16dp"
+        android:layout_marginBottom="-48dp"
+        android:layout_toLeftOf="@+id/hexa4"
+        android:background="#00ffffff" />
+
+    <com.example.hangman_java.memory.view.HexagonView
+        android:id="@+id/hexa6"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_alignBottom="@+id/hexa4"
+        android:layout_marginRight="-194dp"
+        android:layout_marginBottom="-57dp"
+        android:layout_toLeftOf="@+id/hexa4"
+        android:background="#00ffffff" />
+
+    <com.example.hangman_java.memory.view.HexagonView
+        android:id="@+id/hexa7"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_alignBottom="@+id/hexa4"
+        android:layout_marginRight="-110dp"
+        android:layout_marginBottom="-109dp"
+        android:layout_toLeftOf="@+id/hexa4"
+        android:background="#00ffffff" />
+
+</RelativeLayout>
