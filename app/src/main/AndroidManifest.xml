@@ -26,17 +26,11 @@
 
         <activity android:name=".debug.view.DebugActivity"/>
 
-        <activity android:name=".record.view.RecordActivity">
+        <activity android:name=".record.view.RecordActivity"/>
 
-        </activity>
+        <activity android:name=".game.view.GameActivity"/>
 
-        <activity android:name=".game.view.GameActivity">
-
-        </activity>
-
-        <activity android:name=".hangman.view.HangmanActivity">
-
-        </activity>
+        <activity android:name=".hangman.view.HangmanActivity"/>
 
         <activity android:name=".card.view.CardActivity"/>
 
