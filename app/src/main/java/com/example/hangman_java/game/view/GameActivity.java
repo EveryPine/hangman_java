@@ -59,9 +59,7 @@ public class GameActivity extends BaseActivity {
                 gameViewModel.setCurrentFragment("game");
                 fragmentManager.beginTransaction().hide(frSetDifficulty).show(frSetGame).commit();
             //  게임 선택 화면이 올라와있으면
-            } else {
-                finish();
-            }
+            } else finish();
         });
     }
 }
