@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseFragment;
 import com.example.hangman_java.databinding.FragmentSetdifficultyBinding;
 import com.example.hangman_java.game.viewmodel.GameViewModel;
@@ -49,6 +51,7 @@ public class SetDifficultyFragment extends BaseFragment{
         setdifficultyBinding.btnEasy.setOnClickListener(view -> gameViewModel.setDifficulty(0));
         setdifficultyBinding.btnNormal.setOnClickListener(view -> gameViewModel.setDifficulty(1));
         setdifficultyBinding.btnHard.setOnClickListener(view -> gameViewModel.setDifficulty(2));
+
         setdifficultyBinding.btnGamestart.setOnClickListener(view -> {
             Intent intent = null;
             String game = gameViewModel.getSelectedGame();
@@ -69,5 +72,25 @@ public class SetDifficultyFragment extends BaseFragment{
                 requireActivity().finish(); // 현재액티비티 종료
             }
         });
+    }
+
+    protected void setGameDescriptions(){
+        switch (gameViewModel.getSelectedGame()){
+            case "card" -> {
+                setdifficultyBinding.tvEasyDesc.setText(R.string.cardEasyDesc);
+                setdifficultyBinding.tvNormalDesc.setText(R.string.cardNormalDesc);
+                setdifficultyBinding.tvHardDesc.setText(R.string.cardHardDesc);
+            }
+            case "hangman" -> {
+                setdifficultyBinding.tvEasyDesc.setText(R.string.hangmanEasyDesc);
+                setdifficultyBinding.tvNormalDesc.setText(R.string.hangmanNormalDesc);
+                setdifficultyBinding.tvHardDesc.setText(R.string.hangmanHardDesc);
+            }
+            case "memory" -> {
+                setdifficultyBinding.tvEasyDesc.setText(R.string.memoryEasyDesc);
+                setdifficultyBinding.tvNormalDesc.setText(R.string.memoryNormalDesc);
+                setdifficultyBinding.tvHardDesc.setText(R.string.memoryHardDesc);
+            }
+        }
     }
 }

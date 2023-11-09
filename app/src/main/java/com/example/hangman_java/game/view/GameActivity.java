@@ -19,7 +19,8 @@ public class GameActivity extends BaseActivity {
     private ActivityGameBinding gameBinding;
     private GameViewModel gameViewModel;
     private FragmentManager fragmentManager;
-    private Fragment frSetGame, frSetDifficulty;
+    private SetGameFragment frSetGame;
+    private SetDifficultyFragment frSetDifficulty;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -45,6 +46,7 @@ public class GameActivity extends BaseActivity {
             .commit();
         gameViewModel.selectedGame().observe(this, new EventObserver<>(game -> {
             gameViewModel.setCurrentFragment("difficulty");
+            frSetDifficulty.setGameDescriptions();
             fragmentManager.beginTransaction().hide(frSetGame).show(frSetDifficulty).commit();
         }));
         gameViewModel.setCurrentFragment("game");

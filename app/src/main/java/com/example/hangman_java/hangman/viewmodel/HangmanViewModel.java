@@ -20,7 +20,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class HangmanViewModel extends BaseViewModel {
-    public final int DEATH_COUNT = 12; // 행맨 그림 개수와 일치해야함
+    public final int DEATH_COUNT = 11; // 행맨 그림 개수 - 1 값과 일치해야함
     private final Random random = new Random();
     private Thread timerThread;
     private final ImageManager imageManager = ImageManager.getInstance();

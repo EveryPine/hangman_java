@@ -19,13 +19,13 @@ import java.util.List;
 public class KeyboardFragment extends BaseFragment {
     private FragmentKeyboardBinding binding = null;
     private HangmanViewModel hangmanViewModel = null;
+    private List<ImageButton> btnList;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         binding = FragmentKeyboardBinding.inflate(inflater, container, false);
         hangmanViewModel = new ViewModelProvider(requireActivity()).get(HangmanViewModel.class);
-        initUi();
 
         return binding.getRoot();
     }
@@ -34,15 +34,15 @@ public class KeyboardFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         hangmanViewModel = new ViewModelProvider(requireActivity()).get(HangmanViewModel.class);
-        setButtonListener();
+        initUi();
     }
     @Override
     public void initUi() {
-
+        setButtonListener();
     }
 
     private void setButtonListener(){
-        List<ImageButton> btnList = List.of(binding.imageBtnA, binding.imageBtnB, binding.imageBtnC,
+        btnList = List.of(binding.imageBtnA, binding.imageBtnB, binding.imageBtnC,
             binding.imageBtnD, binding.imageBtnE, binding.imageBtnF,
             binding.imageBtnG, binding.imageBtnH, binding.imageBtnI,
             binding.imageBtnJ, binding.imageBtnK, binding.imageBtnL,
@@ -121,5 +121,9 @@ public class KeyboardFragment extends BaseFragment {
     private void buttonDisabled(ImageButton button){
         button.setVisibility(View.INVISIBLE);
         button.setClickable(false);
+    }
+
+    protected void setBtnUnclickable(){
+        for (ImageButton btn: btnList){if (btn.isClickable()) btn.setClickable(false);}
     }
 }

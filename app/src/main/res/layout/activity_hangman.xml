@@ -35,7 +35,7 @@
                 android:textAlignment="center"
                 android:fontFamily="@font/system_font"
                 android:textColor="@color/black"
-                android:textSize="20dp"/>
+                android:textSize="30dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -87,7 +87,7 @@
                 android:textAlignment="center"
                 android:fontFamily="@font/system_font"
                 android:textColor="@color/black"
-                android:textSize="20dp"/>
+                android:textSize="30dp"/>
         </LinearLayout>
     </LinearLayout>
     <!--그림 레이아웃-->
@@ -95,8 +95,7 @@
     <androidx.fragment.app.FragmentContainerView android:id="@+id/fragmentContainerViewPrinting"
         android:name="com.example.hangman_java.hangman.view.PrintingFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_height="wrap_content"
         android:background="#ECD3D3"
         tools:layout="@layout/fragment_printing"
         android:layout_marginHorizontal="10dp">

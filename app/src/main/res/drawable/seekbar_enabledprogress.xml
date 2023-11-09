@@ -4,9 +4,9 @@
     <item android:id="@+id/background">
         <shape android:shape="rectangle">
             <!--시크바 선 굵기: 길이 10dp -->
-            <stroke android:width="6dp" android:color="#AF87C5"/>
+            <stroke android:width="6dp" android:color="#8DC587"/>
             <!-- 시크바 내용 색상 -->
-            <solid android:color="#AF87C5"/>
+            <solid android:color="#8DC587"/>
             <!-- 테두리 둥글게 설정 -->
             <corners android:radius="10dp"/>
         </shape>
@@ -16,9 +16,9 @@
         <clip>
             <shape android:shape="rectangle">
                 <!--시크바 선 굵기: 길이 10dp -->
-                <stroke android:width="6dp" android:color="#691ED5"/>
+                <stroke android:width="6dp" android:color="#16961D"/>
                 <!-- 시크바 내용 색상 -->
-                <solid android:color="#691ED5"/>
+                <solid android:color="#16961D"/>
                 <!-- 테두리 둥글게 설정 -->
                 <corners android:radius="10dp"/>
             </shape>

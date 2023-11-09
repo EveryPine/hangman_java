@@ -4,4 +4,16 @@
     </string>
     <string name="explainCard">게임 설명...</string>
     <string name="explainMemory">게임 설명...</string>
+
+    <string name="cardEasyDesc">카드 뒤집기 게임 쉬움 난이도 설명</string>
+    <string name="cardNormalDesc">카드 뒤집기 게임 보통 난이도 설명</string>
+    <string name="cardHardDesc">카드 뒤집기 게임 어려움 난이도 설명</string>
+
+    <string name="hangmanEasyDesc">행맨 게임 쉬움 난이도 설명</string>
+    <string name="hangmanNormalDesc">행맨 게임 보통 난이도 설명</string>
+    <string name="hangmanHardDesc">행맨 게임 어려움 난이도 설명</string>
+
+    <string name="memoryEasyDesc">기억력 게임 쉬움 난이도 설명</string>
+    <string name="memoryNormalDesc">기억력 게임 보통 난이도 설명</string>
+    <string name="memoryHardDesc">기억력 게임 어려움 난이도 설명</string>
 </resources>

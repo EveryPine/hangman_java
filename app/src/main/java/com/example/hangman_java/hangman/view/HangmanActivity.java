@@ -2,7 +2,11 @@ package com.example.hangman_java.hangman.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -25,8 +29,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HangmanActivity extends BaseActivity {
-    public static int START_TIME = 30;
+    public static final int START_TIME = 30;
     private ActivityHangmanBinding hangmanBinding = null;
+    private KeyboardFragment keyboardFragment;
+    private PrintingFragment printingFragment;
     private HangmanViewModel hangmanViewModel = null;
     private RecordViewModel recordViewModel = null;
 
@@ -65,8 +71,8 @@ public class HangmanActivity extends BaseActivity {
         setView();
 
         HashMap<FragmentContainerView, Fragment> inputHashMap = new HashMap<>(){{
-            put(hangmanBinding.fragmentContainerViewPrinting, new PrintingFragment());
-            put(hangmanBinding.fragmentContainerViewKeyboard, new KeyboardFragment());
+            put(hangmanBinding.fragmentContainerViewPrinting, printingFragment = new PrintingFragment());
+            put(hangmanBinding.fragmentContainerViewKeyboard, keyboardFragment = new KeyboardFragment());
         }};
         replaceFragments(inputHashMap);
 
@@ -111,11 +117,15 @@ public class HangmanActivity extends BaseActivity {
     }
 
     private void gameOver() throws Exception {
+        Handler handler = new Handler();
         recordViewModel.insertRecord(this, new Record("hangman", hangmanViewModel.getStrDifficulty(), hangmanViewModel.getGameScore()));
         hangmanViewModel.setTimer(START_TIME, true);
-        FragmentManager fm = getSupportFragmentManager();
-        ResultDialog resultDialog = new ResultDialog();
-        resultDialog.show(fm, "test");
+        keyboardFragment.setBtnUnclickable();
+
+        handler.postDelayed(() -> {
+            FragmentManager fm = getSupportFragmentManager();
+            ResultDialog resultDialog = new ResultDialog();
+            resultDialog.show(fm, "test");}, 2000);
     }
 
     private void replaceFragments(@NonNull HashMap<FragmentContainerView, Fragment> inputMap){
