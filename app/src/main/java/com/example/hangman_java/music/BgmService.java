@@ -20,7 +20,7 @@ public class BgmService extends Service {
     @Override
     public void onCreate(){
         super.onCreate();
-        mediaPlayer = MediaPlayer.create(this, R.raw.test_bgm);
+        mediaPlayer = MediaPlayer.create(this, R.raw.jingle_bell_bgm);
         mediaPlayer.setLooping(true);
     }
 

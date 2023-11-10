@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -19,7 +21,8 @@ import java.util.List;
 public class KeyboardFragment extends BaseFragment {
     private FragmentKeyboardBinding binding = null;
     private HangmanViewModel hangmanViewModel = null;
-    private List<ImageButton> btnList;
+    private List<FrameLayout> frList;
+    private List<Button> btnList;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -42,88 +45,68 @@ public class KeyboardFragment extends BaseFragment {
     }
 
     private void setButtonListener(){
-        btnList = List.of(binding.imageBtnA, binding.imageBtnB, binding.imageBtnC,
-            binding.imageBtnD, binding.imageBtnE, binding.imageBtnF,
-            binding.imageBtnG, binding.imageBtnH, binding.imageBtnI,
-            binding.imageBtnJ, binding.imageBtnK, binding.imageBtnL,
-            binding.imageBtnM, binding.imageBtnN, binding.imageBtnO,
-            binding.imageBtnP, binding.imageBtnQ, binding.imageBtnR,
-            binding.imageBtnS, binding.imageBtnT, binding.imageBtnU,
-            binding.imageBtnV, binding.imageBtnW, binding.imageBtnU,
-            binding.imageBtnX, binding.imageBtnY, binding.imageBtnZ);
-        for (ImageButton button: btnList){
-            button.setOnClickListener(view -> {
-                char alphabet = '0';
-                if (binding.imageBtnA.equals(view)) {
-                    alphabet = 'a';
-                } else if (binding.imageBtnB.equals(view)) {
-                    alphabet = 'b';
-                } else if (binding.imageBtnC.equals(view)) {
-                    alphabet = 'c';
-                } else if (binding.imageBtnD.equals(view)) {
-                    alphabet = 'd';
-                } else if (binding.imageBtnE.equals(view)) {
-                    alphabet = 'e';
-                } else if (binding.imageBtnF.equals(view)) {
-                    alphabet = 'f';
-                } else if (binding.imageBtnG.equals(view)) {
-                    alphabet = 'g';
-                } else if (binding.imageBtnH.equals(view)) {
-                    alphabet = 'h';
-                } else if (binding.imageBtnI.equals(view)) {
-                    alphabet = 'i';
-                } else if (binding.imageBtnJ.equals(view)) {
-                    alphabet = 'j';
-                } else if (binding.imageBtnK.equals(view)) {
-                    alphabet = 'k';
-                } else if (binding.imageBtnL.equals(view)) {
-                    alphabet = 'l';
-                } else if (binding.imageBtnM.equals(view)) {
-                    alphabet = 'm';
-                } else if (binding.imageBtnN.equals(view)) {
-                    alphabet = 'n';
-                } else if (binding.imageBtnO.equals(view)) {
-                    alphabet = 'o';
-                } else if (binding.imageBtnP.equals(view)) {
-                    alphabet = 'p';
-                } else if (binding.imageBtnQ.equals(view)) {
-                    alphabet = 'q';
-                } else if (binding.imageBtnR.equals(view)) {
-                    alphabet = 'r';
-                } else if (binding.imageBtnS.equals(view)) {
-                    alphabet = 's';
-                } else if (binding.imageBtnT.equals(view)) {
-                    alphabet = 't';
-                } else if (binding.imageBtnU.equals(view)) {
-                    alphabet = 'u';
-                } else if (binding.imageBtnV.equals(view)) {
-                    alphabet = 'v';
-                } else if (binding.imageBtnW.equals(view)) {
-                    alphabet = 'w';
-                } else if (binding.imageBtnX.equals(view)) {
-                    alphabet = 'x';
-                } else if (binding.imageBtnY.equals(view)) {
-                    alphabet = 'y';
-                } else if (binding.imageBtnZ.equals(view)) {
-                    alphabet = 'z';
-                }
+        frList = List.of(binding.frA, binding.frB, binding.frC,
+            binding.frD, binding.frE, binding.frF,
+            binding.frG, binding.frH, binding.frI,
+            binding.frJ, binding.frK, binding.frL,
+            binding.frM, binding.frN, binding.frO,
+            binding.frP, binding.frQ, binding.frR,
+            binding.frS, binding.frT, binding.frU,
+            binding.frV, binding.frW, binding.frX, binding.frY, binding.frZ);
 
-                if (alphabet!='0'){
-                    buttonDisabled((ImageButton) view);
-                    hangmanViewModel.inputAlphabetListener(alphabet);
-                } else {
-                    Log.e("MyTAG", "KeyboardFragment의 alphabet에 잘못된 값이 참조되었습니다.");
-                }
-            });
+        btnList = List.of(binding.btnA, binding.btnB, binding.btnC,
+            binding.btnD, binding.btnE, binding.btnF,
+            binding.btnG, binding.btnH, binding.btnI,
+            binding.btnJ, binding.btnK, binding.btnL,
+            binding.btnM, binding.btnN, binding.btnO,
+            binding.btnP, binding.btnQ, binding.btnR,
+            binding.btnS, binding.btnT, binding.btnU,
+            binding.btnV, binding.btnW, binding.btnX, binding.btnY, binding.btnZ);
+
+        for (FrameLayout frame: frList){
+            frame.setOnClickListener(new ClickListener());
+        }
+
+        for (Button btn: btnList){
+            btn.setOnClickListener(new ClickListener());
         }
     }
 
-    private void buttonDisabled(ImageButton button){
-        button.setVisibility(View.INVISIBLE);
-        button.setClickable(false);
+    private class ClickListener implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+            Log.d("MyTAG", "알파벳 버튼 클릭 이벤트 발생");
+            char alphabet = '0';
+            int index;
+            for (index = 0; index < 26; index++){
+                if (frList.get(index).equals(view) || btnList.get(index).equals(view)) {
+                    alphabet = (char) ('a' + index);
+                    Log.d("MyTAG", "들어온 알파벳 입력: " + alphabet);
+                    break;
+                }
+            }
+
+            if (alphabet!='0'){
+                buttonDisabled(frList.get(index));
+                buttonDisabled(btnList.get(index));
+                hangmanViewModel.inputAlphabetListener(alphabet);
+            } else {
+                Log.e("MyTAG", "KeyboardFragment의 alphabet에 잘못된 값이 참조되었습니다.");
+            }
+        }
     }
 
-    protected void setBtnUnclickable(){
-        for (ImageButton btn: btnList){if (btn.isClickable()) btn.setClickable(false);}
+    private void buttonDisabled(View view){
+        view.setEnabled(false);
+        view.setClickable(false);
+    }
+
+    protected void setViewUnclickable(){
+        for (int i = 0; i < 26; i++){
+            if (frList.get(i).isClickable()){
+                frList.get(i).setClickable(false);
+                btnList.get(i).setClickable(false);
+            }
+        }
     }
 }

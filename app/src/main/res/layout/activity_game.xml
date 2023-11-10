@@ -20,7 +20,8 @@
         android:id="@+id/frContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_setgame">
+        tools:layout="@layout/fragment_setgame"
+        android:layout_marginTop="30dp">
 
     </androidx.fragment.app.FragmentContainerView>
 </FrameLayout>

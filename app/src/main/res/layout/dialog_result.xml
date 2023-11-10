@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="50dp"
-        android:fontFamily="@font/system_font"
+        android:fontFamily="@font/sys_font"
         android:text="게임오버"
         android:textColor="#af00"
         android:textSize="50dp" />
@@ -25,7 +25,7 @@
             android:text="최종점수 : "
             android:textSize="30dp"
             android:textColor="@color/black"
-            android:fontFamily="@font/system_font"/>
+            android:fontFamily="@font/sys_font"/>
 
         <TextView
             android:id="@+id/tvFinalScore"
@@ -34,7 +34,7 @@
             android:text="0000"
             android:textSize="30dp"
             android:textColor="@color/black"
-            android:fontFamily="@font/system_font"/>
+            android:fontFamily="@font/sys_font"/>
 
     </LinearLayout>
 
@@ -50,7 +50,7 @@
             android:textSize="30dp"
             android:textColor="@color/black"
             android:textAlignment="textEnd"
-            android:fontFamily="@font/system_font"/>
+            android:fontFamily="@font/sys_font"/>
 
         <TextView
             android:id="@+id/tvBestScore"
@@ -59,7 +59,7 @@
             android:text="0"
             android:textSize="30dp"
             android:textColor="@color/black"
-            android:fontFamily="@font/system_font"/>
+            android:fontFamily="@font/sys_font"/>
 
     </LinearLayout>
 
@@ -73,7 +73,7 @@
         android:textSize="30dp"
         android:textColor="#0d0"
         android:textAlignment="center"
-        android:fontFamily="@font/system_font"
+        android:fontFamily="@font/sys_font"
         android:layout_marginBottom="50dp"/>
 
     <LinearLayout

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:text="정말로 종료하시겠습니까?"
-        android:fontFamily="@font/system_font"
+        android:fontFamily="@font/sys_font"
         android:textSize="20dp"
         android:textColor="@color/black"
         android:textAlignment="center"
@@ -33,7 +33,7 @@
             android:scaleType="centerCrop"
             android:background="@drawable/button_green"
             android:text="예"
-            android:fontFamily="@font/system_font"
+            android:fontFamily="@font/sys_font"
             android:textSize="20sp"
             android:textStyle="bold">
 
@@ -47,7 +47,7 @@
             android:scaleType="centerCrop"
             android:background="@drawable/button_green"
             android:text="아니오"
-            android:fontFamily="@font/system_font"
+            android:fontFamily="@font/sys_font"
             android:textSize="20sp"
             android:textStyle="bold"/>
 

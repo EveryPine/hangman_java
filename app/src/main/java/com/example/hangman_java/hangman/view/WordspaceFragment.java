@@ -1,5 +1,7 @@
 package com.example.hangman_java.hangman.view;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -9,17 +11,22 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseFragment;
 import com.example.hangman_java.base.EventObserver;
 import com.example.hangman_java.databinding.FragmentWordspaceBinding;
 import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
 
+import org.w3c.dom.Text;
+
 public class WordspaceFragment extends BaseFragment {
-    private FragmentWordspaceBinding binding = null;
+    private FragmentWordspaceBinding wordspaceBinding = null;
     private HangmanViewModel hangmanViewModel = null;
 
     @Override
@@ -28,9 +35,9 @@ public class WordspaceFragment extends BaseFragment {
         ViewGroup container,
         Bundle savedInstanceState
     ){
-        binding = FragmentWordspaceBinding.inflate(inflater, container, false);
+        wordspaceBinding = FragmentWordspaceBinding.inflate(inflater, container, false);
 
-        return binding.getRoot();
+        return wordspaceBinding.getRoot();
     }
 
     @Override
@@ -49,7 +56,8 @@ public class WordspaceFragment extends BaseFragment {
     public void initUi() throws Exception {
         hangmanViewModel.word().observe(getViewLifecycleOwner(), new EventObserver<>(word -> {
             Log.d("MyTAG", "목표 단어 설정됨: " + word);
-            GridLayout layout = binding.getRoot();
+            ((HangmanActivity) getActivity()).setWordDebug(word);
+            GridLayout layout = wordspaceBinding.getRoot();
             int wordLength = hangmanViewModel.getWordLength();
             layout.removeAllViews();
             layout.setColumnCount(wordLength);
@@ -62,14 +70,15 @@ public class WordspaceFragment extends BaseFragment {
 
             for (int i=0; i<2; i++){
                 for (int j=0; j<wordLength; j++){
-                    ImageView newImageView = new ImageView(this.getContext());
                     if (i==0){
-                        newImageView.setImageResource(hangmanViewModel.getImageIdByTag("question"));
-                        hangmanViewModel.addImageView(newImageView);
-                        layout.addView(newImageView, questionLayoutParams);
+                        TextView textView = new TextView(this.getContext());
+                        setTextViewProperties(textView);
+                        hangmanViewModel.addTextView(textView);
+                        layout.addView(textView, questionLayoutParams);
                     } else {
-                        newImageView.setImageResource(hangmanViewModel.getImageIdByTag("underbar"));
-                        layout.addView(newImageView, underbarLayoutParams);
+                        ImageView imageView = new ImageView(this.getContext());
+                        imageView.setImageResource(hangmanViewModel.getImageIdByTag("underbar"));
+                        layout.addView(imageView, underbarLayoutParams);
                     }
                 }
             }
@@ -81,9 +90,21 @@ public class WordspaceFragment extends BaseFragment {
 
     private void updateUi(){
         hangmanViewModel.correctAlphabetIndexList().observe(getViewLifecycleOwner(), new EventObserver<>(list -> {
-            int imageId = hangmanViewModel.getAlphabetImageId(hangmanViewModel.getInputAlphabet());
-            for (int index: list)
-                hangmanViewModel.getImageView(index).setImageResource(imageId);
+            String alphabet = String.valueOf(Character.toUpperCase(hangmanViewModel.getInputAlphabet()));
+            for (int index: list){
+                TextView textView = hangmanViewModel.getTextView(index);
+                textView.setBackgroundColor(Color.TRANSPARENT);
+                textView.setText(alphabet);
+            }
         }));
+    }
+
+    private void setTextViewProperties(TextView textView){
+        Typeface font = ResourcesCompat.getFont(requireContext(), R.font.alphabet_font);
+        textView.setBackgroundResource(hangmanViewModel.getImageIdByTag("question"));
+        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        textView.setTextSize(30);
+        textView.setTextColor(Color.BLACK);
+        textView.setTypeface(font);
     }
 }

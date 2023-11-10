@@ -1,441 +1,569 @@
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linearLayoutUserInput"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:layout_weight="1">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:layout_margin="10dp">
+    <TableRow>
 
-        <ImageButton
-            android:id="@+id/imageBtnA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
+        <FrameLayout
+            android:id="@+id/frA"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_a">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnA"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="A"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frB"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_b">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnB"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="B"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frC"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_c">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnC"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="C"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnD"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frD"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_d">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnD"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="D"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnE"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frE"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_e">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnE"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="E"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frF"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_f">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnF"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="F"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnG"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frG"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_g">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnG"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="G"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
+        </FrameLayout>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </TableRow>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:layout_margin="10dp">
+    <TableRow>
 
-        <ImageButton
-            android:id="@+id/imageBtnH"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        <FrameLayout
+            android:id="@+id/frH"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_h">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnH"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="H"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frI"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_i">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnI"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="I"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnJ"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frJ"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_j">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnJ"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="J"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnK"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frK"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_k">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnK"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="K"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frL"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_l">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnL"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="L"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnM"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frM"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_m">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnM"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="M"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frN"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_n">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnN"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="N"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
+        </FrameLayout>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </TableRow>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:layout_margin="10dp">
+    <TableRow>
 
-        <ImageButton
-            android:id="@+id/imageBtnO"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        <FrameLayout
+            android:id="@+id/frO"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_o">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnO"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="O"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frP"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_p">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnP"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="P"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnQ"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frQ"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_q">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnQ"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="Q"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frR"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_r">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnR"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="R"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frS"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_s">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnS"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="S"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frT"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_t">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnT"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="T"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnU"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frU"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_u">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnU"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="U"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
+        </FrameLayout>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </TableRow>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:layout_margin="10dp">
+    <TableRow>
 
-        <ImageButton
-            android:id="@+id/imageBtnDummy1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        <FrameLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/empty_alphabet"
-            android:visibility="invisible">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:visibility="invisible"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frV"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_v">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnV"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="V"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnW"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frW"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_w">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnW"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="W"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnX"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frX"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_x">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnX"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="X"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frY"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_y">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnY"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="Y"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnZ"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frZ"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/enabled_z">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:id="@+id/btnZ"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="Z"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/alphabet_font"
+                android:background="@drawable/alphabet_background"/>
 
-        <ImageButton
-            android:id="@+id/imageBtnDummy2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@color/white"
-            android:src="@drawable/empty_alphabet"
-            android:visibility="invisible">
+            android:layout_margin="5dp">
 
-        </ImageButton>
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:visibility="invisible"/>
 
+        </FrameLayout>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+    </TableRow>
+</TableLayout>

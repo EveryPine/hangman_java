@@ -30,9 +30,9 @@ import java.util.Map;
 
 public class HangmanActivity extends BaseActivity {
     public static final int START_TIME = 30;
+    private Handler handler = new Handler();
     private ActivityHangmanBinding hangmanBinding = null;
     private KeyboardFragment keyboardFragment;
-    private PrintingFragment printingFragment;
     private HangmanViewModel hangmanViewModel = null;
     private RecordViewModel recordViewModel = null;
 
@@ -71,7 +71,7 @@ public class HangmanActivity extends BaseActivity {
         setView();
 
         HashMap<FragmentContainerView, Fragment> inputHashMap = new HashMap<>(){{
-            put(hangmanBinding.fragmentContainerViewPrinting, printingFragment = new PrintingFragment());
+            put(hangmanBinding.fragmentContainerViewPrinting, new PrintingFragment());
             put(hangmanBinding.fragmentContainerViewKeyboard, keyboardFragment = new KeyboardFragment());
         }};
         replaceFragments(inputHashMap);
@@ -90,11 +90,12 @@ public class HangmanActivity extends BaseActivity {
             if (time < 0) gameOver();
             if (time >= 0) hangmanBinding.tvRemainingTime.setText(time.toString());
         }));
+        hangmanBinding.tvWordDebug.setOnClickListener(view -> hangmanBinding.debug.setVisibility(View.GONE));
 
     }
 
     private void initGameEndObserver(){
-        hangmanViewModel.gameClearFlag().observe(this, gameClearFlag -> {
+        hangmanViewModel.gameClearFlag().observe(this, gameClearFlag -> handler.postDelayed(() -> {
             hangmanBinding.tvRemainingTime.setText(Integer.toString(START_TIME));
             hangmanBinding.tvRemainingTime.setTextColor(Color.BLACK);
             hangmanViewModel.updateGameScore();
@@ -104,7 +105,7 @@ public class HangmanActivity extends BaseActivity {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        });
+        }, 700));
 
         hangmanViewModel.gameoverFlag().observe(this, gameoverFlag -> {
             try {
@@ -117,10 +118,9 @@ public class HangmanActivity extends BaseActivity {
     }
 
     private void gameOver() throws Exception {
-        Handler handler = new Handler();
         recordViewModel.insertRecord(this, new Record("hangman", hangmanViewModel.getStrDifficulty(), hangmanViewModel.getGameScore()));
         hangmanViewModel.setTimer(START_TIME, true);
-        keyboardFragment.setBtnUnclickable();
+        keyboardFragment.setViewUnclickable();
 
         handler.postDelayed(() -> {
             FragmentManager fm = getSupportFragmentManager();
@@ -150,5 +150,9 @@ public class HangmanActivity extends BaseActivity {
         });
         thread.start();
         flag.observe(this, new EventObserver<>(bool -> hangmanBinding.tvCurrentScore.setTextColor(Color.BLACK)));
+    }
+
+    protected void setWordDebug(String word){
+        hangmanBinding.tvWordDebug.setText(word.toUpperCase());
     }
 }

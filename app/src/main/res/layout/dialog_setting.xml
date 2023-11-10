@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="설정"
-        android:fontFamily="@font/system_font"
+        android:fontFamily="@font/sys_font"
         android:textSize="30dp"
         android:textColor="@color/white"
         android:textAlignment="center">
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="배경음"
             android:textColor="@color/white"
-            android:fontFamily="@font/system_font"
+            android:fontFamily="@font/sys_font"
             android:textSize="15dp"
             android:layout_marginTop="10dp"/>
 
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:text="효과음"
             android:textColor="@color/white"
-            android:fontFamily="@font/system_font"
+            android:fontFamily="@font/sys_font"
             android:textSize="15dp"
             android:layout_marginTop="10dp"/>
 
@@ -139,7 +139,7 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:text="완료"
-        android:fontFamily="@font/system_font"
+        android:fontFamily="@font/sys_font"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"

@@ -3,6 +3,7 @@ package com.example.hangman_java.hangman.viewmodel;
 import android.content.Context;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -45,8 +46,7 @@ public class HangmanViewModel extends BaseViewModel {
     // resourceInfo
     private final int _questionImageId = imageManager.getQuestionImage();
     private final int _underbarImageId = imageManager.getUnderbarImage();
-    private final List<Integer> _alphabetIdList = imageManager.getAlphabetImageList();
-    private final MutableLiveData<ArrayList<ImageView>> _imageviewList = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<TextView>> _textViewList = new MutableLiveData<>();
 
     // observer를 붙일 변수들
     public final LiveData<Event<Integer>> printingIndex(){ return this._printingIndex;}
@@ -93,7 +93,7 @@ public class HangmanViewModel extends BaseViewModel {
     }
 
     // 리소스 정보 설정 - imageviewList (알파벳 이미지 뷰 리스트) 초기화
-    public void setResourceInfo(){_imageviewList.setValue(new ArrayList<>());}
+    public void setResourceInfo(){_textViewList.setValue(new ArrayList<>());}
 
     // 목표 단어 설정 (DB 스레드 이용)
     private void setTargetWord(Context context, @NonNull String[] difficultyArray){
@@ -155,9 +155,6 @@ public class HangmanViewModel extends BaseViewModel {
     // 그림 이미지 id 반환
     public int getPrintingImageId(){return imageManager.getPrintingImageList().get(_printingIndex.getValue().peekContent());}
 
-    // 알파벳 이미지 id 반환
-    public int getAlphabetImageId(char alphabet){return _alphabetIdList.get(alphabet - 'a');}
-
     // 특수문자 이미지 id 반환
     public int getImageIdByTag(String tag) {
         if ("question".equals(tag)) return _questionImageId;
@@ -169,7 +166,7 @@ public class HangmanViewModel extends BaseViewModel {
     }
 
     // 주어진 인덱스에 해당하는 이미지뷰 객체 반환
-    public ImageView getImageView(int index) { return Objects.requireNonNull(_imageviewList.getValue()).get(index); }
+    public TextView getTextView(int index) { return Objects.requireNonNull(_textViewList.getValue()).get(index); }
 
     public char getInputAlphabet() { return _inputAlphabet.getValue(); }
 
@@ -195,7 +192,7 @@ public class HangmanViewModel extends BaseViewModel {
             }
         }
         // 성공
-        if (correctAlphabetIndexList.size()!=0 && !isGameClear()){
+        if (correctAlphabetIndexList.size()!=0){
             Log.d("MyTAG", "성공..단어 ui를 갱신합니다");
             _correctAlphabetIndexList.setValue(new Event<>(correctAlphabetIndexList));
         }
@@ -215,15 +212,15 @@ public class HangmanViewModel extends BaseViewModel {
 
     }
 
-    // 이미지 뷰 리스트에 이미지 뷰를 순차적으로 추가
-    public void addImageView(ImageView view){
-        Objects.requireNonNull(_imageviewList.getValue()).add(view);
+    // 물음표 텍스트뷰 리스트에 텍스트 뷰를 순차적으로 추가
+    public void addTextView(TextView view){
+        _textViewList.getValue().add(view);
     }
 
     // 이미지 뷰 리스트 초기화
     public void clearImageViewList(){
-        if (Objects.requireNonNull(_imageviewList.getValue()).size()!=0){
-            _imageviewList.getValue().clear();
+        if (Objects.requireNonNull(_textViewList.getValue()).size()!=0){
+            _textViewList.getValue().clear();
         }
     }
 

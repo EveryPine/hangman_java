@@ -9,6 +9,18 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#848484</color>
 
+    <color name="transparent_100">#FF000000</color>
+    <color name="transparent_90">#E6000000</color>
+    <color name="transparent_80">#CC000000</color>
+    <color name="transparent_70">#B3000000</color>
+    <color name="transparent_60">#99000000</color>
+    <color name="transparent_50">#80000000</color>
+    <color name="transparent_40">#66000000</color>
+    <color name="transparent_30">#4D000000</color>
+    <color name="transparent_20">#33000000</color>
+    <color name="transparent_10">#1A000000</color>
+    <color name="transparent_0">#00000000</color>
+
     <!--
     컬러의 앞 2개 문자로 투명도 설정
     100% - FF
@@ -23,17 +35,5 @@
     10% - 1A
     0% - 00
     -->
-
-    <color name="transparent_100">#FF000000</color>
-    <color name="transparent_90">#E6000000</color>
-    <color name="transparent_80">#CC000000</color>
-    <color name="transparent_70">#B3000000</color>
-    <color name="transparent_60">#99000000</color>
-    <color name="transparent_50">#80000000</color>
-    <color name="transparent_40">#66000000</color>
-    <color name="transparent_30">#4D000000</color>
-    <color name="transparent_20">#33000000</color>
-    <color name="transparent_10">#1A000000</color>
-    <color name="transparent_0">#00000000</color>
 
 </resources>

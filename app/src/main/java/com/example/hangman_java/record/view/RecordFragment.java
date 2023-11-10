@@ -1,7 +1,6 @@
 package com.example.hangman_java.record.view;
 
 import android.graphics.Typeface;
-import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import com.example.hangman_java.record.model.Record;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class RecordFragment extends BaseFragment {
     @Override
@@ -30,7 +28,7 @@ public class RecordFragment extends BaseFragment {
         List<TableRow> resultTableRow = new ArrayList<>();
         // 관련 파라미터 변수 생성
         TableRow.LayoutParams trParams = new TableRow.LayoutParams();
-        Typeface font = ResourcesCompat.getFont(requireContext(), R.font.system_font);
+        Typeface font = ResourcesCompat.getFont(requireContext(), R.font.sys_font);
         trParams.bottomMargin = convertToDP(5);
         trParams.topMargin = convertToDP(5);
         for (Record rec : recentRecord){
@@ -67,10 +65,5 @@ public class RecordFragment extends BaseFragment {
         params.weight = 3f;
         tvRecord.setLayoutParams(params);
         tvDate.setVisibility(View.GONE);
-    }
-
-    int convertToDP(int px){
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        return Math.round(px * displayMetrics.density);
     }
 }
