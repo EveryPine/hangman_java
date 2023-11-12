@@ -14,22 +14,27 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hangman_java.base.BaseFragment;
-import com.example.hangman_java.databinding.FragmentHexaBinding;
+import com.example.hangman_java.databinding.FragmentTriangleBinding;
 import com.example.hangman_java.memory.viewmodel.MemoryViewModel;
 
 import java.util.List;
 
-public class HexaFragment extends BaseFragment {
-    private FragmentHexaBinding binding;
+public class TriangleFragment extends BaseFragment {
+    private FragmentTriangleBinding binding;
     MemoryViewModel memoryViewModel;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentHexaBinding.inflate(inflater, container, false);
+        binding = FragmentTriangleBinding.inflate(inflater, container, false);
         memoryViewModel = new ViewModelProvider(requireActivity()).get(MemoryViewModel.class);
         View view = binding.getRoot();
-        memoryViewModel.setDifficulty(7);
+        memoryViewModel.setDifficulty(9);
         return view;
+    }
+
+    public void setViewModel(MemoryViewModel viewModel) {
+        this.memoryViewModel = viewModel;
     }
 
     @Override
@@ -49,30 +54,28 @@ public class HexaFragment extends BaseFragment {
         StartGame();
         Log.d("testt", "성공적으로 시작함 ");
     }
-    public void setViewModel(MemoryViewModel viewModel) {
-        this.memoryViewModel = viewModel;
-    }
 
     private void StartGame() {
         Log.d("testt", "잤음");
-        View[] hexagonViews = {
-                binding.hexa1, binding.hexa2, binding.hexa3,
-                binding.hexa4, binding.hexa5, binding.hexa6, binding.hexa7
+        View[] triangleViews = {
+                binding.tri1, binding.tri2, binding.tri3,
+                binding.tri4, binding.tri5, binding.tri6, binding.tri7, binding.tri8, binding.tri9
         };
+
         final Handler handler1 = new Handler();
         handler1.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Animation anim = memoryViewModel.createAnimation();
                 int answer_first = memoryViewModel.getFirstAnswer();
-                hexagonViews[answer_first - 1].startAnimation(anim);
+                triangleViews[answer_first - 1].startAnimation(anim);
             }
         }, 3000);
-
-        for (int i = 0; i < 7; i++){
+        for (int i = 0; i < 9; i++){
             int finalI = i;
-            hexagonViews[i].setOnClickListener(v -> memoryViewModel.setInputOrder(finalI + 1));
+            triangleViews[i].setOnClickListener(v -> memoryViewModel.setInputOrder(finalI + 1));
         }
+
     }
 
     private void updateUi() {
@@ -86,9 +89,9 @@ public class HexaFragment extends BaseFragment {
                 if (output) {
                     Log.d("testt", "성공적으로 정답을 맞춤 ");
                     List<Integer> answer_list = memoryViewModel.getAnswerList();
-                    HexagonView[] temp_hexagonViews = {
-                            binding.hexa1, binding.hexa2, binding.hexa3,
-                            binding.hexa4, binding.hexa5, binding.hexa6, binding.hexa7
+                    View[] triangleViews = {
+                            binding.tri1, binding.tri2, binding.tri3,
+                            binding.tri4, binding.tri5, binding.tri6, binding.tri7, binding.tri8, binding.tri9
                     };
                     Boolean stageCheckOutput = memoryViewModel.CheckNextStage();
                     if (stageCheckOutput) {
@@ -103,14 +106,14 @@ public class HexaFragment extends BaseFragment {
                             final int index = i;
                             handler2.postDelayed(() -> {
                                 Animation anim1 = animations[index];
-                                temp_hexagonViews[answer_list.get(index) - 1].startAnimation(anim1);
+                                triangleViews[answer_list.get(index) - 1].startAnimation(anim1);
                             }, i * delay);
                         }
                     } else {
                         //다음스테이지로 넘어가는게아니라 그냥 넘김
 
                     }
-                }else{
+                } else {
                     //정답을 못맞췃을 때 로직
                 }
             }

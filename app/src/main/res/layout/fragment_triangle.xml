@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.example.hangman_java.memory.view.TriangleView
+
+        android:id="@+id/tri1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <com.example.hangman_java.memory.view.TriangleView
+            android:id="@+id/tri2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center" />
+
+        <com.example.hangman_java.memory.view.InvertedTriangleView
+            android:id="@+id/tri3"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center" />
+
+        <com.example.hangman_java.memory.view.TriangleView
+            android:id="@+id/tri4"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <com.example.hangman_java.memory.view.TriangleView
+            android:id="@+id/tri5"
+            android:layout_width="72dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center" />
+
+        <com.example.hangman_java.memory.view.InvertedTriangleView
+            android:id="@+id/tri6"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center" />
+
+        <com.example.hangman_java.memory.view.TriangleView
+            android:id="@+id/tri7"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center" />
+
+        <com.example.hangman_java.memory.view.InvertedTriangleView
+            android:id="@+id/tri8"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center" />
+
+        <com.example.hangman_java.memory.view.TriangleView
+            android:id="@+id/tri9"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
