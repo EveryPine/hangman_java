@@ -59,8 +59,8 @@ public class RectangleFragment extends BaseFragment {
     private void StartGame() {
         Log.d("testt", "잤음");
         View[] triangleViews = {
-                binding.tri1, binding.tri2, binding.tri3,
-                binding.tri4
+                binding.rect1, binding.rect2, binding.rect3,
+                binding.rect4
         };
 
         final Handler handler1 = new Handler();
@@ -110,8 +110,8 @@ public class RectangleFragment extends BaseFragment {
                     Log.d("testt", "성공적으로 정답을 맞춤 ");
                     List<Integer> answer_list = gameViewModel.getAnswerList();
                     View[] triangleViews = {
-                            binding.tri1, binding.tri2, binding.tri3,
-                            binding.tri4
+                            binding.rect1, binding.rect2, binding.rect3,
+                            binding.rect4
                     };
                     Boolean stageCheckOutput = gameViewModel.CheckNextStage();
                     if (stageCheckOutput) {

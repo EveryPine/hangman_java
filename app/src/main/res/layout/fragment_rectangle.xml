@@ -11,13 +11,13 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tri1"
+            android:id="@+id/rect1"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="@color/black" />
 
         <TextView
-            android:id="@+id/tri2"
+            android:id="@+id/rect2"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="@color/teal_200" />
@@ -29,12 +29,12 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tri3"
+            android:id="@+id/rect3"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="@color/purple_700" />
         <TextView
-            android:id="@+id/tri4"
+            android:id="@+id/rect4"
 
             android:layout_width="150dp"
             android:layout_height="150dp"
