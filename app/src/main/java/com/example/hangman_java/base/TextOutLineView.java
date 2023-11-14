@@ -31,6 +31,14 @@ public class TextOutLineView extends TextView {
 
     public TextOutLineView(Context context){ super(context); }
 
+    // 커스텀 텍스트뷰 동적 생성용 생성자
+    public TextOutLineView(Context context, AttributeSet attrs, boolean stroke, int strokeColor, float strokeWidth){
+        super(context, attrs);
+        this.stroke = stroke;
+        this.strokeColor = strokeColor;
+        this.strokeWidth = strokeWidth;
+    }
+
     private void initView(Context context, AttributeSet attrs){
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TextOutLineView);
         stroke = a.getBoolean(R.styleable.TextOutLineView_textStroke, false);

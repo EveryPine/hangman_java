@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--배경색-->
+    <gradient
+        android:type="linear"
+        android:angle="90"
+        android:startColor="#CF1D1D"
+        android:endColor="#EA9D9D"/>
+    <!--테두리색및두께-->
+    <stroke android:color="#E37777" android:width="2dp"/>
+    <!--모서리둥글게-->
+    <corners android:radius="10dp"/>
+</shape>

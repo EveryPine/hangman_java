@@ -12,7 +12,7 @@
         android:text="디버그 모드 진입"
         android:textSize="20dp"
         android:layout_gravity="center_horizontal"
-        android:visibility="invisible"/>
+        android:visibility="visible"/>
 
     <LinearLayout
         android:layout_width="match_parent"
