@@ -47,12 +47,13 @@ public class HexagonView extends View {
         fillPaint.setColor(Color.GREEN);
         fillPaint.setStyle(Paint.Style.FILL);
 
-        hexagonPath.moveTo(midX + 75, midY - 130);
-        hexagonPath.lineTo(midX - 75, midY - 130);
-        hexagonPath.lineTo(midX - 150, midY);
-        hexagonPath.lineTo(midX - 75, midY + 130);
-        hexagonPath.lineTo(midX + 75, midY + 130);
-        hexagonPath.lineTo(midX + 150, midY);
+        hexagonPath.moveTo(midX-getWidth()/2f, midY );
+        hexagonPath.lineTo(midX -midX/2f, midY - getHeight()/2f);
+        hexagonPath.lineTo(midX + midX/2f, midY - getHeight()/2f);
+        hexagonPath.lineTo(midX +getWidth()/2, midY);
+        hexagonPath.lineTo(midX + midX/2f, midY +getHeight()/2f);
+        hexagonPath.lineTo(midX -midX/2f, midY+getHeight()/2f);
+        hexagonPath.lineTo(midX-getWidth()/2f, midY );
         hexagonPath.close();
 
 

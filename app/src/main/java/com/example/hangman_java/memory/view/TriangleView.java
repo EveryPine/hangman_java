@@ -43,9 +43,9 @@ public class TriangleView extends View {
         fillPaint.setStyle(Paint.Style.FILL);
         float midX = getWidth() / 2f;
         float midY = getHeight() / 2f;
-        trianglePath.moveTo(midX, midY - 65); // 시작점 설정
-        trianglePath.lineTo(midX + 75, midY + 65); // 오른쪽 꼭지점
-        trianglePath.lineTo(midX - 75, midY + 65); // 왼쪽 꼭지점
+        trianglePath.moveTo(midX, midY -getHeight()/2f); // 시작점 설정
+        trianglePath.lineTo(midX + getWidth()/2f, midY  +getHeight()/2f); // 오른쪽 꼭지점
+        trianglePath.lineTo(midX - getWidth()/2f, midY + getHeight()/2f);
         trianglePath.close();
 
         RectF rectF = new RectF();
