@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/setting_dialog_background_christmas" android:width="340dp" android:height="400dp">
+    <item android:drawable="@drawable/main_seekbar_disabledthumb_img" android:width="30dp" android:height="40dp">
 
     </item>
 </layer-list>

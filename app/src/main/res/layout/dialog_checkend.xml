@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@drawable/checkend_dialog_background">
+    android:background="@drawable/main_checkend_dialog_bg">
 
     <TextView
         android:id="@+id/tvChkEndMessage"
@@ -31,7 +31,7 @@
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:scaleType="centerCrop"
-            android:background="@drawable/button_green"
+            android:background="@drawable/base_button_green"
             android:text="예"
             android:fontFamily="@font/sys_font"
             android:textSize="20sp"
@@ -45,7 +45,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="30dp"
             android:scaleType="centerCrop"
-            android:background="@drawable/button_green"
+            android:background="@drawable/base_button_green"
             android:text="아니오"
             android:fontFamily="@font/sys_font"
             android:textSize="20sp"

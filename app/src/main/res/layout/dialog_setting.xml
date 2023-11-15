@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="10dp"
-    android:background="@drawable/setting_dialog_background">
+    android:background="@drawable/main_settingdialog_bg">
 
     <TextView
         android:id="@+id/tvSetting"
@@ -27,7 +27,7 @@
         android:layout_marginVertical="5dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="@drawable/round_background_border_green">
+        android:background="@drawable/main_round_bg_border_green">
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
                 android:id="@+id/chkIsBackgroundMuted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@drawable/checkbox_volume"
+                android:button="@drawable/main_checkbox_volume"
                 android:layout_marginHorizontal="10dp"
                 android:checked="false">
 
@@ -63,8 +63,8 @@
                 android:max="10"
                 android:progress="10"
                 android:thumbOffset="-0.01dp"
-                android:thumb="@drawable/seekbar_thumb"
-                android:progressDrawable="@drawable/seekbar_progress"
+                android:thumb="@drawable/main_seekbar_thumb"
+                android:progressDrawable="@drawable/main_seekbar_progress"
                 android:splitTrack="true">
 
             </SeekBar>
@@ -84,7 +84,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="@drawable/round_background_border_green">
+        android:background="@drawable/main_round_bg_border_green">
 
 
 
@@ -107,7 +107,7 @@
                 android:id="@+id/chkIsEffectMuted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@drawable/checkbox_volume"
+                android:button="@drawable/main_checkbox_volume"
                 android:layout_marginHorizontal="10dp"
                 android:checked="false">
 
@@ -122,8 +122,8 @@
                 android:max="10"
                 android:progress="10"
                 android:thumbOffset="-0.01dp"
-                android:thumb="@drawable/seekbar_thumb"
-                android:progressDrawable="@drawable/seekbar_progress"
+                android:thumb="@drawable/main_seekbar_thumb"
+                android:progressDrawable="@drawable/main_seekbar_progress"
                 android:splitTrack="true">
 
             </SeekBar>
@@ -144,7 +144,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_margin="30dp"
-        android:background="@drawable/button_green">
+        android:background="@drawable/base_button_green">
 
     </Button>
 

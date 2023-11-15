@@ -86,7 +86,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/home_fill0_wght400_grad0_opsz24"
+            android:src="@drawable/hangman_icon_home"
             android:layout_margin="5dp"/>
 
         <ImageButton
@@ -94,7 +94,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/reply_fill0_wght400_grad0_opsz24"
+            android:src="@drawable/hangman_back"
             android:layout_margin="5dp"/>
     </LinearLayout>
 </LinearLayout>

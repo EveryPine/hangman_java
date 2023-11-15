@@ -17,12 +17,12 @@ public class ImageManager {
     }
 
     private static List<Integer> printingImageList =
-        List.of(R.drawable.print_0, R.drawable.print_1, R.drawable.print_2, R.drawable.print_3,
-            R.drawable.print_4, R.drawable.print_5, R.drawable.print_6, R.drawable.print_7,
-            R.drawable.print_8, R.drawable.print_9, R.drawable.print_10, R.drawable.print_11);
+        List.of(R.drawable.hangman_print_0, R.drawable.hangman_print_01, R.drawable.hangman_print_02, R.drawable.hangman_print_03,
+            R.drawable.hangman_print_04, R.drawable.hangman_print_05, R.drawable.hangman_print_06, R.drawable.hangman_print_07,
+            R.drawable.hangman_print_08, R.drawable.hangman_print_09, R.drawable.hangman_print_10, R.drawable.hangman_print_11);
 
-    private static int questionImage = R.drawable.question;
-    private static int underbarImage = R.drawable.underbar;
+    private static int questionImage = R.drawable.hangman_question;
+    private static int underbarImage = R.drawable.hangman_underbar;
 
     public List<Integer> getPrintingImageList() { return printingImageList; }
 

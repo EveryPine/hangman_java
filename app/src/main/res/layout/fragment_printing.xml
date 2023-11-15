@@ -9,7 +9,7 @@
         android:adjustViewBounds="true"
         android:background="@drawable/square_background_border_black"
         android:padding="1dp"
-        android:src="@drawable/empty_printing">
+        android:src="@drawable/hangman_empty_printing">
 
     </ImageView>
 

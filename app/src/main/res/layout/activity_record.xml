@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/test_background">
+    android:background="@drawable/base_test_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:fontFamily="@font/button_font_family"
             android:textSize="40dp"
             android:textAlignment="center"
-            android:background="@drawable/title_background"/>
+            android:background="@drawable/base_title_bg"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,72 +29,87 @@
             android:layout_marginVertical="25dp"
             android:layout_marginHorizontal="10dp"
             android:paddingHorizontal="20dp"
-            android:orientation="vertical"
-            android:background="@drawable/frame_record">
+            android:background="@drawable/record_mainframe"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                android:background="@drawable/round_bg_skin">
+                android:paddingVertical="12dp"
+                android:scrollbars="none">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:text="게임을 선택하세요"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/sys_font"
-                    android:textSize="20dp"
-                    android:textAlignment="center"/>
+                    android:orientation="vertical">
 
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginVertical="10dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/record_frame_bg">
 
-                    <RadioButton
-                        android:id="@+id/rdoCard"
-                        android:layout_width="81dp"
-                        android:layout_height="81dp"
-                        android:background="@drawable/icon_card"
-                        android:button="@null"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:text="게임을 선택하세요"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/sys_font"
+                            android:textSize="20dp"
+                            android:textAlignment="center"/>
 
-                    <RadioButton
-                        android:id="@+id/rdoHangman"
-                        android:layout_width="81dp"
-                        android:layout_height="81dp"
-                        android:background="@drawable/icon_hangman"
-                        android:layout_marginHorizontal="15dp"
-                        android:button="@null"/>
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginVertical="10dp"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal">
 
-                    <RadioButton
-                        android:id="@+id/rdoMemory"
-                        android:layout_width="81dp"
-                        android:layout_height="81dp"
-                        android:background="@drawable/icon_memory"
-                        android:button="@null"/>
+                            <RadioButton
+                                android:id="@+id/rdoCard"
+                                android:layout_width="81dp"
+                                android:layout_height="81dp"
+                                android:background="@drawable/record_icon_card"
+                                android:button="@null"/>
 
-                </RadioGroup>
+                            <RadioButton
+                                android:id="@+id/rdoHangman"
+                                android:layout_width="81dp"
+                                android:layout_height="81dp"
+                                android:background="@drawable/record_icon_hangman"
+                                android:layout_marginHorizontal="15dp"
+                                android:button="@null"/>
 
-            </LinearLayout>
+                            <RadioButton
+                                android:id="@+id/rdoMemory"
+                                android:layout_width="81dp"
+                                android:layout_height="81dp"
+                                android:background="@drawable/record_icon_memory"
+                                android:button="@null"/>
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fcRecord"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="20dp"
-                tools:layout="@layout/fragment_rechangman">
-            </androidx.fragment.app.FragmentContainerView>
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/fcRecord"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginVertical="20dp"
+                        tools:layout="@layout/fragment_rechangman">
+                    </androidx.fragment.app.FragmentContainerView>
+
+                </LinearLayout>
+
+            </ScrollView>
 
         </LinearLayout>
 
-        </LinearLayout>
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/btnGoback"
@@ -103,7 +118,7 @@
         android:layout_gravity="end"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/arrow_back_fill0_wght400_grad0_opsz24"
-        android:background="@drawable/button_back"/>
+        android:src="@drawable/base_arrow_back_fill0_wght400_grad0_opsz24"
+        android:background="@drawable/base_button_back"/>
 
 </FrameLayout>

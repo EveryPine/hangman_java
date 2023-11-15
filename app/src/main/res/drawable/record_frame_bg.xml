@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--배경색-->
+    <gradient
+        android:type="radial"
+        android:gradientRadius="120%p"
+        android:endColor="#C58122"
+        android:startColor="#FACD92"/>
+    <!--테두리색및두께-->
+    <stroke android:color="#AD6306" android:width="2dp"/>
+    <!--모서리둥글게-->
+    <corners android:radius="10dp"/>
+
+</shape>
