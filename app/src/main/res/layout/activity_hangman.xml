@@ -6,13 +6,31 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
+    <FrameLayout
+        android:id="@+id/frPause"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp">
+
+        <Button
+            android:id="@+id/btnPause"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/hangman_btn_pause"/>
+
+    </FrameLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.25"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="25dp"
-        android:gravity="center_vertical">
+        android:gravity="">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -100,7 +118,6 @@
         android:name="com.example.hangman_java.hangman.view.PrintingFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ECD3D3"
         tools:layout="@layout/fragment_printing"
         android:layout_marginHorizontal="10dp">
 
@@ -120,7 +137,8 @@
     <LinearLayout
         android:id="@+id/debug"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="visible">
 
         <TextView
             android:layout_width="0dp"

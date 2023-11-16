@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sys_font_family"
+        android:text="일시정지"
+        android:textColor="@color/black"
+        android:textSize="50dp"/>
+
+    <Button
+        android:id="@+id/btnResume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="계속 하기"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sys_font_family"/>
+
+    <Button
+        android:id="@+id/btnRestart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="다시 시작"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sys_font_family"/>
+
+    <Button
+        android:id="@+id/btnGoMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="메인 화면"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sys_font_family"/>
+
+</LinearLayout>

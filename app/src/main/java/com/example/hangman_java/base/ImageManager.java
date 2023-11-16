@@ -17,7 +17,7 @@ public class ImageManager {
     }
 
     private static List<Integer> printingImageList =
-        List.of(R.drawable.hangman_print_0, R.drawable.hangman_print_01, R.drawable.hangman_print_02, R.drawable.hangman_print_03,
+        List.of(0, R.drawable.hangman_print_01, R.drawable.hangman_print_02, R.drawable.hangman_print_03,
             R.drawable.hangman_print_04, R.drawable.hangman_print_05, R.drawable.hangman_print_06, R.drawable.hangman_print_07,
             R.drawable.hangman_print_08, R.drawable.hangman_print_09, R.drawable.hangman_print_10, R.drawable.hangman_print_11);
 

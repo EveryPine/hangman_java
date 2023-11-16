@@ -1,23 +1,26 @@
-package com.example.hangman_java.game.view;
+package com.example.hangman_java.hangman.view;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hangman_java.base.BaseDialog;
-import com.example.hangman_java.databinding.DialogResultBinding;
-import com.example.hangman_java.hangman.view.HangmanActivity;
+import com.example.hangman_java.databinding.DialogPauseBinding;
 import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
 import com.example.hangman_java.main.view.MainActivity;
 
-public class ResultDialog extends BaseDialog {
-    private DialogResultBinding resultBinding;
+public class PauseDialog extends BaseDialog {
+    private DialogPauseBinding pauseBinding;
     private HangmanViewModel hangmanViewModel;
+    private Button btnResume, btnRestart, btnGoMain;
 
     @Override
     public View onCreateView(
@@ -25,8 +28,10 @@ public class ResultDialog extends BaseDialog {
         ViewGroup container,
         Bundle savedInstanceState
     ){
-        resultBinding = DialogResultBinding.inflate(inflater, container, false);
-        return resultBinding.getRoot();
+        pauseBinding = DialogPauseBinding.inflate(inflater, container, false);
+        //getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        return pauseBinding.getRoot();
     }
 
     @Override
@@ -41,18 +46,17 @@ public class ResultDialog extends BaseDialog {
         setView();
     }
 
-
+    @Override
     public void setView() {
-        int prevBestScore = hangmanViewModel.getBestScore(); // 이전 최고 기록
-        int finalScore = hangmanViewModel.getGameScore(); // 현재 달성한 기록
+        btnResume = pauseBinding.btnResume;
+        btnRestart = pauseBinding.btnRestart;
+        btnGoMain = pauseBinding.btnGoMain;
 
-        resultBinding.btnGoMain.setOnClickListener(btn -> {
-            Intent intent = new Intent(requireActivity(), MainActivity.class);
-            startActivity(intent); // 메인 화면으로 이동
-            requireActivity().finish(); // 행맨 액티비티 종료
+        btnResume.setOnClickListener(btn -> {
+            hangmanViewModel.restartTimer();
+            dismiss();
         });
-
-        resultBinding.btnRestart.setOnClickListener(btn -> {
+        btnRestart.setOnClickListener(btn -> {
             Intent intent = new Intent(requireActivity(), HangmanActivity.class);
             try {
                 intent.putExtra("difficulty", hangmanViewModel.getIntDifficulty());
@@ -62,13 +66,10 @@ public class ResultDialog extends BaseDialog {
             startActivity(intent);
             requireActivity().finish(); // 행맨 액티비티 종료
         });
-        resultBinding.tvFinalScore.setText(Integer.toString(finalScore));
-
-        if (finalScore > prevBestScore){
-            resultBinding.tvBestScore.setText(Integer.toString(finalScore));
-        } else {
-            resultBinding.tvBestScore.setText(Integer.toString(prevBestScore));
-            resultBinding.tvNoticeBest.setVisibility(View.INVISIBLE);
-        }
+        btnGoMain.setOnClickListener(btn -> {
+            Intent intent = new Intent(requireActivity(), MainActivity.class);
+            startActivity(intent); // 메인 화면으로 이동
+            requireActivity().finish(); // 행맨 액티비티 종료
+        });
     }
 }

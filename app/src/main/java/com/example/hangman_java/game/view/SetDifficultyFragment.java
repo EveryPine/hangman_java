@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,9 +22,12 @@ import com.example.hangman_java.hangman.view.HangmanActivity;
 import com.example.hangman_java.card.view.CardActivity;
 import com.example.hangman_java.memory.view.MemoryActivity;
 
+import java.util.Objects;
+
 public class SetDifficultyFragment extends BaseFragment{
     private FragmentSetdifficultyBinding setdifficultyBinding;
     private GameViewModel gameViewModel;
+    private LinearLayout btnEasy, btnNormal, btnHard;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -48,9 +52,22 @@ public class SetDifficultyFragment extends BaseFragment{
     }
 
     private void setView(){
-        setdifficultyBinding.btnEasy.setOnClickListener(view -> gameViewModel.setDifficulty(0));
-        setdifficultyBinding.btnNormal.setOnClickListener(view -> gameViewModel.setDifficulty(1));
-        setdifficultyBinding.btnHard.setOnClickListener(view -> gameViewModel.setDifficulty(2));
+        btnEasy = setdifficultyBinding.btnEasy;
+        btnNormal = setdifficultyBinding.btnNormal;
+        btnHard = setdifficultyBinding.btnHard;
+
+        setdifficultyBinding.btnEasy.setOnClickListener(view -> {
+            gameViewModel.setDifficulty(0);
+            setLayoutImage("easy");
+        });
+        setdifficultyBinding.btnNormal.setOnClickListener(view -> {
+            gameViewModel.setDifficulty(1);
+            setLayoutImage("normal");
+        });
+        setdifficultyBinding.btnHard.setOnClickListener(view -> {
+            gameViewModel.setDifficulty(2);
+            setLayoutImage("hard");
+        });
 
         setdifficultyBinding.btnGamestart.setOnClickListener(view -> {
             Intent intent = null;
@@ -91,6 +108,24 @@ public class SetDifficultyFragment extends BaseFragment{
                 setdifficultyBinding.tvNormalDesc.setText(R.string.memoryNormalDesc);
                 setdifficultyBinding.tvHardDesc.setText(R.string.memoryHardDesc);
             }
+        }
+    }
+
+    private void setLayoutImage(@NonNull String difficulty){
+        if (difficulty.equals("easy")){
+            btnEasy.setSelected(true);
+            btnNormal.setSelected(false);
+            btnHard.setSelected(false);
+        }
+        if (difficulty.equals("normal")){
+            btnEasy.setSelected(false);
+            btnNormal.setSelected(true);
+            btnHard.setSelected(false);
+        }
+        if (difficulty.equals("hard")){
+            btnEasy.setSelected(false);
+            btnNormal.setSelected(false);
+            btnHard.setSelected(true);
         }
     }
 }
