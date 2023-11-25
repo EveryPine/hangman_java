@@ -1,81 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/memory_hard_background"
     android:orientation="vertical">
+    <com.jetradarmobile.snowfall.SnowfallView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:snowflakeAlphaMax="255"
+        app:snowflakeAlphaMin="200"
+        app:snowflakeAngleMax="8"
+        app:snowflakeSizeMax="6dp"
+        app:snowflakeSizeMin="4dp"
+        app:snowflakeSpeedMax="2"
+        app:snowflakeSpeedMin="1"
+        app:snowflakesAlreadyFalling="false"
+        app:snowflakesFadingEnabled="true"
+        app:snowflakesNum="100"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <com.example.hangman_java.memory.view.TriangleView
-
+        android:background="@drawable/memory_treeview1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/tri1"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="80dp"
+        android:layout_height="87dp"
         android:layout_gravity="center"
-        android:layout_marginTop="200dp" />
+        android:layout_marginTop="230dp" />
 
     <LinearLayout
+        android:id="@+id/treegroup1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tri1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:orientation="horizontal">
 
         <com.example.hangman_java.memory.view.TriangleView
             android:id="@+id/tri2"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:background="@drawable/memory_treeview2"
+            android:layout_width="80dp"
+            android:layout_height="87dp"
             android:layout_gravity="center" />
 
         <com.example.hangman_java.memory.view.InvertedTriangleView
             android:id="@+id/tri3"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:background="@drawable/memory_treeview3"
+            android:layout_width="80dp"
+            android:layout_height="87dp"
             android:layout_gravity="center" />
 
         <com.example.hangman_java.memory.view.TriangleView
             android:id="@+id/tri4"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="80dp"
+            android:layout_height="87dp"
+            android:background="@drawable/memory_treeview2"
             android:layout_gravity="center" />
 
     </LinearLayout>
 
     <LinearLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/treegroup1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:orientation="horizontal">
 
         <com.example.hangman_java.memory.view.TriangleView
             android:id="@+id/tri5"
-            android:layout_width="72dp"
-            android:layout_height="70dp"
+            android:layout_width="80dp"
+            android:layout_height="87dp"
+            android:background="@drawable/memory_treeview4"
             android:layout_gravity="center" />
 
         <com.example.hangman_java.memory.view.InvertedTriangleView
             android:id="@+id/tri6"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="80dp"
+            android:layout_height="87dp"
+            android:background="@drawable/memory_treeview5"
             android:layout_gravity="center" />
 
         <com.example.hangman_java.memory.view.TriangleView
             android:id="@+id/tri7"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="80dp"
+            android:layout_height="87dp"
+            android:background="@drawable/memory_treeview2"
             android:layout_gravity="center" />
 
         <com.example.hangman_java.memory.view.InvertedTriangleView
             android:id="@+id/tri8"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="80dp"
+            android:layout_height="87dp"
+            android:background="@drawable/memory_treeview5"
             android:layout_gravity="center" />
 
         <com.example.hangman_java.memory.view.TriangleView
             android:id="@+id/tri9"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="80dp"
+            android:layout_height="87dp"
+            android:background="@drawable/memory_treeview4"
             android:layout_gravity="center" />
     </LinearLayout>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>

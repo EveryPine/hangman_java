@@ -1,11 +1,17 @@
 package com.example.hangman_java.memory.viewmodel;
 
+import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.util.Log;
 import android.view.animation.AlphaAnimation;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.hangman_java.R;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,7 +24,11 @@ public class MemoryViewModel extends ViewModel {
         _ClicckCount.setValue(0);
         _difficulty.setValue(0);
         _score.setValue(0);
-    }
+    }private SoundPool soundPool;
+    private int mp3FileSoundId1;
+    private int mp3FileSoundId2;
+    private int mp3FileSoundId3;
+
     private MutableLiveData<Integer> _score = new MutableLiveData<>();
     private  MutableLiveData<Integer> _difficulty = new MutableLiveData<>();
     private MutableLiveData<List<Integer>> _answerList = new MutableLiveData<>();
@@ -45,6 +55,34 @@ public class MemoryViewModel extends ViewModel {
         return _ClicckCount.getValue();
     }
     private MutableLiveData<Integer> _CurrentAnswer = new MutableLiveData<>();
+    public void setSoundPool(Context context){
+        AudioAttributes attributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+
+        soundPool = new SoundPool.Builder()
+                .setMaxStreams(1)
+                .setAudioAttributes(attributes)
+                .build();
+        mp3FileSoundId1 = soundPool.load(context, R.raw.memory_sound1,1);
+        mp3FileSoundId2= soundPool.load(context,R.raw.memory_correct_sound1,1);
+    }
+    public void playSound(int sound) {
+        if (soundPool != null && mp3FileSoundId1 != 0) {
+            // MP3 파일 사운드 재생
+            if(sound == 1){
+                soundPool.play(mp3FileSoundId1, 1.0f, 1.0f, 1, 0, 1.0f);
+            } else if (sound == 2) {
+                soundPool.play(mp3FileSoundId2, 1.0f, 1.0f, 1, 0, 1.0f);
+
+            }else if(sound == 3){
+                soundPool.play(mp3FileSoundId2, 1.0f, 1.0f, 1, 0, 1.0f);
+            }
+
+
+        }
+    }
     public int getDifficulty() {
         Log.d("testt", "Difficulty is" + _difficulty.getValue());
         return (int) _difficulty.getValue();
@@ -77,7 +115,7 @@ public class MemoryViewModel extends ViewModel {
             tempAnswerList.addAll(tempList);
         }
         _answerList.setValue(tempAnswerList);
-        Log.d("testt","정답리스트 : "+_answerList.getValue().toString());
+
     }
     Integer getInputOrder(){
         return _InputOrder.getValue();
@@ -88,7 +126,6 @@ public class MemoryViewModel extends ViewModel {
         }
 
         ArrayList<Integer> tempList = (ArrayList<Integer>) getAnswerList();
-        Log.d("testt", String.valueOf(tempList.get(Integer.parseInt(_ClicckCount.getValue().toString())))+"정답리스트에있는 답");
         if (tempList.get(_ClicckCount.getValue()) == getInputOrder()) {
             int tempClickCount = _ClicckCount.getValue();
             _ClicckCount.setValue(tempClickCount + 1);

@@ -44,6 +44,7 @@ public class HexaFragment extends BaseFragment {
     @Override
     public void initUi() {
         memoryViewModel.setAnswerList();
+        memoryViewModel.setSoundPool(getContext().getApplicationContext());
         List<Integer> answer_list = memoryViewModel.getAnswerList();
         Log.d("testt", answer_list.toString());
         StartGame();
@@ -66,6 +67,7 @@ public class HexaFragment extends BaseFragment {
                 Animation anim = memoryViewModel.createAnimation();
                 int answer_first = memoryViewModel.getFirstAnswer();
                 hexagonViews[answer_first - 1].startAnimation(anim);
+                memoryViewModel.playSound(1);
             }
         }, 3000);
 
@@ -91,6 +93,7 @@ public class HexaFragment extends BaseFragment {
                             binding.hexa4, binding.hexa5, binding.hexa6, binding.hexa7
                     };
                     Boolean stageCheckOutput = memoryViewModel.CheckNextStage();
+                    memoryViewModel.playSound(2);
                     if (stageCheckOutput) {
                         Log.d("testt", "클리어");
                         final long delay = 1000;
@@ -104,6 +107,7 @@ public class HexaFragment extends BaseFragment {
                             handler2.postDelayed(() -> {
                                 Animation anim1 = animations[index];
                                 temp_hexagonViews[answer_list.get(index) - 1].startAnimation(anim1);
+                                memoryViewModel.playSound(1);
                             }, i * delay);
                         }
                     } else {

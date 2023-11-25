@@ -44,7 +44,7 @@ public class HexagonView extends View {
         boundaryPaint.setStyle(Paint.Style.STROKE);
 
         fillPaint = new Paint();
-        fillPaint.setColor(Color.GREEN);
+        fillPaint.setColor(Color.argb(0,0,0,0));
         fillPaint.setStyle(Paint.Style.FILL);
 
         hexagonPath.moveTo(midX-getWidth()/2f, midY );

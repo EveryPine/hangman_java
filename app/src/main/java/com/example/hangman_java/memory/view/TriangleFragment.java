@@ -49,6 +49,7 @@ public class TriangleFragment extends BaseFragment {
     @Override
     public void initUi() {
         memoryViewModel.setAnswerList();
+        memoryViewModel.setSoundPool(getContext().getApplicationContext());
         List<Integer> answer_list = memoryViewModel.getAnswerList();
         Log.d("testt", answer_list.toString());
         StartGame();
@@ -56,7 +57,6 @@ public class TriangleFragment extends BaseFragment {
     }
 
     private void StartGame() {
-        Log.d("testt", "잤음");
         View[] triangleViews = {
                 binding.tri1, binding.tri2, binding.tri3,
                 binding.tri4, binding.tri5, binding.tri6, binding.tri7, binding.tri8, binding.tri9
@@ -66,6 +66,7 @@ public class TriangleFragment extends BaseFragment {
         handler1.postDelayed(new Runnable() {
             @Override
             public void run() {
+                memoryViewModel.playSound(1);
                 Animation anim = memoryViewModel.createAnimation();
                 int answer_first = memoryViewModel.getFirstAnswer();
                 triangleViews[answer_first - 1].startAnimation(anim);
@@ -94,6 +95,7 @@ public class TriangleFragment extends BaseFragment {
                             binding.tri4, binding.tri5, binding.tri6, binding.tri7, binding.tri8, binding.tri9
                     };
                     Boolean stageCheckOutput = memoryViewModel.CheckNextStage();
+                    memoryViewModel.playSound(2);
                     if (stageCheckOutput) {
                         Log.d("testt", "클리어");
                         final long delay = 1000;
@@ -105,6 +107,7 @@ public class TriangleFragment extends BaseFragment {
                         for (int i = 0; i < memoryViewModel.getCurrentStage() + 1; i++) {
                             final int index = i;
                             handler2.postDelayed(() -> {
+                                memoryViewModel.playSound(1);
                                 Animation anim1 = animations[index];
                                 triangleViews[answer_list.get(index) - 1].startAnimation(anim1);
                             }, i * delay);

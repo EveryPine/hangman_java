@@ -39,7 +39,7 @@ public class TriangleView extends View {
         boundaryPaint.setColor(Color.BLACK);
         boundaryPaint.setStyle(Paint.Style.STROKE);
         fillPaint = new Paint();
-        fillPaint.setColor(Color.GREEN);
+        fillPaint.setColor(Color.argb(0,0,0,0));
         fillPaint.setStyle(Paint.Style.FILL);
         float midX = getWidth() / 2f;
         float midY = getHeight() / 2f;

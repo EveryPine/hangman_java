@@ -40,6 +40,7 @@ public class RectangleFragment extends BaseFragment {
     public void initUi() throws InterruptedException {
         gameViewModel.setAnswerList();
         List<Integer> answer_list = gameViewModel.getAnswerList();
+        gameViewModel.setSoundPool(getContext().getApplicationContext());
         Log.d("testt", answer_list.toString());
         StartGame();
         Log.d("testt", "성공적으로 시작함 ");
@@ -70,6 +71,7 @@ public class RectangleFragment extends BaseFragment {
                 Animation anim = gameViewModel.createAnimation();
                 int answer_first = gameViewModel.getFirstAnswer();
                 triangleViews[answer_first - 1].startAnimation(anim);
+                gameViewModel.playSound(1);
             }
         }, 3000);
 
@@ -112,7 +114,9 @@ public class RectangleFragment extends BaseFragment {
                     View[] triangleViews = {
                             binding.rect1, binding.rect2, binding.rect3,
                             binding.rect4
+
                     };
+                    gameViewModel.playSound(2);
                     Boolean stageCheckOutput = gameViewModel.CheckNextStage();
                     if (stageCheckOutput) {
                         Log.d("testt", "클리어");
@@ -127,6 +131,7 @@ public class RectangleFragment extends BaseFragment {
                             handler2.postDelayed(() -> {
                                 Animation anim1 = animations[index];
                                 triangleViews[answer_list.get(index) - 1].startAnimation(anim1);
+                                gameViewModel.playSound(1);
                             }, i * delay);
                         }
                     } else {
@@ -134,6 +139,7 @@ public class RectangleFragment extends BaseFragment {
 
                     }
                 } else {
+
                     //정답을 못맞췃을 때 로직
                 }
             }
