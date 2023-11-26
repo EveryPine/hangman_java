@@ -67,6 +67,7 @@ public class MemoryViewModel extends ViewModel {
                 .build();
         mp3FileSoundId1 = soundPool.load(context, R.raw.memory_sound1,1);
         mp3FileSoundId2= soundPool.load(context,R.raw.memory_correct_sound1,1);
+        mp3FileSoundId3 = soundPool.load(context,R.raw.memory_door,1);
     }
     public void playSound(int sound) {
         if (soundPool != null && mp3FileSoundId1 != 0) {
@@ -77,7 +78,7 @@ public class MemoryViewModel extends ViewModel {
                 soundPool.play(mp3FileSoundId2, 1.0f, 1.0f, 1, 0, 1.0f);
 
             }else if(sound == 3){
-                soundPool.play(mp3FileSoundId2, 1.0f, 1.0f, 1, 0, 1.0f);
+                soundPool.play(mp3FileSoundId3, 1.0f, 1.0f, 1, 0, 1.0f);
             }
 
 

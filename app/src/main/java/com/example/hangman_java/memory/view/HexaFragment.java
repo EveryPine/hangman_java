@@ -1,5 +1,6 @@
 package com.example.hangman_java.memory.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -7,14 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseFragment;
 import com.example.hangman_java.databinding.FragmentHexaBinding;
+import com.example.hangman_java.game.view.ResultActivity;
 import com.example.hangman_java.memory.viewmodel.MemoryViewModel;
 
 import java.util.List;
@@ -95,10 +101,12 @@ public class HexaFragment extends BaseFragment {
                     Boolean stageCheckOutput = memoryViewModel.CheckNextStage();
                     memoryViewModel.playSound(2);
                     if (stageCheckOutput) {
+                        binding.score.setText(String.valueOf(memoryViewModel.getScore()));
                         Log.d("testt", "클리어");
                         final long delay = 1000;
                         final Handler handler2 = new Handler();
                         final Animation[] animations = new Animation[memoryViewModel.getCurrentStage() + 1];
+
                         for (int i = 0; i < memoryViewModel.getCurrentStage() + 1; i++) {
                             animations[i] = memoryViewModel.createAnimation();
                         }
@@ -110,14 +118,36 @@ public class HexaFragment extends BaseFragment {
                                 memoryViewModel.playSound(1);
                             }, i * delay);
                         }
+
                     } else {
                         //다음스테이지로 넘어가는게아니라 그냥 넘김
 
                     }
+
                 }else{
+                    Animation slideDown = AnimationUtils.loadAnimation(getContext(), R.anim.gameover);
+                    RelativeLayout parent = binding.top;
+                    for(int i =0;i <parent.getChildCount();i++){
+                        View child = parent.getChildAt(i);
+                        child.setVisibility(View.INVISIBLE);
+                    }
+                    binding.gameover.setVisibility(View.VISIBLE);
+                    binding.gameover.startAnimation(slideDown);
+                    memoryViewModel.playSound(3);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            gameOver();
+                        }
+                    }, 2000);
+
                     //정답을 못맞췃을 때 로직
                 }
             }
         });
+    }
+    private void gameOver(){
+        Intent intent = new Intent(requireActivity(), ResultActivity.class);
+        startActivity(intent);
     }
 }

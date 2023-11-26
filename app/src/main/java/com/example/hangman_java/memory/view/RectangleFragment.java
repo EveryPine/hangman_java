@@ -1,5 +1,6 @@
 package com.example.hangman_java.memory.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -7,14 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseFragment;
 import com.example.hangman_java.databinding.FragmentRectangleBinding;
+import com.example.hangman_java.game.view.ResultActivity;
 import com.example.hangman_java.memory.viewmodel.MemoryViewModel;
 
 import java.util.List;
@@ -59,7 +65,7 @@ public class RectangleFragment extends BaseFragment {
     }
     private void StartGame() {
         Log.d("testt", "잤음");
-        View[] triangleViews = {
+        View[] rectangleViews = {
                 binding.rect1, binding.rect2, binding.rect3,
                 binding.rect4
         };
@@ -70,35 +76,15 @@ public class RectangleFragment extends BaseFragment {
             public void run() {
                 Animation anim = gameViewModel.createAnimation();
                 int answer_first = gameViewModel.getFirstAnswer();
-                triangleViews[answer_first - 1].startAnimation(anim);
+                rectangleViews[answer_first - 1].startAnimation(anim);
                 gameViewModel.playSound(1);
             }
         }, 3000);
 
-        triangleViews[0].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gameViewModel.setInputOrder(1);
-            }
-        });
-        triangleViews[1].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gameViewModel.setInputOrder(2);
-            }
-        });
-        triangleViews[2].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gameViewModel.setInputOrder(3);
-            }
-        });
-        triangleViews[3].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gameViewModel.setInputOrder(4);
-            }
-        });
+        for (int i = 0; i < 4; i++){
+            int finalI = i;
+            rectangleViews[i].setOnClickListener(v -> gameViewModel.setInputOrder(finalI + 1));
+        }
     }
     private void updateUi() {
         gameViewModel.InputOrder().observe(getViewLifecycleOwner(), new Observer<Integer>() {
@@ -119,6 +105,7 @@ public class RectangleFragment extends BaseFragment {
                     gameViewModel.playSound(2);
                     Boolean stageCheckOutput = gameViewModel.CheckNextStage();
                     if (stageCheckOutput) {
+                        binding.score.setText(String.valueOf(gameViewModel.getScore()));
                         Log.d("testt", "클리어");
                         final long delay = 1000;
                         final Handler handler2 = new Handler();
@@ -139,10 +126,28 @@ public class RectangleFragment extends BaseFragment {
 
                     }
                 } else {
-
+                    Animation slideDown = AnimationUtils.loadAnimation(getContext(), R.anim.gameover);
+                    ConstraintLayout parent = binding.top;
+                    for(int i =0;i <parent.getChildCount();i++){
+                        View child = parent.getChildAt(i);
+                        child.setVisibility(View.INVISIBLE);
+                    }
+                    binding.gameover.setVisibility(View.VISIBLE);
+                    binding.gameover.startAnimation(slideDown);
+                    gameViewModel.playSound(3);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            gameOver();
+                        }
+                    }, 2000);
                     //정답을 못맞췃을 때 로직
                 }
             }
         });
+    }
+    private void gameOver(){
+        Intent intent = new Intent(requireActivity(), ResultActivity.class);
+        startActivity(intent);
     }
 }

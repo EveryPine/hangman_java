@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/top"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,20 +19,51 @@
         app:snowflakeSpeedMin="1"
         app:snowflakesAlreadyFalling="false"
         app:snowflakesFadingEnabled="true"
-        app:snowflakesNum="100"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:snowflakesNum="100" />
+    <TextView
+        android:id="@+id/gameover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@drawable/memory_gameover_anim_img"/>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="80dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/memory_font1"
+            android:text="현재 점수 : "
+            android:textColor="@color/white"
+            android:textSize="70dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/memory_font1"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="70dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
     <com.example.hangman_java.memory.view.TriangleView
-        android:background="@drawable/memory_treeview1"
+        android:background="@drawable/memory_just_tree"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/tri1"
         android:layout_width="80dp"
-        android:layout_height="87dp"
+        android:layout_height="110dp"
         android:layout_gravity="center"
-        android:layout_marginTop="230dp" />
+        android:layout_marginTop="220dp" />
 
     <LinearLayout
         android:id="@+id/treegroup1"
@@ -41,29 +73,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <com.example.hangman_java.memory.view.TriangleView
             android:id="@+id/tri2"
-            android:background="@drawable/memory_treeview2"
+            android:background="@drawable/memory_just_tree"
             android:layout_width="80dp"
-            android:layout_height="87dp"
+            android:layout_height="110dp"
             android:layout_gravity="center" />
 
         <com.example.hangman_java.memory.view.InvertedTriangleView
             android:id="@+id/tri3"
-            android:background="@drawable/memory_treeview3"
+            android:background="@drawable/memory_just_tree"
             android:layout_width="80dp"
-            android:layout_height="87dp"
+            android:layout_height="110dp"
             android:layout_gravity="center" />
 
         <com.example.hangman_java.memory.view.TriangleView
             android:id="@+id/tri4"
-            android:layout_width="80dp"
-            android:layout_height="87dp"
-            android:background="@drawable/memory_treeview2"
-            android:layout_gravity="center" />
+            android:layout_width="75dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center"
+            android:background="@drawable/memory_just_tree" />
+
+
 
     </LinearLayout>
 
@@ -74,42 +108,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <com.example.hangman_java.memory.view.TriangleView
             android:id="@+id/tri5"
             android:layout_width="80dp"
-            android:layout_height="87dp"
-            android:background="@drawable/memory_treeview4"
+            android:layout_height="110dp"
+            android:background="@drawable/memory_just_tree"
             android:layout_gravity="center" />
 
         <com.example.hangman_java.memory.view.InvertedTriangleView
             android:id="@+id/tri6"
             android:layout_width="80dp"
-            android:layout_height="87dp"
-            android:background="@drawable/memory_treeview5"
+            android:layout_height="110dp"
+            android:background="@drawable/memory_just_tree"
             android:layout_gravity="center" />
 
         <com.example.hangman_java.memory.view.TriangleView
             android:id="@+id/tri7"
             android:layout_width="80dp"
-            android:layout_height="87dp"
-            android:background="@drawable/memory_treeview2"
+            android:layout_height="110dp"
+            android:background="@drawable/memory_just_tree"
             android:layout_gravity="center" />
 
         <com.example.hangman_java.memory.view.InvertedTriangleView
             android:id="@+id/tri8"
             android:layout_width="80dp"
-            android:layout_height="87dp"
-            android:background="@drawable/memory_treeview5"
+            android:layout_height="110dp"
+            android:background="@drawable/memory_just_tree"
             android:layout_gravity="center" />
 
         <com.example.hangman_java.memory.view.TriangleView
             android:id="@+id/tri9"
             android:layout_width="80dp"
-            android:layout_height="87dp"
-            android:background="@drawable/memory_treeview4"
+            android:layout_height="110dp"
+            android:background="@drawable/memory_just_tree"
             android:layout_gravity="center" />
     </LinearLayout>
 
