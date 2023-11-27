@@ -6,11 +6,31 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
+    <FrameLayout
+        android:id="@+id/frPause"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp">
+
+        <Button
+            android:id="@+id/btnPause"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/hangman_btn_pause"/>
+
+    </FrameLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.25"
-        android:gravity="center_vertical">
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -23,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="획득 점수"
                 android:textAlignment="center"
-                android:fontFamily="@font/system_font"
+                android:fontFamily="@font/sys_font"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:layout_marginBottom="5dp"/>
@@ -33,9 +53,9 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:textAlignment="center"
-                android:fontFamily="@font/system_font"
+                android:fontFamily="@font/sys_font"
                 android:textColor="@color/black"
-                android:textSize="20dp"/>
+                android:textSize="30dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -49,19 +69,21 @@
                 android:layout_height="wrap_content"
                 android:text="남은 시간"
                 android:textAlignment="center"
-                android:fontFamily="@font/system_font"
+                android:fontFamily="@font/sys_font"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:layout_marginBottom="5dp"/>
 
-            <TextView android:id="@+id/tvRemainingTime"
+            <TextView
+                android:id="@+id/tvRemainingTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="30"
                 android:textAlignment="center"
-                android:fontFamily="@font/system_font"
+                android:fontFamily="@font/sys_font"
                 android:textColor="@color/black"
                 android:textSize="40dp"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -75,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:text="최고 점수"
                 android:textAlignment="center"
-                android:fontFamily="@font/system_font"
+                android:fontFamily="@font/sys_font"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:layout_marginBottom="5dp"/>
@@ -85,19 +107,17 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:textAlignment="center"
-                android:fontFamily="@font/system_font"
+                android:fontFamily="@font/sys_font"
                 android:textColor="@color/black"
-                android:textSize="20dp"/>
+                android:textSize="30dp"/>
         </LinearLayout>
     </LinearLayout>
-    <!--그림 레이아웃-->
 
+    <!--그림 레이아웃-->
     <androidx.fragment.app.FragmentContainerView android:id="@+id/fragmentContainerViewPrinting"
         android:name="com.example.hangman_java.hangman.view.PrintingFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:background="#ECD3D3"
+        android:layout_height="wrap_content"
         tools:layout="@layout/fragment_printing"
         android:layout_marginHorizontal="10dp">
 
@@ -114,11 +134,43 @@
 
     </androidx.fragment.app.FragmentContainerView>
 
+    <LinearLayout
+        android:id="@+id/debug"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="클릭시 사라짐   >> "
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/sys_font"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/tvWordDebug"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="맞출 단어 (디버그용)"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/sys_font"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+
+    <!-- 키보드 레이아웃 -->
     <androidx.fragment.app.FragmentContainerView android:id="@+id/fragmentContainerViewKeyboard"
         android:name="com.example.hangman_java.hangman.view.KeyboardFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         tools:layout="@layout/fragment_keyboard">
 
     </androidx.fragment.app.FragmentContainerView>

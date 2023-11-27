@@ -1,12 +1,18 @@
 package com.example.hangman_java.main.view;
 
+import static com.example.hangman_java.main.viewmodel.MainViewModel.DELAY_TIME;
+
 import android.content.Intent;
+import android.media.SoundPool;
 import android.os.Bundle;
-import android.view.View;
+import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseActivity;
 import com.example.hangman_java.databinding.ActivityMainBinding;
 import com.example.hangman_java.debug.view.DebugActivity;
@@ -18,6 +24,8 @@ import com.example.hangman_java.record.view.RecordActivity;
 public class MainActivity extends BaseActivity {
     private ActivityMainBinding mainBinding = null;
     private MainViewModel mainViewModel = null;
+    private final Handler handler = new Handler();
+    private Animation blinkAnim;
     public static MainActivity mainActivity;
 
     @Override
@@ -37,6 +45,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initUi() throws Exception {
         mainViewModel.setUserInfo();
+        blinkAnim = AnimationUtils.loadAnimation(this, R.anim.blink_animation);
         serviceStart();
         setButton();
     }
@@ -52,26 +61,38 @@ public class MainActivity extends BaseActivity {
             Intent intent = new Intent(this, DebugActivity.class);
             startActivity(intent);
         });
-        mainBinding.imgBtnGamestart.setOnClickListener(view -> {
-            Intent intent = new Intent(this, GameActivity.class);
-            startActivity(intent);
+        mainBinding.btnGamestart.setOnClickListener(view -> {
+            view.startAnimation(blinkAnim);
+            handler.postDelayed(() -> {
+                Intent intent = new Intent(this, GameActivity.class);
+                startActivity(intent);
+            }, DELAY_TIME);
         });
 
-        mainBinding.imgBtnRecord.setOnClickListener(view -> {
-            Intent intent = new Intent(this, RecordActivity.class);
-            startActivity(intent);
+        mainBinding.btnRecord.setOnClickListener(view -> {
+            view.startAnimation(blinkAnim);
+            handler.postDelayed(() -> {
+                Intent intent = new Intent(this, RecordActivity.class);
+                startActivity(intent);
+            }, DELAY_TIME);
         });
 
-        mainBinding.imgBtnSetting.setOnClickListener(view -> {
-            FragmentManager fm = getSupportFragmentManager();
-            SettingDialog settingDialog = new SettingDialog();
-            settingDialog.show(fm, "test");
+        mainBinding.btnSetting.setOnClickListener(view -> {
+            view.startAnimation(blinkAnim);
+            handler.postDelayed(() -> {
+                FragmentManager fm = getSupportFragmentManager();
+                SettingDialog settingDialog = new SettingDialog();
+                settingDialog.show(fm, "test");
+            }, DELAY_TIME);
         });
 
-        mainBinding.imgBtnExit.setOnClickListener(view -> {
-            FragmentManager fm = getSupportFragmentManager();
-            CheckEndDialog chkEndDialog = new CheckEndDialog();
-            chkEndDialog.show(fm, "test");
+        mainBinding.btnExit.setOnClickListener(view -> {
+            view.startAnimation(blinkAnim);
+            handler.postDelayed(() -> {
+                FragmentManager fm = getSupportFragmentManager();
+                CheckEndDialog chkEndDialog = new CheckEndDialog();
+                chkEndDialog.show(fm, "test");
+            }, DELAY_TIME);
         });
     }
 

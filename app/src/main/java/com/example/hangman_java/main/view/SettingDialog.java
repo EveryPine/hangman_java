@@ -1,10 +1,13 @@
 package com.example.hangman_java.main.view;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
@@ -34,6 +37,8 @@ public class SettingDialog extends BaseDialog {
         Bundle savedInstanceState
     ){
         settingBinding = DialogSettingBinding.inflate(inflater, container, false);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         initUi();
         return settingBinding.getRoot();
     }

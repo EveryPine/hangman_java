@@ -1,5 +1,7 @@
 package com.example.hangman_java.main.view;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,8 @@ public class CheckEndDialog extends BaseDialog {
         Bundle savedInstanceState
     ){
         chkEndBinding = DialogCheckendBinding.inflate(inflater, container, false);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         initUi();
         return chkEndBinding.getRoot();
     }

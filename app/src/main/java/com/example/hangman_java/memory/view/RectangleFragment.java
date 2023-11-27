@@ -20,7 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseFragment;
 import com.example.hangman_java.databinding.FragmentRectangleBinding;
-import com.example.hangman_java.game.view.ResultActivity;
+
 import com.example.hangman_java.memory.viewmodel.MemoryViewModel;
 
 import java.util.List;
@@ -147,7 +147,6 @@ public class RectangleFragment extends BaseFragment {
         });
     }
     private void gameOver(){
-        Intent intent = new Intent(requireActivity(), ResultActivity.class);
-        startActivity(intent);
+
     }
 }

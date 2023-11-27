@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <!--배경색-->
+            <gradient
+                android:type="radial"
+                android:startColor="#959595"
+                android:endColor="#3E3E3E"
+                android:gradientRadius="90%p"/>
+            <!--테두리색및두께-->
+            <!--모서리둥글게-->
+            <corners android:radius="10dp"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/game_game_frame"/>
+</layer-list>

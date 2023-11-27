@@ -11,30 +11,40 @@
         android:layout_height="wrap_content"
         android:text="디버그 모드 진입"
         android:textSize="20dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:visibility="visible"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="@color/teal_200"
+        android:background="@drawable/base_test_background"
         tools:context=".main.view.MainActivity">
 
         <TextView
             android:id="@+id/tvGametitle"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="330dp"
+            android:layout_height="100dp"
             android:textSize="45sp"
-            android:fontFamily="@font/system_font"
+            android:fontFamily="@font/button_font"
             android:text="미니 게임 세상"
-            android:layout_weight="1"
             android:layout_marginVertical="80dp"
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:gravity="center"
             android:textColor="@color/black"
-            android:foreground="@color/transparent_10"/>
+            android:foreground="@color/transparent_10"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/main_title"
+            android:scaleType="fitCenter"
+            android:layout_marginVertical="80dp"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,53 +54,69 @@
             android:layout_marginBottom="40dp"
             android:layout_weight="4">
 
-            <ImageButton
-                android:id="@+id/imgBtnGamestart"
+            <Button
+                android:id="@+id/btnGamestart"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="40dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/main_gamestart">
+                android:text="게임 시작"
+                android:textSize="30dp"
+                android:textColor="@drawable/main_text_selector"
+                android:fontFamily="@font/button_font"
+                android:background="#00ff0000"
+                android:soundEffectsEnabled="false">
 
-            </ImageButton>
+            </Button>
 
-            <ImageButton
-                android:id="@+id/imgBtnRecord"
+            <Button
+                android:id="@+id/btnRecord"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="15dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/main_record">
+                android:text="기록"
+                android:textSize="30dp"
+                android:textColor="@drawable/main_text_selector"
+                android:fontFamily="@font/button_font"
+                android:background="#00ff0000"
+                android:soundEffectsEnabled="false">
 
-            </ImageButton>
+            </Button>
 
-            <ImageButton
-                android:id="@+id/imgBtnSetting"
+            <Button
+                android:id="@+id/btnSetting"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="15dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/main_setting">
+                android:text="설정"
+                android:textSize="30dp"
+                android:textColor="@drawable/main_text_selector"
+                android:fontFamily="@font/button_font"
+                android:background="#00ff0000"
+                android:soundEffectsEnabled="false">
 
-            </ImageButton>
+            </Button>
 
-            <ImageButton
-                android:id="@+id/imgBtnExit"
+            <Button
+                android:id="@+id/btnExit"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginBottom="40dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/main_exit">
+                android:text="게임 종료"
+                android:textSize="30dp"
+                android:textColor="@drawable/main_text_selector"
+                android:fontFamily="@font/button_font"
+                android:background="#00ff0000"
+                android:soundEffectsEnabled="false">
 
-            </ImageButton>
+            </Button>
 
         </LinearLayout>
 

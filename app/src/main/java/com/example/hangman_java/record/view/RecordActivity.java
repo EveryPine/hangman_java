@@ -1,6 +1,5 @@
 package com.example.hangman_java.record.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,7 +8,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.hangman_java.base.BaseActivity;
 import com.example.hangman_java.databinding.ActivityRecordBinding;
-import com.example.hangman_java.main.view.MainActivity;
 
 public class RecordActivity extends BaseActivity {
     private ActivityRecordBinding recordBinding = null;
@@ -38,11 +36,9 @@ public class RecordActivity extends BaseActivity {
     }
 
     public void setView(){
-        recordBinding.btnGoback.setOnClickListener(view -> {
-            finish();
-        });
+        recordBinding.btnGoback.setOnClickListener(view -> finish());
 
-        recordBinding.imgBtnCard.setOnClickListener(view -> {
+        recordBinding.rdoCard.setOnClickListener(view -> {
             if (frGame1==null){
                 frGame1 = new RecCardFragment();
                 fragmentManager.beginTransaction().add(fcRecord.getId(), frGame1).commit();
@@ -52,7 +48,7 @@ public class RecordActivity extends BaseActivity {
             if (frGame3!=null) fragmentManager.beginTransaction().hide(frGame3).commit();
         });
 
-        recordBinding.imgBtnHangman.setOnClickListener(view -> {
+        recordBinding.rdoHangman.setOnClickListener(view -> {
             if (frGame2==null){
                 frGame2 = new RecHangmanFragment();
                 fragmentManager.beginTransaction().add(fcRecord.getId(), frGame2).commit();
@@ -62,7 +58,7 @@ public class RecordActivity extends BaseActivity {
             if (frGame3!=null) fragmentManager.beginTransaction().hide(frGame3).commit();
         });
 
-        recordBinding.imgBtnMemory.setOnClickListener(view -> {
+        recordBinding.rdoMemory.setOnClickListener(view -> {
             if (frGame3==null){
                 frGame3 = new RecMemoryFragment();
                 fragmentManager.beginTransaction().add(fcRecord.getId(), frGame3).commit();

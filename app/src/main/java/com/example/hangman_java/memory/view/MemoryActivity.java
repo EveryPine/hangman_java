@@ -1,6 +1,5 @@
 package com.example.hangman_java.memory.view;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -11,10 +10,11 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.hangman_java.R;
+import com.example.hangman_java.base.BaseActivity;
 import com.example.hangman_java.databinding.ActivityMemoryBinding;
 import com.example.hangman_java.memory.viewmodel.MemoryViewModel;
 
-public class MemoryActivity extends AppCompatActivity {
+public class MemoryActivity extends BaseActivity {
     private ActivityMemoryBinding binding;
     MemoryViewModel gameViewModel;
 
@@ -65,6 +65,11 @@ public class MemoryActivity extends AppCompatActivity {
             }
         }
         transaction.commit();
+
+    }
+
+    @Override
+    public void initUi() throws Exception {
 
     }
 }

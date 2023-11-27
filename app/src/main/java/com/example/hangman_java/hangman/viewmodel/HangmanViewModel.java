@@ -2,9 +2,7 @@ package com.example.hangman_java.hangman.viewmodel;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.Gravity;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -17,19 +15,20 @@ import com.example.hangman_java.base.ImageManager;
 import com.example.hangman_java.hangman.model.WordDao;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
 public class HangmanViewModel extends BaseViewModel {
-    public final int DEATH_COUNT = 12; // 행맨 그림 개수와 일치해야함
+    public final int DEATH_COUNT = 11; // 행맨 그림 개수 - 1 값과 일치해야함
     private final Random random = new Random();
-    private Thread timerThread;
+    private TimerThread timerThread;
+    private final int refTime = 10;
     private final ImageManager imageManager = ImageManager.getInstance();
 
     // stageInfo
     private final MutableLiveData<Integer> _difficulty = new MutableLiveData<>();
     private final MutableLiveData<Integer> _gameScore = new MutableLiveData<>();
+    private final MutableLiveData<Integer> _bestScore = new MutableLiveData<>();
 
     // waveInfo
     private final MutableLiveData<Event<String>> _word = new MutableLiveData<>();
@@ -46,8 +45,7 @@ public class HangmanViewModel extends BaseViewModel {
     // resourceInfo
     private final int _questionImageId = imageManager.getQuestionImage();
     private final int _underbarImageId = imageManager.getUnderbarImage();
-    private final List<Integer> _alphabetIdList = imageManager.getAlphabetImageList();
-    private final MutableLiveData<ArrayList<ImageView>> _imageviewList = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<TextView>> _textViewList = new MutableLiveData<>();
 
     // observer를 붙일 변수들
     public final LiveData<Event<Integer>> printingIndex(){ return this._printingIndex;}
@@ -94,7 +92,7 @@ public class HangmanViewModel extends BaseViewModel {
     }
 
     // 리소스 정보 설정 - imageviewList (알파벳 이미지 뷰 리스트) 초기화
-    public void setResourceInfo(){_imageviewList.setValue(new ArrayList<>());}
+    public void setResourceInfo(){_textViewList.setValue(new ArrayList<>());}
 
     // 목표 단어 설정 (DB 스레드 이용)
     private void setTargetWord(Context context, @NonNull String[] difficultyArray){
@@ -106,27 +104,41 @@ public class HangmanViewModel extends BaseViewModel {
         thread.start();
     }
 
-    public void setTimer(int inputTime){
+    public void startTimer(int inputTime, boolean isFinished){
         if (timerThread!=null) {
             timerThread.interrupt();
             timerThread = null;
         }
-        timerThread = new Thread(() -> {
-            int time = inputTime;
-            time++;
-            while (time >= 0){
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    Log.d("MyTAG", "timerThread 종료");
-                    break;
-                }
-                _remainingTime.postValue(new Event<>(--time));
-                //Log.d("MyTAG", "timerThread 실행중 (id: " + timerThread.getId() + ")");
-            }
-        });
+        if (isFinished) return;
+        timerThread = new TimerThread(inputTime, refTime);
         timerThread.start();
     }
+
+    public void stopTimer() throws InterruptedException {
+        if (timerThread==null) {
+            Log.e("MyTAG", "HangmanViewModel.stopTimer(): 아직 timerThread가 생성되지 않았습니다.");
+            return;
+        }
+        timerThread.setStopFlag(true);
+    }
+
+    public void restartTimer() {
+        if (timerThread==null) {
+            Log.e("MyTAG", "HangmanViewModel.restartTimer(): 아직 timerThread가 생성되지 않았습니다.");
+            return;
+        }
+        timerThread.setStopFlag(false);
+        timerThread.resumeThread();
+    }
+
+    public void updateTimerTime(int time) {
+        if (timerThread==null) {
+            Log.e("MyTAG", "HangmanViewModel.updateTimerTime(): 아직 timerThread가 생성되지 않았습니다.");
+            return;
+        }
+        timerThread.updateTime(time, false);
+    }
+    public void setBestScore(int bestScore) { _bestScore.setValue(bestScore); }
 
     // 남은 알파벳 개수 업데이트
     public void updateRemainingAlphabetCount() {
@@ -134,7 +146,7 @@ public class HangmanViewModel extends BaseViewModel {
         else _remainingAlphabetCount.setValue(_remainingAlphabetCount.getValue() - 1);
     }
 
-    public String getDifficulty() throws Exception{
+    public String getStrDifficulty() throws Exception{
         switch (_difficulty.getValue()){
             case 0 -> {return "easy";}
             case 1 -> {return "normal";}
@@ -142,14 +154,15 @@ public class HangmanViewModel extends BaseViewModel {
             default -> throw new Exception("SetDifficultyFragment에서 잘못된 difficulty 값이 전송되었습니다.");
         }
     }
+    
+    public int getIntDifficulty() { return _difficulty.getValue(); }
 
     public int getGameScore(){return _gameScore.getValue();}
 
+    public int getBestScore() { return _bestScore.getValue(); }
+
     // 그림 이미지 id 반환
     public int getPrintingImageId(){return imageManager.getPrintingImageList().get(_printingIndex.getValue().peekContent());}
-
-    // 알파벳 이미지 id 반환
-    public int getAlphabetImageId(char alphabet){return _alphabetIdList.get(alphabet - 'a');}
 
     // 특수문자 이미지 id 반환
     public int getImageIdByTag(String tag) {
@@ -162,7 +175,7 @@ public class HangmanViewModel extends BaseViewModel {
     }
 
     // 주어진 인덱스에 해당하는 이미지뷰 객체 반환
-    public ImageView getImageView(int index) { return Objects.requireNonNull(_imageviewList.getValue()).get(index); }
+    public TextView getTextView(int index) { return Objects.requireNonNull(_textViewList.getValue()).get(index); }
 
     public char getInputAlphabet() { return _inputAlphabet.getValue(); }
 
@@ -178,7 +191,7 @@ public class HangmanViewModel extends BaseViewModel {
     public void updateGameScore(){ _gameScore.setValue(_gameScore.getValue() + 1); }
 
     // 사용자 입력이 들어오면 로직 수행
-    public void inputAlphabetListener(char alphabet){
+    public void inputAlphabetListener(char alphabet) {
         _inputAlphabet.setValue(alphabet);
         ArrayList<Integer> correctAlphabetIndexList = new ArrayList<>();
         for (int i=0; i<getWordLength(); i++){
@@ -188,8 +201,9 @@ public class HangmanViewModel extends BaseViewModel {
             }
         }
         // 성공
-        if (correctAlphabetIndexList.size()!=0 && !isGameClear()){
+        if (correctAlphabetIndexList.size()!=0){
             Log.d("MyTAG", "성공..단어 ui를 갱신합니다");
+            updateTimerTime(3);
             _correctAlphabetIndexList.setValue(new Event<>(correctAlphabetIndexList));
         }
         // 실패
@@ -208,15 +222,15 @@ public class HangmanViewModel extends BaseViewModel {
 
     }
 
-    // 이미지 뷰 리스트에 이미지 뷰를 순차적으로 추가
-    public void addImageView(ImageView view){
-        Objects.requireNonNull(_imageviewList.getValue()).add(view);
+    // 물음표 텍스트뷰 리스트에 텍스트 뷰를 순차적으로 추가
+    public void addTextView(TextView view){
+        _textViewList.getValue().add(view);
     }
 
     // 이미지 뷰 리스트 초기화
     public void clearImageViewList(){
-        if (Objects.requireNonNull(_imageviewList.getValue()).size()!=0){
-            _imageviewList.getValue().clear();
+        if (Objects.requireNonNull(_textViewList.getValue()).size()!=0){
+            _textViewList.getValue().clear();
         }
     }
 
@@ -228,5 +242,52 @@ public class HangmanViewModel extends BaseViewModel {
     // 게임 클리어가 되었는지 확인
     private boolean isGameClear(){
         return _remainingAlphabetCount.getValue()==0;
+    }
+
+    private class TimerThread extends Thread{
+        private int remainTime; // 남은 시간
+        private int refTime; // 해당 밀리초만큼 스레드를 sleep
+        private int diffTime; // diffTime
+        private boolean stopFlag = false;
+
+        public TimerThread(int remainTime, int refTime){
+            this.refTime = refTime;
+            this.diffTime = 1000 / refTime;
+            this.remainTime = remainTime * diffTime;
+        }
+
+        @Override
+        public void run(){
+            synchronized (this){
+                this.updateTime(diffTime, true);
+                while (remainTime >= 0){
+                    if (stopFlag) {
+                        try {
+                            wait();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    try{
+                        Thread.sleep(refTime);
+                    } catch (InterruptedException e) {
+                        break;
+                    }
+                    this.updateTime(-1, true);
+                    _remainingTime.postValue(new Event<>(remainTime / diffTime));
+                }
+            }
+        }
+
+        // time: 가감할 시간 (단위: 초), fromThread: (내부 호출 여부 부울값)
+        public void updateTime(int time, boolean fromThread) {
+            if (fromThread) remainTime += time;
+            else remainTime += time * diffTime;
+        }
+
+        // 스레드 일시정지 플래그 설정
+        public void setStopFlag(boolean flag) { stopFlag = flag; }
+        // wait 상태인 스레드를 깨움
+        public synchronized void resumeThread() { notify(); }
     }
 }

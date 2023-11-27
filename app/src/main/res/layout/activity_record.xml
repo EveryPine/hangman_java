@@ -3,104 +3,122 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/base_test_background">
 
-    <Button
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginHorizontal="10dp"
+            android:text="기록"
+            android:fontFamily="@font/button_font_family"
+            android:textSize="40dp"
+            android:textAlignment="center"
+            android:background="@drawable/base_title_bg"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="25dp"
+            android:layout_marginHorizontal="10dp"
+            android:paddingHorizontal="20dp"
+            android:background="@drawable/record_mainframe"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/record_frame_bg">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:text="게임을 선택하세요"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/sys_font"
+                            android:textSize="20dp"
+                            android:textAlignment="center"/>
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginVertical="10dp"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rdoCard"
+                                android:layout_width="81dp"
+                                android:layout_height="81dp"
+                                android:background="@drawable/record_icon_card"
+                                android:button="@null"/>
+
+                            <RadioButton
+                                android:id="@+id/rdoHangman"
+                                android:layout_width="81dp"
+                                android:layout_height="81dp"
+                                android:background="@drawable/record_icon_hangman"
+                                android:layout_marginHorizontal="15dp"
+                                android:button="@null"/>
+
+                            <RadioButton
+                                android:id="@+id/rdoMemory"
+                                android:layout_width="81dp"
+                                android:layout_height="81dp"
+                                android:background="@drawable/record_icon_memory"
+                                android:button="@null"/>
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/fcRecord"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginVertical="20dp"
+                        tools:layout="@layout/fragment_rechangman">
+                    </androidx.fragment.app.FragmentContainerView>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageButton
         android:id="@+id/btnGoback"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="end"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/system_font"
-        android:text="뒤로가기"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="none">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginHorizontal="25dp"
-                android:text="기록"
-                android:fontFamily="@font/system_font"
-                android:textSize="50dp"
-                android:textAlignment="center"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginHorizontal="25dp"
-                android:orientation="vertical"
-                android:background="@color/transparent_10">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:text="게임을 선택하세요"
-                    android:fontFamily="@font/system_font"
-                    android:textSize="20dp"
-                    android:textAlignment="center">
-
-                </TextView>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <ImageButton
-                        android:id="@+id/imgBtnCard"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/record_game1"
-                        android:scaleType="centerCrop"
-                        android:layout_margin="10dp"/>
-
-                    <ImageButton
-                        android:id="@+id/imgBtnHangman"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/record_game2"
-                        android:scaleType="centerCrop"
-                        android:layout_margin="10dp"/>
-
-                    <ImageButton
-                        android:id="@+id/imgBtnMemory"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/record_game3"
-                        android:scaleType="centerCrop"
-                        android:layout_margin="10dp"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fcRecord"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
-                tools:layout="@layout/fragment_rechangman">
-            </androidx.fragment.app.FragmentContainerView>
-
-        </LinearLayout>
-
-    </ScrollView>
+        android:src="@drawable/base_arrow_back_fill0_wght400_grad0_opsz24"
+        android:background="@drawable/base_button_back"/>
 
 </FrameLayout>

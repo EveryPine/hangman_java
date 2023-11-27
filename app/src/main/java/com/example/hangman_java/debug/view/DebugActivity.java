@@ -80,7 +80,7 @@ public class DebugActivity extends BaseActivity {
 
         debugBinding.btnCard.setOnClickListener(view -> {
 //            Intent intent = new Intent(this, ActivityName.class);
-//            intent.putExtra("difficulty", debugViewModel.getDifficulty());
+//            intent.putExtra("difficulty", debugViewModel.getStrDifficulty());
 //            startActivity(intent);
         });
 
@@ -92,7 +92,7 @@ public class DebugActivity extends BaseActivity {
 
         debugBinding.btnMemory.setOnClickListener(view -> {
 //            Intent intent = new Intent(this, ActivityName.class);
-//            intent.putExtra("difficulty", debugViewModel.getDifficulty());
+//            intent.putExtra("difficulty", debugViewModel.getStrDifficulty());
 //            startActivity(intent);
         });
         setDiffSpinner();

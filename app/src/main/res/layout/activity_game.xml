@@ -2,24 +2,26 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/base_test_background">
 
-    <Button
+    <ImageButton
         android:id="@+id/btnGoback"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="end"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/system_font"
-        android:text="뒤로 가기"/>
+        android:src="@drawable/base_arrow_back_fill0_wght400_grad0_opsz24"
+        android:background="@drawable/base_button_back"/>
 
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_setgame">
+        tools:layout="@layout/fragment_setgame"
+        android:layout_marginTop="30dp">
 
     </androidx.fragment.app.FragmentContainerView>
 </FrameLayout>
