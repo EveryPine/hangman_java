@@ -1,5 +1,8 @@
 package com.example.hangman_java.hangman.view;
 
+import static com.example.hangman_java.main.view.MainActivity.soundPool;
+
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,11 +17,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseActivity;
 import com.example.hangman_java.base.Event;
 import com.example.hangman_java.base.EventObserver;
 import com.example.hangman_java.databinding.ActivityHangmanBinding;
 import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
+import com.example.hangman_java.music.SfxManager;
 import com.example.hangman_java.record.model.Record;
 import com.example.hangman_java.record.viewmodel.RecordViewModel;
 
@@ -32,6 +37,7 @@ public class HangmanActivity extends BaseActivity {
     private KeyboardFragment keyboardFragment;
     private HangmanViewModel hangmanViewModel = null;
     private RecordViewModel recordViewModel = null;
+    private SfxManager sfxManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -40,6 +46,7 @@ public class HangmanActivity extends BaseActivity {
         hangmanBinding = ActivityHangmanBinding.inflate(getLayoutInflater());
         hangmanViewModel = new ViewModelProvider(this).get(HangmanViewModel.class);
         recordViewModel = new ViewModelProvider(this).get(RecordViewModel.class);
+        sfxManager = new SfxManager(this, soundPool);
 
         if (getIntent().hasExtra("difficulty")){
             hangmanViewModel.setStageInfo(getIntent().getIntExtra("difficulty", 0));
@@ -86,7 +93,7 @@ public class HangmanActivity extends BaseActivity {
         }));
         hangmanViewModel.startTimer(START_TIME, false);
         hangmanViewModel.remainingTime().observe(this, new EventObserver<>(time -> {
-            hangmanBinding.tvRemainingTime.setTextColor(time > 10 ? Color.BLACK : Color.RED);
+            hangmanBinding.tvRemainingTime.setTextColor(time > 10 ? Color.rgb(0xff, 0x98, 0) : Color.RED);
             if (time <= 0) gameOver();
             if (time >= 0) hangmanBinding.tvRemainingTime.setText(time.toString());
         }));
@@ -96,10 +103,11 @@ public class HangmanActivity extends BaseActivity {
     }
 
     // 게임 클리어 플래그 핸들러
+    @SuppressLint("ResourceAsColor")
     private void initGameEndObserver(){
         hangmanViewModel.gameClearFlag().observe(this, gameClearFlag -> handler.postDelayed(() -> {
             hangmanBinding.tvRemainingTime.setText(Integer.toString(START_TIME));
-            hangmanBinding.tvRemainingTime.setTextColor(Color.BLACK);
+            hangmanBinding.tvRemainingTime.setTextColor(R.color.score);
             hangmanViewModel.updateGameScore();
             updateCurrentScoreUi();
             try {
@@ -139,6 +147,7 @@ public class HangmanActivity extends BaseActivity {
     }
 
     // 획득 점수 업데이트
+    @SuppressLint("ResourceAsColor")
     private void updateCurrentScoreUi(){
         MutableLiveData<Event<Boolean>> flag = new MutableLiveData<>();
         hangmanBinding.tvCurrentScore.setText(Integer.toString(hangmanViewModel.getGameScore()));
@@ -152,7 +161,7 @@ public class HangmanActivity extends BaseActivity {
             flag.postValue(new Event<>(true));
         });
         thread.start();
-        flag.observe(this, new EventObserver<>(bool -> hangmanBinding.tvCurrentScore.setTextColor(Color.BLACK)));
+        flag.observe(this, new EventObserver<>(bool -> hangmanBinding.tvCurrentScore.setTextColor(R.color.score)));
     }
 
     protected void setWordDebug(@NonNull String word){
@@ -162,6 +171,7 @@ public class HangmanActivity extends BaseActivity {
     private class PauseListener implements View.OnClickListener{
         @Override
         public void onClick(View view){
+            sfxManager.playSound("sys_button");
             try {
                 hangmanViewModel.stopTimer();
             } catch (InterruptedException e) {

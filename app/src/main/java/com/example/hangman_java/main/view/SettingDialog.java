@@ -1,5 +1,7 @@
 package com.example.hangman_java.main.view;
 
+import static com.example.hangman_java.main.view.MainActivity.soundPool;
+
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -23,12 +25,14 @@ import com.example.hangman_java.base.EventObserver;
 import com.example.hangman_java.databinding.DialogSettingBinding;
 import com.example.hangman_java.game.viewmodel.GameViewModel;
 import com.example.hangman_java.main.viewmodel.MainViewModel;
+import com.example.hangman_java.music.SfxManager;
 
 public class SettingDialog extends BaseDialog {
     private DialogSettingBinding settingBinding = null;
     private MainViewModel mainViewModel = null;
     private SeekBar sbBgmVolume, sbEftVolume;
     private CheckBox chkBgmMuted, chkEftMuted;
+    private SfxManager sfxManager;
 
     @Override
     public View onCreateView(
@@ -37,6 +41,7 @@ public class SettingDialog extends BaseDialog {
         Bundle savedInstanceState
     ){
         settingBinding = DialogSettingBinding.inflate(inflater, container, false);
+        sfxManager = new SfxManager(requireContext(), soundPool);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         initUi();
@@ -76,7 +81,10 @@ public class SettingDialog extends BaseDialog {
         sbEftVolume.setOnSeekBarChangeListener(new SeekBarListener());
         chkBgmMuted.setOnCheckedChangeListener(new IsMutedListener());
         chkEftMuted.setOnCheckedChangeListener(new IsMutedListener());
-        settingBinding.btnComplete.setOnClickListener(view -> dismiss());
+        settingBinding.btnComplete.setOnClickListener(view -> {
+            sfxManager.playSound("sys_button");
+            dismiss();
+        });
     }
 
     private class SeekBarListener implements SeekBar.OnSeekBarChangeListener{
@@ -92,7 +100,7 @@ public class SettingDialog extends BaseDialog {
             }
         }
         @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {}
+        public void onStartTrackingTouch(SeekBar seekBar) { sfxManager.playSound("sys_button");}
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {}
     }
@@ -100,6 +108,7 @@ public class SettingDialog extends BaseDialog {
     private class IsMutedListener implements CompoundButton.OnCheckedChangeListener{
         @Override
         public void onCheckedChanged(CompoundButton checkBox, boolean isChecked) {
+            sfxManager.playSound("sys_button");
             // isChecked >> true: 음소거됨, false: 음소거 되지 않음
             // 음소거 아닌 상태
             if (!isChecked) {

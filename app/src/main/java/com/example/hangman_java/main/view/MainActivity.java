@@ -19,6 +19,7 @@ import com.example.hangman_java.debug.view.DebugActivity;
 import com.example.hangman_java.game.view.GameActivity;
 import com.example.hangman_java.main.viewmodel.MainViewModel;
 import com.example.hangman_java.music.BgmService;
+import com.example.hangman_java.music.SfxManager;
 import com.example.hangman_java.record.view.RecordActivity;
 
 public class MainActivity extends BaseActivity {
@@ -26,7 +27,9 @@ public class MainActivity extends BaseActivity {
     private MainViewModel mainViewModel = null;
     private final Handler handler = new Handler();
     private Animation blinkAnim;
+    private SfxManager sfxManager;
     public static MainActivity mainActivity;
+    public static SoundPool soundPool;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,9 @@ public class MainActivity extends BaseActivity {
         mainActivity = this;
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        soundPool = new SoundPool.Builder().build();
+        sfxManager = new SfxManager(this, soundPool);
+
         try {
             initUi();
         } catch (Exception e) {
@@ -58,10 +64,12 @@ public class MainActivity extends BaseActivity {
 
     private void setButton(){
         mainBinding.btnDebug.setOnClickListener(view -> {
+            sfxManager.playSound("sys_button");
             Intent intent = new Intent(this, DebugActivity.class);
             startActivity(intent);
         });
         mainBinding.btnGamestart.setOnClickListener(view -> {
+            sfxManager.playSound("sys_button");
             view.startAnimation(blinkAnim);
             handler.postDelayed(() -> {
                 Intent intent = new Intent(this, GameActivity.class);
@@ -70,6 +78,7 @@ public class MainActivity extends BaseActivity {
         });
 
         mainBinding.btnRecord.setOnClickListener(view -> {
+            sfxManager.playSound("sys_button");
             view.startAnimation(blinkAnim);
             handler.postDelayed(() -> {
                 Intent intent = new Intent(this, RecordActivity.class);
@@ -78,6 +87,7 @@ public class MainActivity extends BaseActivity {
         });
 
         mainBinding.btnSetting.setOnClickListener(view -> {
+            sfxManager.playSound("sys_button");
             view.startAnimation(blinkAnim);
             handler.postDelayed(() -> {
                 FragmentManager fm = getSupportFragmentManager();
@@ -87,6 +97,7 @@ public class MainActivity extends BaseActivity {
         });
 
         mainBinding.btnExit.setOnClickListener(view -> {
+            sfxManager.playSound("sys_button");
             view.startAnimation(blinkAnim);
             handler.postDelayed(() -> {
                 FragmentManager fm = getSupportFragmentManager();

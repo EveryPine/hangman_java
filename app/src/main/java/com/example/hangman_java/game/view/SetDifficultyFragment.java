@@ -1,6 +1,7 @@
 package com.example.hangman_java.game.view;
 
 import static com.example.hangman_java.main.view.MainActivity.mainActivity;
+import static com.example.hangman_java.main.view.MainActivity.soundPool;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.example.hangman_java.game.viewmodel.GameViewModel;
 import com.example.hangman_java.hangman.view.HangmanActivity;
 import com.example.hangman_java.card.view.CardActivity;
 import com.example.hangman_java.memory.view.MemoryActivity;
+import com.example.hangman_java.music.SfxManager;
 
 import java.util.Objects;
 
@@ -28,11 +30,13 @@ public class SetDifficultyFragment extends BaseFragment{
     private FragmentSetdifficultyBinding setdifficultyBinding;
     private GameViewModel gameViewModel;
     private LinearLayout btnEasy, btnNormal, btnHard;
+    private SfxManager sfxManager;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         setdifficultyBinding = FragmentSetdifficultyBinding.inflate(inflater, container, false);
+        sfxManager = new SfxManager(requireContext(), soundPool);
         return setdifficultyBinding.getRoot();
     }
 
@@ -57,19 +61,23 @@ public class SetDifficultyFragment extends BaseFragment{
         btnHard = setdifficultyBinding.btnHard;
 
         setdifficultyBinding.btnEasy.setOnClickListener(view -> {
+            sfxManager.playSound("sys_button");
             gameViewModel.setDifficulty(0);
             setLayoutImage("easy");
         });
         setdifficultyBinding.btnNormal.setOnClickListener(view -> {
+            sfxManager.playSound("sys_button");
             gameViewModel.setDifficulty(1);
             setLayoutImage("normal");
         });
         setdifficultyBinding.btnHard.setOnClickListener(view -> {
+            sfxManager.playSound("sys_button");
             gameViewModel.setDifficulty(2);
             setLayoutImage("hard");
         });
 
         setdifficultyBinding.btnGamestart.setOnClickListener(view -> {
+            sfxManager.playSound("sys_button");
             Intent intent = null;
             String game = gameViewModel.getSelectedGame();
             int difficulty = gameViewModel.getDifficulty();
@@ -84,7 +92,7 @@ public class SetDifficultyFragment extends BaseFragment{
             }
             if (intent!=null){
                 intent.putExtra("difficulty", difficulty);
-                //mainActivity.finish(); // 메인액티비티 종료
+                mainActivity.finish(); // 메인액티비티 종료
                 startActivity(intent);
                 requireActivity().finish(); // 현재액티비티 종료
             }

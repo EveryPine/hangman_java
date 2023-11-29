@@ -1,5 +1,7 @@
 package com.example.hangman_java.game.view;
 
+import static com.example.hangman_java.main.view.MainActivity.soundPool;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,7 @@ import com.example.hangman_java.base.EventObserver;
 import com.example.hangman_java.databinding.ActivityGameBinding;
 import com.example.hangman_java.game.viewmodel.GameViewModel;
 import com.example.hangman_java.main.view.MainActivity;
+import com.example.hangman_java.music.SfxManager;
 
 public class GameActivity extends BaseActivity {
     private ActivityGameBinding gameBinding;
@@ -21,11 +24,14 @@ public class GameActivity extends BaseActivity {
     private FragmentManager fragmentManager;
     private SetGameFragment frSetGame;
     private SetDifficultyFragment frSetDifficulty;
+    private SfxManager sfxManager;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         gameBinding = ActivityGameBinding.inflate(getLayoutInflater());
         gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
+        sfxManager = new SfxManager(this, soundPool);
+
         fragmentManager = getSupportFragmentManager();
         try {
             initUi();
@@ -55,6 +61,7 @@ public class GameActivity extends BaseActivity {
 
     private void setView(){
         gameBinding.btnGoback.setOnClickListener(view -> {
+            sfxManager.playSound("sys_button");
             // 게임 난이도 설정 화면이 올라와 있으면
             if (gameViewModel.getCurrentFragment().equals("difficulty")){
                 Log.d("MyTAG", "난이도 설정 화면에서 게임 선택 화면으로 돌아감");
