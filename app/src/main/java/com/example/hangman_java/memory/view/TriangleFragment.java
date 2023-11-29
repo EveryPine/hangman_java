@@ -22,18 +22,22 @@ import com.example.hangman_java.base.BaseFragment;
 import com.example.hangman_java.databinding.FragmentTriangleBinding;
 
 import com.example.hangman_java.memory.viewmodel.MemoryViewModel;
+import com.example.hangman_java.record.model.Record;
+import com.example.hangman_java.record.viewmodel.RecordViewModel;
 
 import java.util.List;
 
 public class TriangleFragment extends BaseFragment {
     private FragmentTriangleBinding binding;
     MemoryViewModel memoryViewModel;
+    private RecordViewModel recordViewModel = null;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentTriangleBinding.inflate(inflater, container, false);
         memoryViewModel = new ViewModelProvider(requireActivity()).get(MemoryViewModel.class);
+        recordViewModel = new ViewModelProvider(this).get(RecordViewModel.class);
         View view = binding.getRoot();
         memoryViewModel.setDifficulty(9);
         return view;
@@ -124,27 +128,13 @@ public class TriangleFragment extends BaseFragment {
 
                     }
                 } else {
-                    Animation slideDown = AnimationUtils.loadAnimation(getContext(), R.anim.gameover);
-                    ConstraintLayout parent = binding.top;
-                    for(int i =0;i <parent.getChildCount();i++){
-                        View child = parent.getChildAt(i);
-                        child.setVisibility(View.INVISIBLE);
-                    }
-                    binding.gameover.setVisibility(View.VISIBLE);
-                    binding.gameover.startAnimation(slideDown);
-                    memoryViewModel.playSound(3);
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            gameOver();
-                        }
-                    }, 2000);
+                    gameOver();
                     //정답을 못맞췃을 때 로직
                 }
             }
         });
     }
     private void gameOver(){
-
+        recordViewModel.insertRecord(requireContext(), new Record("memory","hard", memoryViewModel.getScore()));
     }
 }

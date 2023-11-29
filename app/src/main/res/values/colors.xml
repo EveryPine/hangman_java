@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#848484</color>
-
+    <color name="score">#FF9800</color>
     <color name="easy">#FFFE8E</color>
     <color name="normal">#8EFF94</color>
     <color name="hard">#FFC9C9</color>

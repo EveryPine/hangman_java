@@ -107,7 +107,7 @@ public class HangmanActivity extends BaseActivity {
     private void initGameEndObserver(){
         hangmanViewModel.gameClearFlag().observe(this, gameClearFlag -> handler.postDelayed(() -> {
             hangmanBinding.tvRemainingTime.setText(Integer.toString(START_TIME));
-            hangmanBinding.tvRemainingTime.setTextColor(R.color.score);
+            hangmanBinding.tvRemainingTime.setTextColor(Color.rgb(0xff, 0x98, 0));
             hangmanViewModel.updateGameScore();
             updateCurrentScoreUi();
             try {
@@ -161,7 +161,7 @@ public class HangmanActivity extends BaseActivity {
             flag.postValue(new Event<>(true));
         });
         thread.start();
-        flag.observe(this, new EventObserver<>(bool -> hangmanBinding.tvCurrentScore.setTextColor(R.color.score)));
+        flag.observe(this, new EventObserver<>(bool -> hangmanBinding.tvCurrentScore.setTextColor(Color.rgb(0xff, 0x98, 0))));
     }
 
     protected void setWordDebug(@NonNull String word){
