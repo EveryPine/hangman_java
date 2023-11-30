@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.hangman_java.R;
+import com.example.hangman_java.music.SfxManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,12 +20,17 @@ import java.util.List;
 
 
 public class MemoryViewModel extends ViewModel {
+
     public MemoryViewModel() {
         _CurrentStage.setValue(0);
         _ClicckCount.setValue(0);
         _difficulty.setValue(0);
         _score.setValue(0);
-    }private SoundPool soundPool;
+
+
+    }
+
+    private SoundPool soundPool;
     private int mp3FileSoundId1;
     private int mp3FileSoundId2;
     private int mp3FileSoundId3;
@@ -33,6 +39,7 @@ public class MemoryViewModel extends ViewModel {
     private  MutableLiveData<Integer> _difficulty = new MutableLiveData<>();
     private MutableLiveData<List<Integer>> _answerList = new MutableLiveData<>();
     private MutableLiveData<List<Integer>> _currentAnswer = new MutableLiveData<>();
+
     public int getScore(){
         return _score.getValue();
     }
@@ -55,6 +62,7 @@ public class MemoryViewModel extends ViewModel {
         return _ClicckCount.getValue();
     }
     private MutableLiveData<Integer> _CurrentAnswer = new MutableLiveData<>();
+
     public void setSoundPool(Context context){
         AudioAttributes attributes = new AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)

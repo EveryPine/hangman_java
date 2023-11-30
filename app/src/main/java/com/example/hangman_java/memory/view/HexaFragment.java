@@ -1,6 +1,9 @@
 package com.example.hangman_java.memory.view;
 
+import static com.example.hangman_java.main.viewmodel.MainViewModel.DELAY_TIME;
+
 import android.content.Intent;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -14,6 +17,7 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -21,7 +25,9 @@ import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseFragment;
 import com.example.hangman_java.databinding.FragmentHexaBinding;
 
+import com.example.hangman_java.main.view.SettingDialog;
 import com.example.hangman_java.memory.viewmodel.MemoryViewModel;
+import com.example.hangman_java.music.SfxManager;
 import com.example.hangman_java.record.model.Record;
 import com.example.hangman_java.record.viewmodel.RecordViewModel;
 
@@ -30,13 +36,21 @@ import java.util.List;
 public class HexaFragment extends BaseFragment {
     private FragmentHexaBinding binding;
     MemoryViewModel memoryViewModel;
+    private Handler handler;
     private RecordViewModel recordViewModel = null;
+    public static SoundPool soundPool;
+    SfxManager sfxManager;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentHexaBinding.inflate(inflater, container, false);
         memoryViewModel = new ViewModelProvider(requireActivity()).get(MemoryViewModel.class);
         recordViewModel = new ViewModelProvider(this).get(RecordViewModel.class);
+        soundPool = new SoundPool.Builder().build();
+        sfxManager  = new SfxManager(requireContext(),soundPool);
+        sfxManager.addSound("correct",R.raw.memory_correct_sound1);
+        sfxManager.addSound("sound1",R.raw.memory_sound1);
         View view = binding.getRoot();
         memoryViewModel.setDifficulty(7);
         return view;
@@ -54,7 +68,7 @@ public class HexaFragment extends BaseFragment {
     @Override
     public void initUi() {
         memoryViewModel.setAnswerList();
-        memoryViewModel.setSoundPool(getContext().getApplicationContext());
+        //memoryViewModel.setSoundPool(getContext().getApplicationContext());
         List<Integer> answer_list = memoryViewModel.getAnswerList();
         Log.d("testt", answer_list.toString());
         StartGame();
@@ -77,7 +91,7 @@ public class HexaFragment extends BaseFragment {
                 Animation anim = memoryViewModel.createAnimation();
                 int answer_first = memoryViewModel.getFirstAnswer();
                 hexagonViews[answer_first - 1].startAnimation(anim);
-                memoryViewModel.playSound(1);
+                sfxManager.playSound("sound1");
             }
         }, 3000);
 
@@ -103,7 +117,7 @@ public class HexaFragment extends BaseFragment {
                             binding.hexa4, binding.hexa5, binding.hexa6, binding.hexa7
                     };
                     Boolean stageCheckOutput = memoryViewModel.CheckNextStage();
-                    memoryViewModel.playSound(2);
+                    sfxManager.playSound("correct");
                     if (stageCheckOutput) {
                         binding.score.setText(String.valueOf(memoryViewModel.getScore()));
                         Log.d("testt", "클리어");
@@ -119,7 +133,7 @@ public class HexaFragment extends BaseFragment {
                             handler2.postDelayed(() -> {
                                 Animation anim1 = animations[index];
                                 temp_hexagonViews[answer_list.get(index) - 1].startAnimation(anim1);
-                                memoryViewModel.playSound(1);
+                                sfxManager.playSound("sound1");
                             }, i * delay);
                         }
 
@@ -138,5 +152,10 @@ public class HexaFragment extends BaseFragment {
     }
     private void gameOver(){
         recordViewModel.insertRecord(requireContext(), new Record("memory","normal", memoryViewModel.getScore()));
+        handler.postDelayed(() -> {
+            FragmentManager fm = requireActivity().getSupportFragmentManager();
+            SettingDialog settingDialog = new SettingDialog();
+            settingDialog.show(fm, "test");
+        }, DELAY_TIME);
     }
 }

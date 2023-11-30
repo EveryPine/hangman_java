@@ -1,6 +1,9 @@
 package com.example.hangman_java.memory.view;
 
+import static com.example.hangman_java.main.viewmodel.MainViewModel.DELAY_TIME;
+
 import android.content.Intent;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -14,6 +17,7 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -21,7 +25,9 @@ import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseFragment;
 import com.example.hangman_java.databinding.FragmentTriangleBinding;
 
+import com.example.hangman_java.main.view.SettingDialog;
 import com.example.hangman_java.memory.viewmodel.MemoryViewModel;
+import com.example.hangman_java.music.SfxManager;
 import com.example.hangman_java.record.model.Record;
 import com.example.hangman_java.record.viewmodel.RecordViewModel;
 
@@ -30,14 +36,20 @@ import java.util.List;
 public class TriangleFragment extends BaseFragment {
     private FragmentTriangleBinding binding;
     MemoryViewModel memoryViewModel;
+    private Handler handler;
+    public static SoundPool soundPool;
     private RecordViewModel recordViewModel = null;
-
+    SfxManager sfxManager;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentTriangleBinding.inflate(inflater, container, false);
         memoryViewModel = new ViewModelProvider(requireActivity()).get(MemoryViewModel.class);
         recordViewModel = new ViewModelProvider(this).get(RecordViewModel.class);
+        soundPool = new SoundPool.Builder().build();
+        sfxManager  = new SfxManager(requireContext(),soundPool);
+        sfxManager.addSound("correct",R.raw.memory_correct_sound1);
+        sfxManager.addSound("sound1",R.raw.memory_sound1);
         View view = binding.getRoot();
         memoryViewModel.setDifficulty(9);
         return view;
@@ -59,7 +71,7 @@ public class TriangleFragment extends BaseFragment {
     @Override
     public void initUi() {
         memoryViewModel.setAnswerList();
-        memoryViewModel.setSoundPool(getContext().getApplicationContext());
+        //memoryViewModel.setSoundPool(getContext().getApplicationContext());
         List<Integer> answer_list = memoryViewModel.getAnswerList();
         Log.d("testt", answer_list.toString());
         StartGame();
@@ -76,7 +88,7 @@ public class TriangleFragment extends BaseFragment {
         handler1.postDelayed(new Runnable() {
             @Override
             public void run() {
-                memoryViewModel.playSound(1);
+                sfxManager.playSound("sound1");
                 Animation anim = memoryViewModel.createAnimation();
                 int answer_first = memoryViewModel.getFirstAnswer();
                 triangleViews[answer_first - 1].startAnimation(anim);
@@ -105,7 +117,7 @@ public class TriangleFragment extends BaseFragment {
                             binding.tri4, binding.tri5, binding.tri6, binding.tri7, binding.tri8, binding.tri9
                     };
                     Boolean stageCheckOutput = memoryViewModel.CheckNextStage();
-                    memoryViewModel.playSound(2);
+                    sfxManager.playSound("correct");
                     if (stageCheckOutput) {
                         binding.score.setText(String.valueOf(memoryViewModel.getScore()));
                         Log.d("testt", "클리어");
@@ -118,7 +130,7 @@ public class TriangleFragment extends BaseFragment {
                         for (int i = 0; i < memoryViewModel.getCurrentStage() + 1; i++) {
                             final int index = i;
                             handler2.postDelayed(() -> {
-                                memoryViewModel.playSound(1);
+                                sfxManager.playSound("sound1");
                                 Animation anim1 = animations[index];
                                 triangleViews[answer_list.get(index) - 1].startAnimation(anim1);
                             }, i * delay);
@@ -136,5 +148,10 @@ public class TriangleFragment extends BaseFragment {
     }
     private void gameOver(){
         recordViewModel.insertRecord(requireContext(), new Record("memory","hard", memoryViewModel.getScore()));
+        handler.postDelayed(() -> {
+            FragmentManager fm = requireActivity().getSupportFragmentManager();
+            SettingDialog settingDialog = new SettingDialog();
+            settingDialog.show(fm, "test");
+        }, DELAY_TIME);
     }
 }

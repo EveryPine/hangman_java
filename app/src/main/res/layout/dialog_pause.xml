@@ -5,15 +5,15 @@
     android:orientation="vertical"
     android:padding="10dp"
     android:gravity="center"
-    android:background="@drawable/base_pause_bg">
-    
+    >
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sys_font_family"
         android:text="일시정지"
         android:textColor="@color/white"
-        android:textSize="50dp"/>
+        android:textSize="50dp" />
 
     <Button
         android:id="@+id/btnResume"
