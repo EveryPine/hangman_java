@@ -3,7 +3,7 @@ package com.example.hangman_java.record.view;
 import static com.example.hangman_java.main.view.MainActivity.soundPool;
 
 import android.os.Bundle;
-import android.os.Handler;
+    import android.os.Handler;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;

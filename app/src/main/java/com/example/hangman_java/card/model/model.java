@@ -29,6 +29,7 @@ public class model {
     }
 
     public int getData(int idx) { return map.get(idx); }
+    public int getTime() {return time;}
     public ArrayList<Integer> getMap() { return map; }
     public int getScore() { return score; }
     public void plusScore(int num) {score += num;}

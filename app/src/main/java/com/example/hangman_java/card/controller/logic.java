@@ -1,11 +1,14 @@
 package com.example.hangman_java.card.controller;
 
 import android.os.Handler;
+import android.util.Log;
 
 import com.example.hangman_java.card.model.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class logic {
     private boolean gameEnd = false;

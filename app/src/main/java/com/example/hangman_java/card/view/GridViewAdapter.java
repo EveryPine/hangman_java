@@ -57,12 +57,11 @@ public class GridViewAdapter extends BaseAdapter {
         gameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(gameLogic.check(item)){
+                if(gameLogic.check(item)) {
                     gameButton.setVisibility(View.INVISIBLE);
-                    intent = new Intent("update_score");
-                    intent.putExtra("new_score", gameLogic.getScore()); // 여기서 newScore는 업데이트된 점수입니다.
-                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+                    updateScore();
                 }
+
                 if(gameLogic.checkGameEnd()){
                     gameLogic.initGame();
                     items = gameLogic.getData();
@@ -83,5 +82,11 @@ public class GridViewAdapter extends BaseAdapter {
             }
         });
         return convertView;
+    }
+
+    public void updateScore(){
+        intent = new Intent("update_score");
+        intent.putExtra("new_score", gameLogic.getScore()); // 여기서 newScore는 업데이트된 점수입니다.
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 }

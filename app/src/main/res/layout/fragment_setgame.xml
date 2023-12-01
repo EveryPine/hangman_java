@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginStart="20dp"
-                android:text="@string/explainCard"
+                android:text="제한 시간 내 제시된 카드들을 오름차순으로 터치하여 득점하는 게임입니다! 틀리면 3초동안 패널티가 주어지므로 신중하게 선택해주세요!"
                 android:textColor="@color/white"
                 android:fontFamily="@font/sys_font"
                 android:textSize="20dp" />
