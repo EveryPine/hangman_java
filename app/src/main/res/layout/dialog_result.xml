@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:textoutline="http://schemas.android.com/apk/res-auto"
+    android:layout_width="350dp"
+    android:layout_height="400dp"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@drawable/base_result_bg">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.example.hangman_java.base.TextOutLineView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="50dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="50dp"
         android:fontFamily="@font/sys_font"
-        android:text="게임오버"
-        android:textColor="#af00"
-        android:textSize="50dp" />
+        android:text="GAME OVER"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="46dp"
+        app:textStroke="true"
+        app:textStrokeWidth="20"
+        app:textStrokeColor="#af00"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="최종점수 : "
-            android:textSize="30dp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/sys_font"/>
-
-        <TextView
+        <com.example.hangman_java.base.TextOutLineView
             android:id="@+id/tvFinalScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0000"
+            android:text="최종점수 : 00"
             android:textSize="30dp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/sys_font"/>
+            android:textColor="@color/white"
+            android:fontFamily="@font/sys_font"
+            app:textStroke="true"
+            app:textStrokeWidth="10"
+            app:textStrokeColor="@color/black"/>
 
     </LinearLayout>
 
@@ -43,58 +45,61 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginVertical="20dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="최고점수 : "
-            android:textSize="30dp"
-            android:textColor="@color/black"
-            android:textAlignment="textEnd"
-            android:fontFamily="@font/sys_font"/>
-
-        <TextView
+        <com.example.hangman_java.base.TextOutLineView
             android:id="@+id/tvBestScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="최고점수 : 00"
             android:textSize="30dp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/sys_font"/>
+            android:textColor="@color/white"
+            android:textAlignment="textEnd"
+            android:fontFamily="@font/sys_font"
+            app:textStroke="true"
+            app:textStrokeWidth="10"
+            app:textStrokeColor="@color/black"/>
 
     </LinearLayout>
 
-
-
-    <TextView
+    <com.example.hangman_java.base.TextOutLineView
         android:id="@+id/tvNoticeBest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="신기록 달성!"
         android:textSize="30dp"
-        android:textColor="#0d0"
+        android:textColor="@color/white"
         android:textAlignment="center"
+        android:textStyle="bold"
         android:fontFamily="@font/sys_font"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="40dp"
+        app:textStroke="true"
+        app:textStrokeColor="#0EA30E"
+        app:textStrokeWidth="10"/>
 
     <LinearLayout
-        android:layout_width="330dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="40dp"
+        android:gravity="center">
 
-        <ImageButton
+        <Button
             android:id="@+id/btnGoMain"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:src="@drawable/hangman_icon_home"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="메인으로"
+            android:textSize="17dp"
+            android:fontFamily="@font/sys_font_family"
+            android:background="@drawable/base_button_green"
             android:layout_margin="5dp"/>
 
-        <ImageButton
+        <Button
             android:id="@+id/btnRestart"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:src="@drawable/hangman_back"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="다시 시작"
+            android:textSize="17dp"
+            android:fontFamily="@font/sys_font_family"
+            android:background="@drawable/base_button_green"
             android:layout_margin="5dp"/>
     </LinearLayout>
 </LinearLayout>

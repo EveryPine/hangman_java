@@ -1,6 +1,8 @@
 package com.example.hangman_java.hangman.view;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,7 @@ public class ResultDialog extends BaseDialog {
         Bundle savedInstanceState
     ){
         resultBinding = DialogResultBinding.inflate(inflater, container, false);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         return resultBinding.getRoot();
     }
 
@@ -62,13 +65,13 @@ public class ResultDialog extends BaseDialog {
             startActivity(intent);
             requireActivity().finish(); // 행맨 액티비티 종료
         });
-        resultBinding.tvFinalScore.setText(Integer.toString(finalScore));
+        resultBinding.tvFinalScore.setText("최종 점수 : " + finalScore);
 
-        if (finalScore > prevBestScore){
-            resultBinding.tvBestScore.setText(Integer.toString(finalScore));
-        } else {
-            resultBinding.tvBestScore.setText(Integer.toString(prevBestScore));
+        if (finalScore <= prevBestScore){
+            resultBinding.tvBestScore.setText("최고 점수 : " + prevBestScore);
             resultBinding.tvNoticeBest.setVisibility(View.INVISIBLE);
+        } else {
+            resultBinding.tvBestScore.setText("최고 점수 : " + finalScore);
         }
     }
 }

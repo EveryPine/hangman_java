@@ -63,41 +63,19 @@ public class RecHangmanFragment extends RecordFragment {
 
     private void setBestRecord(){
         recordViewModel.hangmanBestRecordList().observe(getViewLifecycleOwner(), new EventObserver<>(bestRecordList -> {
-            boolean[] isExist = {false, false, false};
             for (Record rec : bestRecordList) {
                 switch (rec.difficulty) {
                     case "easy" -> {
                         recHangmanBinding.tvEasyRecord.setText(rec.record + " 점");
                         recHangmanBinding.tvEasyDate.setText(rec.date);
-                        isExist[0] = true;
                     }
                     case "normal" -> {
                         recHangmanBinding.tvNormalRecord.setText(rec.record + " 점");
                         recHangmanBinding.tvNormalDate.setText(rec.date);
-                        isExist[1] = true;
                     }
                     case "hard" -> {
                         recHangmanBinding.tvHardRecord.setText(rec.record + " 점");
                         recHangmanBinding.tvHardDate.setText(rec.date);
-                        isExist[2] = true;
-                    }
-                }
-            }
-            for (int i = 0; i < 3; i++) {
-                if (!isExist[i]) {
-                    switch (i) {
-                        case 0 -> {
-                            mergeCell(recHangmanBinding.tvEasyRecord, recHangmanBinding.tvEasyDate);
-                            recHangmanBinding.tvEasyRecord.setText("기록이 없습니다");
-                        }
-                        case 1 -> {
-                            mergeCell(recHangmanBinding.tvNormalRecord, recHangmanBinding.tvNormalDate);
-                            recHangmanBinding.tvNormalRecord.setText("기록이 없습니다");
-                        }
-                        case 2 -> {
-                            mergeCell(recHangmanBinding.tvHardRecord, recHangmanBinding.tvHardDate);
-                            recHangmanBinding.tvHardRecord.setText("기록이 없습니다");
-                        }
                     }
                 }
             }

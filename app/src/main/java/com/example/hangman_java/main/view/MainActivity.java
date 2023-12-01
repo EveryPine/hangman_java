@@ -61,11 +61,11 @@ public class MainActivity extends BaseActivity {
         super.onDestroy();
         serviceStop();
     }
-
     private void setButton(){
         mainBinding.btnDebug.setOnClickListener(view -> {
             sfxManager.playSound("sys_button");
             Intent intent = new Intent(this, DebugActivity.class);
+            intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         });
         mainBinding.btnGamestart.setOnClickListener(view -> {
@@ -73,6 +73,7 @@ public class MainActivity extends BaseActivity {
             view.startAnimation(blinkAnim);
             handler.postDelayed(() -> {
                 Intent intent = new Intent(this, GameActivity.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }, DELAY_TIME);
         });
@@ -82,6 +83,7 @@ public class MainActivity extends BaseActivity {
             view.startAnimation(blinkAnim);
             handler.postDelayed(() -> {
                 Intent intent = new Intent(this, RecordActivity.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }, DELAY_TIME);
         });

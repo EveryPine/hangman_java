@@ -22,6 +22,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
+
     public void setFullScreen(){
         //상단에 Action Bar 사라지게 하기
         //getSupportActionBar().hide();

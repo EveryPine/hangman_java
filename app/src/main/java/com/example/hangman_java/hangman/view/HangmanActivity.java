@@ -147,7 +147,6 @@ public class HangmanActivity extends BaseActivity {
     }
 
     // 획득 점수 업데이트
-    @SuppressLint("ResourceAsColor")
     private void updateCurrentScoreUi(){
         MutableLiveData<Event<Boolean>> flag = new MutableLiveData<>();
         hangmanBinding.tvCurrentScore.setText(Integer.toString(hangmanViewModel.getGameScore()));
@@ -161,7 +160,7 @@ public class HangmanActivity extends BaseActivity {
             flag.postValue(new Event<>(true));
         });
         thread.start();
-        flag.observe(this, new EventObserver<>(bool -> hangmanBinding.tvCurrentScore.setTextColor(R.color.score)));
+        flag.observe(this, new EventObserver<>(bool -> hangmanBinding.tvCurrentScore.setTextColor(Color.rgb(0xff, 0x98, 0))));
     }
 
     protected void setWordDebug(@NonNull String word){
