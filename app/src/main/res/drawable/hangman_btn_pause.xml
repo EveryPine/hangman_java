@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="false" android:drawable="@drawable/hangman_btn_pause_unclicked"/>
+    <item android:state_pressed="true" android:drawable="@drawable/hangman_btn_pause_clicked"/>
 
 </selector>

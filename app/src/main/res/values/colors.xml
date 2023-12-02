@@ -13,6 +13,8 @@
     <color name="normal">#8EFF94</color>
     <color name="hard">#FFC9C9</color>
 
+    <color name="score">#FF9800</color>
+
     <color name="transparent_100">#FF000000</color>
     <color name="transparent_90">#E6000000</color>
     <color name="transparent_80">#CC000000</color>

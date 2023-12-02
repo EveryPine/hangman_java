@@ -23,7 +23,7 @@ public abstract class AppDatabase extends RoomDatabase{
             synchronized (AppDatabase.class){
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                         AppDatabase.class, "appdatebase.db")
-                    .createFromAsset("testDatabase.db")
+                    .createFromAsset("appDatabase.db")
                     .fallbackToDestructiveMigration()
                     .build();
             }

@@ -22,6 +22,7 @@ import com.example.hangman_java.music.SfxManager;
 
 public class PauseDialog extends BaseDialog {
     private DialogPauseBinding pauseBinding;
+    private HangmanActivity parentActivity;
     private HangmanViewModel hangmanViewModel;
     private Button btnResume, btnRestart, btnGoMain;
     private SfxManager sfxManager;
@@ -33,6 +34,7 @@ public class PauseDialog extends BaseDialog {
         Bundle savedInstanceState
     ){
         pauseBinding = DialogPauseBinding.inflate(inflater, container, false);
+        parentActivity = (HangmanActivity) requireActivity();
         sfxManager = new SfxManager(requireContext(), soundPool);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -42,7 +44,7 @@ public class PauseDialog extends BaseDialog {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        hangmanViewModel = new ViewModelProvider(requireActivity()).get(HangmanViewModel.class);
+        hangmanViewModel = new ViewModelProvider(parentActivity).get(HangmanViewModel.class);
         initUi();
     }
 
@@ -60,24 +62,29 @@ public class PauseDialog extends BaseDialog {
         btnResume.setOnClickListener(btn -> {
             sfxManager.playSound("sys_button");
             hangmanViewModel.restartTimer();
+            parentActivity.serviceStart();
             dismiss();
         });
+
         btnRestart.setOnClickListener(btn -> {
             sfxManager.playSound("sys_button");
-            Intent intent = new Intent(requireActivity(), HangmanActivity.class);
+            Intent intent = new Intent(parentActivity, HangmanActivity.class);
             try {
                 intent.putExtra("difficulty", hangmanViewModel.getIntDifficulty());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            startActivity(intent);
-            requireActivity().finish(); // 행맨 액티비티 종료
+            parentActivity.serviceStop();
+            parentActivity.finish(); // 행맨 액티비티 종료
+            startActivity(intent); // 행맨 재시작
         });
+
         btnGoMain.setOnClickListener(btn -> {
             sfxManager.playSound("sys_button");
-            Intent intent = new Intent(requireActivity(), MainActivity.class);
+            Intent intent = new Intent(parentActivity, MainActivity.class);
+            parentActivity.serviceStop();
+            parentActivity.finish(); // 행맨 액티비티 종료
             startActivity(intent); // 메인 화면으로 이동
-            requireActivity().finish(); // 행맨 액티비티 종료
         });
     }
 }

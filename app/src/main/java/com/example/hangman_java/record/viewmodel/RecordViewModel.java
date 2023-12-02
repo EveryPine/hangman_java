@@ -102,11 +102,15 @@ public class RecordViewModel extends BaseViewModel {
     public void updateBestRecord(Context context, Record record){
         Thread thread = new Thread(() -> {
             RecordDao recordDao = AppDatabase.getInstance(context).recordDao();
-            ReceivedRecord currentRecord = recordDao.getBestRecordByDiff(record.gamename, record.difficulty);
-            BestRecord newRecord = new BestRecord(currentRecord.id, record.gamename, record.difficulty, record.record);
-            // DB에 저장된 기록이 더 낮으면 기록 추가
-            if (record.record > currentRecord.record){
+            // 기록이 존재하지 않으면 기록 추가
+            if (recordDao.isBestRecordExist(record.gamename, record.difficulty) == 0){
+                BestRecord newRecord = new BestRecord(record.gamename, record.difficulty, record.record);
                 recordDao.insertBestRecord(newRecord);
+            } else { // 기록이 존재하면 점수 비교후 기록 업데이트
+                ReceivedRecord currentRecord = recordDao.getBestRecordByDiff(record.gamename, record.difficulty);
+                BestRecord newRecord = new BestRecord(currentRecord.id, record.gamename, record.difficulty, record.record);
+                if (record.record > currentRecord.record)
+                    recordDao.insertBestRecord(newRecord);
             }
         });
         thread.start();

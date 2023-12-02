@@ -5,8 +5,8 @@
             <!--배경색-->
             <gradient
                 android:type="radial"
-                android:startColor="#8ECFA3"
-                android:endColor="#23AE5B"
+                android:startColor="#CC8ECFA3"
+                android:endColor="#CC23AE5B"
                 android:gradientRadius="90%p"/>
             <!--테두리색및두께-->
             <!--모서리둥글게-->

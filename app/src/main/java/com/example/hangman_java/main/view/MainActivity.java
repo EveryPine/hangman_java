@@ -18,7 +18,7 @@ import com.example.hangman_java.databinding.ActivityMainBinding;
 import com.example.hangman_java.debug.view.DebugActivity;
 import com.example.hangman_java.game.view.GameActivity;
 import com.example.hangman_java.main.viewmodel.MainViewModel;
-import com.example.hangman_java.music.BgmService;
+import com.example.hangman_java.music.MainBgmService;
 import com.example.hangman_java.music.SfxManager;
 import com.example.hangman_java.record.view.RecordActivity;
 
@@ -61,11 +61,11 @@ public class MainActivity extends BaseActivity {
         super.onDestroy();
         serviceStop();
     }
-
     private void setButton(){
         mainBinding.btnDebug.setOnClickListener(view -> {
             sfxManager.playSound("sys_button");
             Intent intent = new Intent(this, DebugActivity.class);
+            intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         });
         mainBinding.btnGamestart.setOnClickListener(view -> {
@@ -73,6 +73,7 @@ public class MainActivity extends BaseActivity {
             view.startAnimation(blinkAnim);
             handler.postDelayed(() -> {
                 Intent intent = new Intent(this, GameActivity.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }, DELAY_TIME);
         });
@@ -82,6 +83,7 @@ public class MainActivity extends BaseActivity {
             view.startAnimation(blinkAnim);
             handler.postDelayed(() -> {
                 Intent intent = new Intent(this, RecordActivity.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }, DELAY_TIME);
         });
@@ -107,14 +109,13 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    private void serviceStart(){
-        Intent intent = new Intent(this, BgmService.class);
-        intent.putExtra("progress", !mainViewModel.getBgmMuted() ? mainViewModel.getBgmVolume() : 0);
+    protected void serviceStart(){
+        Intent intent = new Intent(this, MainBgmService.class);
         startService(intent);
     }
 
-    private void serviceStop(){
-        Intent intent = new Intent(this, BgmService.class);
+    protected void serviceStop(){
+        Intent intent = new Intent(this, MainBgmService.class);
         stopService(intent);
     }
 }

@@ -1,17 +1,17 @@
 <resources>
     <string name="app_name">hangman_java</string>
+    <string name="explainCard">게임 설명...</string>
     <string name="explainHangman">제한 시간 내에 단어를 맞추어 최대한 많은 단어를 맞추는 게임입니다.\n\n그림이 모두 완성되면 게임오버입니다!
     </string>
-    <string name="explainCard">게임 설명...</string>
     <string name="explainMemory">게임 설명...</string>
 
     <string name="cardEasyDesc">카드 뒤집기 게임 쉬움 난이도 설명</string>
     <string name="cardNormalDesc">카드 뒤집기 게임 보통 난이도 설명</string>
     <string name="cardHardDesc">카드 뒤집기 게임 어려움 난이도 설명</string>
 
-    <string name="hangmanEasyDesc">행맨 게임 쉬움 난이도 설명</string>
-    <string name="hangmanNormalDesc">행맨 게임 보통 난이도 설명</string>
-    <string name="hangmanHardDesc">행맨 게임 어려움 난이도 설명</string>
+    <string name="hangmanEasyDesc">쉬운 단어들이 주로 출현합니다</string>
+    <string name="hangmanNormalDesc">일상 생활에서 자주 쓰이는 단어들이 주로 출현합니다</string>
+    <string name="hangmanHardDesc">자주 사용되지 않는 어려운 단어들이 주로 출현합니다</string>
 
     <string name="memoryEasyDesc">기억력 게임 쉬움 난이도 설명</string>
     <string name="memoryNormalDesc">기억력 게임 보통 난이도 설명</string>
