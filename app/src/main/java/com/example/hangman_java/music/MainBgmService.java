@@ -1,16 +1,17 @@
 package com.example.hangman_java.music;
 
-import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.hangman_java.R;
+import com.example.hangman_java.base.BaseService;
 
-public class BgmService extends Service {
+public class MainBgmService extends BaseService {
     private MediaPlayer mediaPlayer;
     @Nullable
     @Override
@@ -25,23 +26,25 @@ public class BgmService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId){
+    public int onStartCommand(@NonNull Intent intent, int flags, int startId){
         if (!mediaPlayer.isPlaying()){
             mediaPlayer.start();
             Log.d("MyTAG", "배경음악이 시작됨");
         }
-        this.setBackgroundVolume(intent.getIntExtra("progress", 10));
+        setBgmVolume();
         return super.onStartCommand(intent, flags, startId);
     }
 
-    public void setBackgroundVolume(int progress){
-        float output = progress / 10.0f;
-        mediaPlayer.setVolume(output, output);
-        Log.d("MyTAG", "배경음악 볼륨 조절됨 (progress: " + progress + ")");
+    public float setBgmVolume(){
+        float streamVolume = super.setBgmVolume();
+        mediaPlayer.setVolume(streamVolume, streamVolume);
+        Log.d("MyTAG", "배경음악 볼륨 조절됨 (progress: " + streamVolume + ")");
+        return streamVolume;
     }
 
     public void onDestroy(){
         super.onDestroy();
         mediaPlayer.stop();
+        Log.d("MyTAG", "bgm 서비스가 종료됨");
     }
 }

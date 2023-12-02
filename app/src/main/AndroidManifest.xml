@@ -22,25 +22,21 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".music.BgmService"/>
-
         <activity android:name=".debug.view.DebugActivity"/>
 
-        <activity android:name=".record.view.RecordActivity">
+        <activity android:name=".record.view.RecordActivity"/>
 
-        </activity>
+        <activity android:name=".game.view.GameActivity"/>
 
-        <activity android:name=".game.view.GameActivity">
-
-        </activity>
-
-        <activity android:name=".hangman.view.HangmanActivity">
-
-        </activity>
+        <activity android:name=".hangman.view.HangmanActivity"/>
 
         <activity android:name=".card.view.CardActivity"/>
 
         <activity android:name=".memory.view.MemoryActivity"/>
+
+        <service android:name=".music.MainBgmService"/>
+
+        <service android:name=".music.HangmanBgmService"/>
 
     </application>
 

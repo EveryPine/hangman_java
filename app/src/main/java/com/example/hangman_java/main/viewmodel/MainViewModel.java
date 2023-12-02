@@ -7,12 +7,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.hangman_java.base.AppDatabase;
 import com.example.hangman_java.base.BaseViewModel;
-import com.example.hangman_java.music.BgmService;
+import com.example.hangman_java.music.MainBgmService;
 
 public class MainViewModel extends BaseViewModel {
     public static int DELAY_TIME = 600; // ms
@@ -34,7 +32,7 @@ public class MainViewModel extends BaseViewModel {
     }
 
     public void setBackgroundVolume(Context context, int progress){
-        Intent intent = new Intent(context, BgmService.class);
+        Intent intent = new Intent(context, MainBgmService.class);
         intent.putExtra("progress", progress);
         context.startService(intent);
         _bgmMuted.setValue(false);
@@ -42,7 +40,7 @@ public class MainViewModel extends BaseViewModel {
     }
 
     public void setBgmVolumeMuted(Context context){
-        Intent intent = new Intent(context, BgmService.class);
+        Intent intent = new Intent(context, MainBgmService.class);
         intent.putExtra("progress", 0);
         context.startService(intent);
         _bgmMuted.setValue(true);

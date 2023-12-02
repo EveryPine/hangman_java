@@ -2,7 +2,7 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:textoutline="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -20,6 +20,20 @@
         android:layout_height="match_parent"
         android:src="@drawable/base_test_background"
         android:scaleType="centerCrop" />
+
+    <com.jetradarmobile.snowfall.SnowfallView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:snowflakeAlphaMax="255"
+        app:snowflakeAlphaMin="200"
+        app:snowflakeAngleMax="8"
+        app:snowflakeSizeMax="6dp"
+        app:snowflakeSizeMin="4dp"
+        app:snowflakeSpeedMax="2"
+        app:snowflakeSpeedMin="1"
+        app:snowflakesAlreadyFalling="true"
+        app:snowflakesFadingEnabled="true"
+        app:snowflakesNum="100" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,9 +90,9 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:soundEffectsEnabled="false"
-                textoutline:textStroke="true"
-                textoutline:textStrokeWidth="13"
-                textoutline:textStrokeColor="@color/black"/>
+                app:textStroke="true"
+                app:textStrokeWidth="13"
+                app:textStrokeColor="@color/black"/>
 
             <com.example.hangman_java.base.TextOutLineView
                 android:id="@+id/btnRecord"
@@ -96,9 +110,9 @@
                 android:soundEffectsEnabled="false"
                 android:clickable="true"
                 android:focusable="true"
-                textoutline:textStroke="true"
-                textoutline:textStrokeWidth="13"
-                textoutline:textStrokeColor="@color/black"/>
+                app:textStroke="true"
+                app:textStrokeWidth="13"
+                app:textStrokeColor="@color/black"/>
 
             <com.example.hangman_java.base.TextOutLineView
                 android:id="@+id/btnSetting"
@@ -116,9 +130,9 @@
                 android:soundEffectsEnabled="false"
                 android:clickable="true"
                 android:focusable="true"
-                textoutline:textStroke="true"
-                textoutline:textStrokeWidth="13"
-                textoutline:textStrokeColor="@color/black"/>
+                app:textStroke="true"
+                app:textStrokeWidth="13"
+                app:textStrokeColor="@color/black"/>
 
             <com.example.hangman_java.base.TextOutLineView
                 android:id="@+id/btnExit"
@@ -136,9 +150,9 @@
                 android:soundEffectsEnabled="false"
                 android:clickable="true"
                 android:focusable="true"
-                textoutline:textStroke="true"
-                textoutline:textStrokeWidth="13"
-                textoutline:textStrokeColor="@color/black"/>
+                app:textStroke="true"
+                app:textStrokeWidth="13"
+                app:textStrokeColor="@color/black"/>
 
         </LinearLayout>
 

@@ -2,7 +2,7 @@ package com.example.hangman_java.hangman.view;
 
 import static com.example.hangman_java.main.view.MainActivity.soundPool;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +23,7 @@ import com.example.hangman_java.base.Event;
 import com.example.hangman_java.base.EventObserver;
 import com.example.hangman_java.databinding.ActivityHangmanBinding;
 import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
+import com.example.hangman_java.music.HangmanBgmService;
 import com.example.hangman_java.music.SfxManager;
 import com.example.hangman_java.record.model.Record;
 import com.example.hangman_java.record.viewmodel.RecordViewModel;
@@ -35,8 +36,8 @@ public class HangmanActivity extends BaseActivity {
     private Handler handler = new Handler();
     private ActivityHangmanBinding hangmanBinding = null;
     private KeyboardFragment keyboardFragment;
-    private HangmanViewModel hangmanViewModel = null;
-    private RecordViewModel recordViewModel = null;
+    private HangmanViewModel hangmanViewModel;
+    private RecordViewModel recordViewModel;
     private SfxManager sfxManager;
 
     @Override
@@ -47,6 +48,7 @@ public class HangmanActivity extends BaseActivity {
         hangmanViewModel = new ViewModelProvider(this).get(HangmanViewModel.class);
         recordViewModel = new ViewModelProvider(this).get(RecordViewModel.class);
         sfxManager = new SfxManager(this, soundPool);
+        sfxManager.addSound("gameover", R.raw.hangman_gameover);
 
         if (getIntent().hasExtra("difficulty")){
             hangmanViewModel.setStageInfo(getIntent().getIntExtra("difficulty", 0));
@@ -81,7 +83,7 @@ public class HangmanActivity extends BaseActivity {
             put(hangmanBinding.fragmentContainerViewKeyboard, keyboardFragment = new KeyboardFragment());
         }};
         replaceFragments(inputHashMap);
-
+        serviceStart();
     }
 
     // 위젯 초기화
@@ -98,16 +100,14 @@ public class HangmanActivity extends BaseActivity {
             if (time >= 0) hangmanBinding.tvRemainingTime.setText(time.toString());
         }));
         hangmanBinding.tvWordDebug.setOnClickListener(view -> hangmanBinding.debug.setVisibility(View.GONE));
-        hangmanBinding.frPause.setOnClickListener(new PauseListener());
         hangmanBinding.btnPause.setOnClickListener(new PauseListener());
     }
 
     // 게임 클리어 플래그 핸들러
-    @SuppressLint("ResourceAsColor")
     private void initGameEndObserver(){
         hangmanViewModel.gameClearFlag().observe(this, gameClearFlag -> handler.postDelayed(() -> {
             hangmanBinding.tvRemainingTime.setText(Integer.toString(START_TIME));
-            hangmanBinding.tvRemainingTime.setTextColor(R.color.score);
+            hangmanBinding.tvRemainingTime.setTextColor(Color.rgb(0xff, 0x98, 0));
             hangmanViewModel.updateGameScore();
             updateCurrentScoreUi();
             try {
@@ -130,6 +130,8 @@ public class HangmanActivity extends BaseActivity {
         recordViewModel.insertRecord(this, new Record("hangman", hangmanViewModel.getStrDifficulty(), hangmanViewModel.getGameScore()));
         hangmanViewModel.startTimer(START_TIME, true);
         keyboardFragment.setViewUnclickable();
+        serviceStop();
+        sfxManager.playSound("gameover");
 
         handler.postDelayed(() -> {
             FragmentManager fm = getSupportFragmentManager();
@@ -167,9 +169,29 @@ public class HangmanActivity extends BaseActivity {
         hangmanBinding.tvWordDebug.setText(word.toUpperCase());
     }
 
+    // 배경음 (재)시작
+    protected void serviceStart(){
+        Intent intent = new Intent(this, HangmanBgmService.class);
+        startService(intent);
+    }
+
+    // 배경음 일시정지
+    protected void servicePause(){
+        Intent intent = new Intent(this, HangmanBgmService.class);
+        intent.putExtra("isPaused", true);
+        startService(intent);
+    }
+
+    // 배경음악 종료
+    protected void serviceStop(){
+        Intent intent = new Intent(this, HangmanBgmService.class);
+        stopService(intent);
+    }
+
     private class PauseListener implements View.OnClickListener{
         @Override
         public void onClick(View view){
+            servicePause();
             sfxManager.playSound("sys_button");
             try {
                 hangmanViewModel.stopTimer();

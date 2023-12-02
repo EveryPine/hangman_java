@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <!--배경색-->
-    <solid
-        />
+    <solid android:color="#80878787"/>
     <!--테두리색및두께-->
     <stroke android:color="#878787" android:width="3dp"/>
     <!--모서리둥글게-->

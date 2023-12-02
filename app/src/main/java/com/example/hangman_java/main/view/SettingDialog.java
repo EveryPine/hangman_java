@@ -29,6 +29,7 @@ import com.example.hangman_java.music.SfxManager;
 
 public class SettingDialog extends BaseDialog {
     private DialogSettingBinding settingBinding = null;
+    private MainActivity parentActivity;
     private MainViewModel mainViewModel = null;
     private SeekBar sbBgmVolume, sbEftVolume;
     private CheckBox chkBgmMuted, chkEftMuted;
@@ -41,7 +42,8 @@ public class SettingDialog extends BaseDialog {
         Bundle savedInstanceState
     ){
         settingBinding = DialogSettingBinding.inflate(inflater, container, false);
-        sfxManager = new SfxManager(requireContext(), soundPool);
+        parentActivity = (MainActivity) requireActivity();
+        sfxManager = new SfxManager(parentActivity, soundPool);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         initUi();
@@ -51,18 +53,12 @@ public class SettingDialog extends BaseDialog {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        mainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+        mainViewModel = new ViewModelProvider(parentActivity).get(MainViewModel.class);
         mainViewModel.setUserInfo();
         chkBgmMuted.setChecked(mainViewModel.getBgmMuted());
         chkEftMuted.setChecked(mainViewModel.getEftMuted());
         sbBgmVolume.setProgress(mainViewModel.getBgmVolume());
         sbEftVolume.setProgress(mainViewModel.getEftVolume());
-    }
-
-    @Override
-    public void onDestroy(){
-        super.onDestroy();
-        mainViewModel.updateUserInfo();
     }
 
     @Override
@@ -92,12 +88,14 @@ public class SettingDialog extends BaseDialog {
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             if (seekBar.equals(sbBgmVolume) && !mainViewModel.getBgmMuted()){
                 Log.d("MyTAG", "배경음 변경됨 (progress: " + progress + ")");
-                mainViewModel.setBackgroundVolume(requireContext(), progress);
+                mainViewModel.setBackgroundVolume(parentActivity, progress);
             }
             else if (!mainViewModel.getEftMuted()) {
                 Log.d("MyTAG", "효과음 변경됨 (progress: " + progress + ")");
                 mainViewModel.setEffectVolume(progress);
             }
+            mainViewModel.updateUserInfo();
+            parentActivity.serviceStart();
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) { sfxManager.playSound("sys_button");}
@@ -114,7 +112,7 @@ public class SettingDialog extends BaseDialog {
             if (!isChecked) {
                 if (checkBox.equals(chkBgmMuted)) {
                     Log.d("MyTAG", "배경음 볼륨 조절 실행.. (볼륨: " + mainViewModel.getBgmVolume() + ")");
-                    mainViewModel.setBackgroundVolume(requireContext(), mainViewModel.getBgmVolume());
+                    mainViewModel.setBackgroundVolume(parentActivity, mainViewModel.getBgmVolume());
                     sbBgmVolume.setEnabled(true);
                 }
                 else {
@@ -126,7 +124,7 @@ public class SettingDialog extends BaseDialog {
             } else {
                 if (checkBox.equals(chkBgmMuted)) {
                     Log.d("MyTAG", "배경음 음소거 실행..");
-                    mainViewModel.setBgmVolumeMuted(requireContext());
+                    mainViewModel.setBgmVolumeMuted(parentActivity);
                     sbBgmVolume.setEnabled(false);
                 }
                 else {
@@ -135,6 +133,8 @@ public class SettingDialog extends BaseDialog {
                     sbEftVolume.setEnabled(false);
                 }
             }
+            mainViewModel.updateUserInfo();
+            parentActivity.serviceStart();
         }
     }
 }

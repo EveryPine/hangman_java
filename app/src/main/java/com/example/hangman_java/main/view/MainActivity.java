@@ -18,7 +18,7 @@ import com.example.hangman_java.databinding.ActivityMainBinding;
 import com.example.hangman_java.debug.view.DebugActivity;
 import com.example.hangman_java.game.view.GameActivity;
 import com.example.hangman_java.main.viewmodel.MainViewModel;
-import com.example.hangman_java.music.BgmService;
+import com.example.hangman_java.music.MainBgmService;
 import com.example.hangman_java.music.SfxManager;
 import com.example.hangman_java.record.view.RecordActivity;
 
@@ -109,14 +109,13 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    private void serviceStart(){
-        Intent intent = new Intent(this, BgmService.class);
-        intent.putExtra("progress", !mainViewModel.getBgmMuted() ? mainViewModel.getBgmVolume() : 0);
+    protected void serviceStart(){
+        Intent intent = new Intent(this, MainBgmService.class);
         startService(intent);
     }
 
-    private void serviceStop(){
-        Intent intent = new Intent(this, BgmService.class);
+    protected void serviceStop(){
+        Intent intent = new Intent(this, MainBgmService.class);
         stopService(intent);
     }
 }
