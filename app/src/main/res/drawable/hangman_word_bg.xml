@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <!--배경색-->
+            <gradient
+                android:type="radial"
+                android:startColor="#CC8ECFA3"
+                android:endColor="#CC23AE5B"
+                android:gradientRadius="90%p"/>
+            <!--테두리색및두께-->
+            <!--모서리둥글게-->
+            <corners android:radius="10dp"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/hangman_word_frame"/>
+</layer-list>

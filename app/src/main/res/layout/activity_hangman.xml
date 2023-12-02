@@ -166,11 +166,11 @@
         <!--맞출 단어 표시 레이아웃-->
         <androidx.fragment.app.FragmentContainerView android:id="@+id/fragmentContainerViewWordspace"
             android:name="com.example.hangman_java.hangman.view.WordspaceFragment"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"
             tools:layout="@layout/fragment_wordspace"
-            android:layout_marginVertical="20dp">
+            android:layout_marginVertical="10dp">
 
         </androidx.fragment.app.FragmentContainerView>
 

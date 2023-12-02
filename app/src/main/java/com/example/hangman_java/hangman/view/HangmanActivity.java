@@ -48,6 +48,7 @@ public class HangmanActivity extends BaseActivity {
         hangmanViewModel = new ViewModelProvider(this).get(HangmanViewModel.class);
         recordViewModel = new ViewModelProvider(this).get(RecordViewModel.class);
         sfxManager = new SfxManager(this, soundPool);
+        sfxManager.addSound("gameclear", R.raw.hangman_gameclear);
         sfxManager.addSound("gameover", R.raw.hangman_gameover);
 
         if (getIntent().hasExtra("difficulty")){
@@ -109,13 +110,14 @@ public class HangmanActivity extends BaseActivity {
             hangmanBinding.tvRemainingTime.setText(Integer.toString(START_TIME));
             hangmanBinding.tvRemainingTime.setTextColor(Color.rgb(0xff, 0x98, 0));
             hangmanViewModel.updateGameScore();
+            sfxManager.playSound("gameclear");
             updateCurrentScoreUi();
             try {
                 initUi();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, 700));
+        }, 500));
         hangmanViewModel.gameoverFlag().observe(this, gameoverFlag -> {
             try {
                 gameOver();
