@@ -20,6 +20,7 @@ import com.example.hangman_java.card.model.model;
 import com.example.hangman_java.game.view.GameActivity;
 import com.example.hangman_java.main.view.MainActivity;
 import com.example.hangman_java.record.model.Record;
+import com.example.hangman_java.record.view.RecordActivity;
 import com.example.hangman_java.record.viewmodel.RecordViewModel;
 
 import java.util.Timer;
@@ -90,17 +91,21 @@ public class CardActivity extends AppCompatActivity {
         }
     }
 
-    public void exitGame(){
-        String diff;
-        if(level == 3) diff = "easy";
-        else if(level == 4)  diff = "normal";
-        else  diff = "hard";
+    public void exitGame() {
+            String diff;
+            if (level == 2) diff = "easy";
+            else if (level == 3) diff = "normal";
+            else diff = "hard";
 
-        Record record = new Record("memory",diff,gameModel.getScore());
-        RecordViewModel recordViewModel = new ViewModelProvider(this).get(RecordViewModel.class);
-        recordViewModel.insertRecord(this, record);
+            Record record = new Record("card", diff, gameModel.getScore());
+            RecordViewModel recordViewModel = new ViewModelProvider(this).get(RecordViewModel.class);
+            recordViewModel.insertRecord(this, record);
 
-        Intent intent = new Intent(CardActivity.this, MainActivity.class);
-        startActivity(intent);
+            Intent intent = new Intent(CardActivity.this, RecordActivity.class);
+            Intent intent2 = new Intent(CardActivity.this, MainActivity.class);
+            finish();
+            startActivity(intent2);
+            startActivity(intent);
     }
+
 }
