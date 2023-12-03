@@ -2,14 +2,15 @@ package com.example.hangman_java.hangman.view;
 
 import static com.example.hangman_java.main.view.MainActivity.soundPool;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,6 +21,7 @@ import com.example.hangman_java.databinding.FragmentKeyboardBinding;
 import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
 import com.example.hangman_java.music.SfxManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class KeyboardFragment extends BaseFragment {
@@ -28,13 +30,15 @@ public class KeyboardFragment extends BaseFragment {
     private SfxManager sfxManager;
     private List<FrameLayout> frList;
     private List<Button> btnList;
+    private List<Boolean> isClicked = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         binding = FragmentKeyboardBinding.inflate(inflater, container, false);
         sfxManager = new SfxManager(requireContext(), soundPool);
-        sfxManager.addSound("alphabet_button", R.raw.alphabet_click);
+        sfxManager.addSound("alphabet_button", R.raw.hangman_btn_alphabet);
+        sfxManager.addSound("disabled_button", R.raw.hangman_blip);
 
         hangmanViewModel = new ViewModelProvider(requireActivity()).get(HangmanViewModel.class);
 
@@ -71,6 +75,9 @@ public class KeyboardFragment extends BaseFragment {
             binding.btnS, binding.btnT, binding.btnU,
             binding.btnV, binding.btnW, binding.btnX, binding.btnY, binding.btnZ);
 
+        for (int i = 0; i < 26; i++)
+            isClicked.add(false);
+
         for (FrameLayout frame: frList){
             frame.setOnClickListener(new ClickListener());
         }
@@ -80,17 +87,10 @@ public class KeyboardFragment extends BaseFragment {
         }
     }
 
-    private void buttonDisabled(View view){
-        view.setEnabled(false);
-        view.setClickable(false);
-    }
-
     protected void setViewUnclickable(){
         for (int i = 0; i < 26; i++){
-            if (frList.get(i).isClickable()){
-                frList.get(i).setClickable(false);
-                btnList.get(i).setClickable(false);
-            }
+            frList.get(i).setClickable(false);
+            btnList.get(i).setClickable(false);
         }
     }
 
@@ -98,23 +98,28 @@ public class KeyboardFragment extends BaseFragment {
         @Override
         public void onClick(View view) {
             sfxManager.playSound("alphabet_button");
-            Log.d("MyTAG", "알파벳 버튼 클릭 이벤트 발생");
+            Log.d("KeyboardFragment", "알파벳 버튼 클릭 이벤트 발생");
             char alphabet = '0';
             int index;
             for (index = 0; index < 26; index++){
                 if (frList.get(index).equals(view) || btnList.get(index).equals(view)) {
                     alphabet = (char) ('a' + index);
-                    Log.d("MyTAG", "들어온 알파벳 입력: " + alphabet);
+                    Log.d("KeyboardFragment", "들어온 알파벳 입력: " + alphabet);
                     break;
                 }
             }
+            if (isClicked.get(index)){
+                sfxManager.playSound("disabled_button");
+                return;
+            }
 
             if (alphabet!='0'){
-                buttonDisabled(frList.get(index));
-                buttonDisabled(btnList.get(index));
+                btnList.get(index).setBackgroundResource(R.drawable.hangman_alphabet_disabled);
+                btnList.get(index).setTextColor(Color.GRAY);
+                isClicked.set(index, true);
                 hangmanViewModel.inputAlphabetListener(alphabet);
             } else {
-                Log.e("MyTAG", "KeyboardFragment의 alphabet에 잘못된 값이 참조되었습니다.");
+                Log.e("KeyboardFragment", "alphabet에 잘못된 값이 참조되었습니다.");
             }
         }
     }
