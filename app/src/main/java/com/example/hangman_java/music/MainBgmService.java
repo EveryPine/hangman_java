@@ -21,7 +21,7 @@ public class MainBgmService extends BaseService {
     @Override
     public void onCreate(){
         super.onCreate();
-        mediaPlayer = MediaPlayer.create(this, R.raw.jingle_bell_bgm);
+        mediaPlayer = MediaPlayer.create(this, R.raw.main_bgm);
         mediaPlayer.setLooping(true);
     }
 
@@ -29,7 +29,7 @@ public class MainBgmService extends BaseService {
     public int onStartCommand(@NonNull Intent intent, int flags, int startId){
         if (!mediaPlayer.isPlaying()){
             mediaPlayer.start();
-            Log.d("MyTAG", "배경음악이 시작됨");
+            Log.d("MainBgmService", "배경음악이 시작됨");
         }
         setBgmVolume();
         return super.onStartCommand(intent, flags, startId);
@@ -38,13 +38,13 @@ public class MainBgmService extends BaseService {
     public float setBgmVolume(){
         float streamVolume = super.setBgmVolume();
         mediaPlayer.setVolume(streamVolume, streamVolume);
-        Log.d("MyTAG", "배경음악 볼륨 조절됨 (progress: " + streamVolume + ")");
+        Log.d("MainBgmService", "배경음악 볼륨 조절됨 (progress: " + streamVolume + ")");
         return streamVolume;
     }
 
     public void onDestroy(){
         super.onDestroy();
         mediaPlayer.stop();
-        Log.d("MyTAG", "bgm 서비스가 종료됨");
+        Log.d("MainBgmService", "bgm 서비스가 종료됨");
     }
 }

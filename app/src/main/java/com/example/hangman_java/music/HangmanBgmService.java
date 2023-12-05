@@ -50,7 +50,7 @@ public class HangmanBgmService extends BaseService {
     public void onDestroy(){
         mediaPlayer.stop();
         stopSelf();
-        Log.d("MyTAG", "bgm 서비스가 종료됨");
+        Log.d("HangmanBgmService", "bgm 서비스가 종료됨");
         super.onDestroy();
     }
 }
