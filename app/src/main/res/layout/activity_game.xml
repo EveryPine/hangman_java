@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/base_test_background"
+        android:src="@drawable/base_bg"
         android:scaleType="centerCrop"/>
 
     <ImageButton
@@ -39,8 +39,8 @@
         android:id="@+id/frContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_setgame"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        tools:layout="@layout/fragment_setgame">
 
     </androidx.fragment.app.FragmentContainerView>
 </FrameLayout>

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hangman_java.R;
+import com.example.hangman_java.base.BaseActivity;
 import com.example.hangman_java.card.controller.logic;
 import com.example.hangman_java.card.model.model;
 import com.example.hangman_java.game.view.GameActivity;
@@ -26,7 +27,7 @@ import com.example.hangman_java.record.viewmodel.RecordViewModel;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class CardActivity extends AppCompatActivity {
+public class CardActivity extends BaseActivity {
 
     Intent intent;
     int level = -1;  // 적절한 기본값으로 초기화
@@ -108,4 +109,8 @@ public class CardActivity extends AppCompatActivity {
             startActivity(intent);
     }
 
+    @Override
+    public void initUi() throws Exception {
+
+    }
 }

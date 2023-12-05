@@ -13,7 +13,7 @@ import com.example.hangman_java.base.BaseViewModel;
 import com.example.hangman_java.music.MainBgmService;
 
 public class MainViewModel extends BaseViewModel {
-    public static int DELAY_TIME = 600; // ms
+    public static int DELAY_TIME = 300; // ms
     private SharedPreferences preferences;
     private final MutableLiveData<Integer> _bgmVolume = new MutableLiveData<>();
     private final MutableLiveData<Integer> _eftVolume = new MutableLiveData<>();

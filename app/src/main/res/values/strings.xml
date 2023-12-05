@@ -1,19 +1,19 @@
 <resources>
     <string name="app_name">hangman_java</string>
-    <string name="explainCard">게임 설명...</string>
-    <string name="explainHangman">제한 시간 내에 단어를 맞추어 최대한 많은 단어를 맞추는 게임입니다.\n\n그림이 모두 완성되면 게임오버입니다!
+    <string name="explainCard">제한 시간 내 제시된 카드들을 오름차순으로 터치하여 득점하는 게임입니다! 틀리면 3초동안 패널티가 주어지므로 신중하게 선택해주세요!</string>
+    <string name="explainHangman">제한 시간 내에 단어를 맞추어 최대한 많은 단어를 맞추는 게임입니다!\n\n그림이 모두 완성되면 게임오버입니다!
     </string>
-    <string name="explainMemory">게임 설명...</string>
+    <string name="explainMemory">화면에 보이는 예시를 보고 순서 그대로 똑같이 터치하여 특점하는 게임입니다! 한번이라도 잘못 누르면 그 즉시 탈락하니 신중하게 터치해주세요!</string>
 
-    <string name="cardEasyDesc">카드 뒤집기 게임 쉬움 난이도 설명</string>
-    <string name="cardNormalDesc">카드 뒤집기 게임 보통 난이도 설명</string>
-    <string name="cardHardDesc">카드 뒤집기 게임 어려움 난이도 설명</string>
+    <string name="cardEasyDesc">2 X 2 격자에서 시작합니다</string>
+    <string name="cardNormalDesc">3 X 3 격자에서 시작합니다</string>
+    <string name="cardHardDesc">4 X 4 격자에서 시작합니다</string>
 
     <string name="hangmanEasyDesc">쉬운 단어들이 주로 출현합니다</string>
     <string name="hangmanNormalDesc">일상 생활에서 자주 쓰이는 단어들이 주로 출현합니다</string>
     <string name="hangmanHardDesc">자주 사용되지 않는 어려운 단어들이 주로 출현합니다</string>
 
-    <string name="memoryEasyDesc">기억력 게임 쉬움 난이도 설명</string>
-    <string name="memoryNormalDesc">기억력 게임 보통 난이도 설명</string>
-    <string name="memoryHardDesc">기억력 게임 어려움 난이도 설명</string>
+    <string name="memoryEasyDesc">4개의 박스가 존재합니다</string>
+    <string name="memoryNormalDesc">7개의 박스가 존재합니다</string>
+    <string name="memoryHardDesc">9개의 박스가 존재합니다</string>
 </resources>
