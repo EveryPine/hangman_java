@@ -30,6 +30,10 @@ public interface RecordDao {
         "WHERE gamename = :game")
     List<Record> getBestRecord(String game);
 
+    // 입력된 게임, 난이도에 대해 최고기록이 있으면 1, 없으면 0을 반환
+    @Query("SELECT EXISTS (SELECT record_id, record FROM BestRecord WHERE gamename = :game AND difficulty = :difficulty)")
+    int isBestRecordExist(String game, String difficulty);
+
     @Query("SELECT record_id, record FROM BestRecord WHERE gamename = :game AND difficulty = :difficulty")
     ReceivedRecord getBestRecordByDiff(String game, String difficulty);
 

@@ -13,5 +13,5 @@
             <corners android:radius="10dp"/>
         </shape>
     </item>
-    <item android:drawable="@drawable/hangman_printing_frame"/>
+    <item android:drawable="@drawable/hangman_word_frame"/>
 </layer-list>

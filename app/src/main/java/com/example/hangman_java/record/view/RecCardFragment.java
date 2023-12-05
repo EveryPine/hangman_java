@@ -59,41 +59,19 @@ public class RecCardFragment extends RecordFragment {
 
     private void setBestRecord(){
         recordViewModel.cardBestRecordList().observe(getViewLifecycleOwner(), new EventObserver<>(bestRecordList -> {
-            boolean[] isExist = {false, false, false};
             for (Record rec : bestRecordList) {
                 switch (rec.difficulty) {
                     case "easy" -> {
                         frRecBinding.tvEasyRecord.setText(rec.record + " 점");
                         frRecBinding.tvEasyDate.setText(rec.date);
-                        isExist[0] = true;
                     }
                     case "normal" -> {
                         frRecBinding.tvNormalRecord.setText(rec.record + " 점");
                         frRecBinding.tvNormalDate.setText(rec.date);
-                        isExist[1] = true;
                     }
                     case "hard" -> {
                         frRecBinding.tvHardRecord.setText(rec.record + " 점");
                         frRecBinding.tvHardDate.setText(rec.date);
-                        isExist[2] = true;
-                    }
-                }
-            }
-            for (int i = 0; i < 3; i++) {
-                if (!isExist[i]) {
-                    switch (i) {
-                        case 0 -> {
-                            mergeCell(frRecBinding.tvEasyRecord, frRecBinding.tvEasyDate);
-                            frRecBinding.tvEasyRecord.setText("기록이 없습니다");
-                        }
-                        case 1 -> {
-                            mergeCell(frRecBinding.tvNormalRecord, frRecBinding.tvNormalDate);
-                            frRecBinding.tvNormalRecord.setText("기록이 없습니다");
-                        }
-                        case 2 -> {
-                            mergeCell(frRecBinding.tvHardRecord, frRecBinding.tvHardDate);
-                            frRecBinding.tvHardRecord.setText("기록이 없습니다");
-                        }
                     }
                 }
             }

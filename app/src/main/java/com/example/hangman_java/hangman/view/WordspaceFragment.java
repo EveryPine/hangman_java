@@ -57,7 +57,7 @@ public class WordspaceFragment extends BaseFragment {
         hangmanViewModel.word().observe(getViewLifecycleOwner(), new EventObserver<>(word -> {
             Log.d("MyTAG", "목표 단어 설정됨: " + word);
             ((HangmanActivity) getActivity()).setWordDebug(word);
-            GridLayout layout = wordspaceBinding.getRoot();
+            GridLayout layout = wordspaceBinding.glWord;
             int wordLength = hangmanViewModel.getWordLength();
             layout.removeAllViews();
             layout.setColumnCount(wordLength);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="340dp"
     android:layout_height="400dp"
     android:orientation="vertical"
@@ -7,7 +8,7 @@
     android:padding="10dp"
     android:background="@drawable/main_settingdialog_bg">
 
-    <TextView
+    <com.example.hangman_java.base.TextOutLineView
         android:id="@+id/tvSetting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,9 +16,12 @@
         android:fontFamily="@font/sys_font"
         android:textSize="30dp"
         android:textColor="@color/white"
-        android:textAlignment="center">
+        android:textAlignment="center"
+        app:textStroke="true"
+        app:textStrokeWidth="5"
+        app:textStrokeColor="@color/black">
 
-    </TextView>
+    </com.example.hangman_java.base.TextOutLineView>
 
     <LinearLayout
         android:id="@+id/linLayoutBackgroundVolume"
@@ -29,14 +33,18 @@
         android:orientation="vertical"
         android:background="@drawable/main_round_bg_border_green">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <com.example.hangman_java.base.TextOutLineView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="배경음"
             android:textColor="@color/white"
             android:fontFamily="@font/sys_font"
             android:textSize="15dp"
-            android:layout_marginTop="10dp"/>
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"
+            app:textStroke="true"
+            app:textStrokeWidth="5"
+            app:textStrokeColor="@color/black"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -88,14 +96,18 @@
 
 
 
-        <TextView
-            android:layout_width="wrap_content"
+        <com.example.hangman_java.base.TextOutLineView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="효과음"
             android:textColor="@color/white"
             android:fontFamily="@font/sys_font"
             android:textSize="15dp"
-            android:layout_marginTop="10dp"/>
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"
+            app:textStroke="true"
+            app:textStrokeWidth="5"
+            app:textStrokeColor="@color/black"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

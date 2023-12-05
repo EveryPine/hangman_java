@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <com.example.hangman_java.base.TextOutLineView
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginTop="30dp"
@@ -31,7 +32,7 @@
             android:gravity="center"
             android:clickable="true">
 
-            <TextView
+            <com.example.hangman_java.base.TextOutLineView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -39,7 +40,10 @@
                 android:textColor="@color/easy"
                 android:fontFamily="@font/sys_font"
                 android:textSize="30dp"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                app:textStroke="true"
+                app:textStrokeWidth="5"
+                app:textStrokeColor="@color/black"/>
 
             <ImageView
                 android:layout_width="1dp"
@@ -47,7 +51,7 @@
                 android:background="#D8D5D5"
                 android:layout_marginVertical="10dp"/>
 
-            <TextView
+            <com.example.hangman_java.base.TextOutLineView
                 android:id="@+id/tvEasyDesc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -56,7 +60,10 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/sys_font"
                 android:textSize="20dp"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                app:textStroke="true"
+                app:textStrokeWidth="5"
+                app:textStrokeColor="@color/black"/>
 
         </LinearLayout>
 
@@ -69,7 +76,7 @@
             android:layout_marginVertical="50dp"
             android:clickable="true">
 
-            <TextView
+            <com.example.hangman_java.base.TextOutLineView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -77,7 +84,10 @@
                 android:textColor="@color/normal"
                 android:fontFamily="@font/sys_font"
                 android:textSize="30dp"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                app:textStroke="true"
+                app:textStrokeWidth="5"
+                app:textStrokeColor="@color/black"/>
 
             <ImageView
                 android:layout_width="1dp"
@@ -85,7 +95,7 @@
                 android:background="#D8D5D5"
                 android:layout_marginVertical="10dp"/>
 
-            <TextView
+            <com.example.hangman_java.base.TextOutLineView
                 android:id="@+id/tvNormalDesc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -94,7 +104,10 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/sys_font"
                 android:textSize="20dp"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                app:textStroke="true"
+                app:textStrokeWidth="5"
+                app:textStrokeColor="@color/black"/>
 
         </LinearLayout>
 
@@ -106,7 +119,7 @@
             android:gravity="center"
             android:clickable="true">
 
-            <TextView
+            <com.example.hangman_java.base.TextOutLineView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -114,7 +127,10 @@
                 android:textColor="@color/hard"
                 android:fontFamily="@font/sys_font"
                 android:textSize="30dp"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                app:textStroke="true"
+                app:textStrokeWidth="5"
+                app:textStrokeColor="@color/black"/>
 
             <ImageView
                 android:layout_width="1dp"
@@ -122,7 +138,7 @@
                 android:background="#D8D5D5"
                 android:layout_marginVertical="10dp"/>
 
-            <TextView
+            <com.example.hangman_java.base.TextOutLineView
                 android:id="@+id/tvHardDesc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -131,7 +147,10 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/sys_font"
                 android:textSize="20dp"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                app:textStroke="true"
+                app:textStrokeWidth="5"
+                app:textStrokeColor="@color/black"/>
 
         </LinearLayout>
 

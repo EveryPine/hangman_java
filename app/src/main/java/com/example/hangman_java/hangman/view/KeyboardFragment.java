@@ -1,5 +1,7 @@
 package com.example.hangman_java.hangman.view;
 
+import static com.example.hangman_java.main.view.MainActivity.soundPool;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,15 +14,18 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseFragment;
 import com.example.hangman_java.databinding.FragmentKeyboardBinding;
 import com.example.hangman_java.hangman.viewmodel.HangmanViewModel;
+import com.example.hangman_java.music.SfxManager;
 
 import java.util.List;
 
 public class KeyboardFragment extends BaseFragment {
     private FragmentKeyboardBinding binding = null;
     private HangmanViewModel hangmanViewModel = null;
+    private SfxManager sfxManager;
     private List<FrameLayout> frList;
     private List<Button> btnList;
 
@@ -28,6 +33,9 @@ public class KeyboardFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         binding = FragmentKeyboardBinding.inflate(inflater, container, false);
+        sfxManager = new SfxManager(requireContext(), soundPool);
+        sfxManager.addSound("alphabet_button", R.raw.alphabet_click);
+
         hangmanViewModel = new ViewModelProvider(requireActivity()).get(HangmanViewModel.class);
 
         return binding.getRoot();
@@ -72,9 +80,24 @@ public class KeyboardFragment extends BaseFragment {
         }
     }
 
+    private void buttonDisabled(View view){
+        view.setEnabled(false);
+        view.setClickable(false);
+    }
+
+    protected void setViewUnclickable(){
+        for (int i = 0; i < 26; i++){
+            if (frList.get(i).isClickable()){
+                frList.get(i).setClickable(false);
+                btnList.get(i).setClickable(false);
+            }
+        }
+    }
+
     private class ClickListener implements View.OnClickListener{
         @Override
         public void onClick(View view) {
+            sfxManager.playSound("alphabet_button");
             Log.d("MyTAG", "알파벳 버튼 클릭 이벤트 발생");
             char alphabet = '0';
             int index;
@@ -92,20 +115,6 @@ public class KeyboardFragment extends BaseFragment {
                 hangmanViewModel.inputAlphabetListener(alphabet);
             } else {
                 Log.e("MyTAG", "KeyboardFragment의 alphabet에 잘못된 값이 참조되었습니다.");
-            }
-        }
-    }
-
-    private void buttonDisabled(View view){
-        view.setEnabled(false);
-        view.setClickable(false);
-    }
-
-    protected void setViewUnclickable(){
-        for (int i = 0; i < 26; i++){
-            if (frList.get(i).isClickable()){
-                frList.get(i).setClickable(false);
-                btnList.get(i).setClickable(false);
             }
         }
     }
