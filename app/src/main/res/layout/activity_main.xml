@@ -13,12 +13,12 @@
         android:text="디버그 모드 진입"
         android:textSize="20dp"
         android:layout_gravity="center_horizontal"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/base_test_background"
+        android:src="@drawable/main_background"
         android:scaleType="centerCrop" />
 
     <com.jetradarmobile.snowfall.SnowfallView
