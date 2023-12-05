@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:textoutline="http://schemas.android.com/apk/res-auto"
+    android:layout_width="250dp"
+    android:layout_height="330dp"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:gravity="center"
+    android:background="@drawable/base_pause_bg">
+
+    <com.example.hangman_java.base.TextOutLineView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sys_font_family"
+        android:text="PAUSE"
+        android:textColor="@color/white"
+        android:textSize="70dp"
+        android:textAlignment="center"
+        textoutline:textStroke="true"
+        textoutline:textStrokeColor="#E46B6B"
+        textoutline:textStrokeWidth="10"/>
+
+    <Button
+        android:id="@+id/btnResume"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/base_button_green"
+        android:fontFamily="@font/sys_font_family"
+        android:text="계속 하기"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/btnGoMain"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
+        android:text="메인 화면"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sys_font_family"
+        android:background="@drawable/base_button_green"/>
+
+</LinearLayout>

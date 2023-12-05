@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hangman_java.base.BaseDialog;
+import com.example.hangman_java.databinding.DialogMemorypauseBinding;
 import com.example.hangman_java.databinding.DialogPauseBinding;
 import com.example.hangman_java.databinding.DialogPauseBinding;
 import com.example.hangman_java.hangman.view.HangmanActivity;
@@ -25,7 +26,7 @@ import com.example.hangman_java.music.SfxManager;
 
 public class MemoryPauseDialog extends BaseDialog {
 
-    private DialogPauseBinding memoryDialogPauseBinding;
+    private DialogMemorypauseBinding memoryDialogPauseBinding;
     private MemoryViewModel memoryViewModel;
     private Button btnResume, btnGoMain;
     private SfxManager sfxManager;
@@ -36,7 +37,7 @@ public class MemoryPauseDialog extends BaseDialog {
         ViewGroup container,
         Bundle savedInstanceState
     ){
-        memoryDialogPauseBinding = DialogPauseBinding.inflate(inflater, container, false);
+        memoryDialogPauseBinding = DialogMemorypauseBinding.inflate(inflater, container, false);
         sfxManager = new SfxManager(requireContext(), soundPool);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCancelable(false);

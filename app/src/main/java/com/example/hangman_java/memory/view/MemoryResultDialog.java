@@ -1,5 +1,6 @@
 package com.example.hangman_java.memory.view;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -57,7 +58,7 @@ public class MemoryResultDialog extends BaseDialog {
         });
 
         resultBinding.btnRestart.setOnClickListener(btn -> {
-            Intent intent = new Intent(requireActivity(), HangmanActivity.class);
+            Intent intent = new Intent(requireActivity(), MemoryActivity.class);
             try {
                 intent.putExtra("difficulty", memoryViewModel.getDifficulty());
             } catch (Exception e) {

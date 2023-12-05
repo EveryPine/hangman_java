@@ -22,13 +22,13 @@
         app:snowflakesFadingEnabled="true"
         app:snowflakesNum="100" />
     <Button
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="350dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp"
         android:id="@+id/btnPause"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="@drawable/hangman_btn_pause"
-        tools:ignore="MissingConstraints" />
+        android:background="@drawable/hangman_btn_pause"/>
     <LinearLayout
         android:layout_below="@+id/btnPause"
         android:layout_width="match_parent"
