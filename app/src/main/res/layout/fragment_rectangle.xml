@@ -8,40 +8,8 @@
     android:gravity="center"
     android:background="@drawable/memory_backgrond"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/gameover"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        android:background="@drawable/memory_gameover_anim_img"/>
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_height="80dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/memory_font1"
-            android:text="현재 점수 : "
-            android:textColor="@color/white"
-            android:textSize="70dp"
-            android:layout_gravity="center"
-            android:textStyle="bold"/>
-        <TextView
-            android:id="@+id/score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/memory_font1"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textSize="70dp"
-            android:layout_gravity="center"
-            android:textStyle="bold"/>
-    </LinearLayout>
     <com.jetradarmobile.snowfall.SnowfallView
+        android:id="@+id/snowing"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:snowflakeAlphaMax="255"
@@ -53,9 +21,43 @@
         app:snowflakeSpeedMin="1"
         app:snowflakesAlreadyFalling="false"
         app:snowflakesFadingEnabled="true"
-        app:snowflakesNum="100"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:snowflakesNum="100" />
+    <Button
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/btnPause"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/hangman_btn_pause"
+        tools:ignore="MissingConstraints" />
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@+id/btnPause"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/memory_font1"
+            android:text="현재 점수 : "
+            android:textColor="@color/white"
+            android:textSize="70dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/memory_font1"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="70dp"
+
+            android:textStyle="bold"/>
+
+    </LinearLayout>
     <ImageView
         android:layout_width="370dp"
         android:layout_height="130dp"

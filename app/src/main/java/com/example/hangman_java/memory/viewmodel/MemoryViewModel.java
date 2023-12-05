@@ -26,23 +26,33 @@ public class MemoryViewModel extends ViewModel {
         _ClicckCount.setValue(0);
         _difficulty.setValue(0);
         _score.setValue(0);
-
+        _onDialog.setValue(false);
 
     }
-
+    private final MutableLiveData<Integer> _bestScore = new MutableLiveData<>();
     private SoundPool soundPool;
     private int mp3FileSoundId1;
     private int mp3FileSoundId2;
     private int mp3FileSoundId3;
-
+    public int getBestScore() { return _bestScore.getValue(); }
+    private MutableLiveData<Boolean> _onDialog = new MutableLiveData<>();
     private MutableLiveData<Integer> _score = new MutableLiveData<>();
     private  MutableLiveData<Integer> _difficulty = new MutableLiveData<>();
     private MutableLiveData<List<Integer>> _answerList = new MutableLiveData<>();
     private MutableLiveData<List<Integer>> _currentAnswer = new MutableLiveData<>();
-
+    public LiveData<Boolean> onDialog(){
+        return _onDialog;
+    }
+    public void set_onDialog(Boolean order){
+        _onDialog.setValue(order);
+    }
+    public Boolean get_onDialog(){
+        return _onDialog.getValue();
+    }
     public int getScore(){
         return _score.getValue();
     }
+    public void setBestScore(int bestScore) { _bestScore.setValue(bestScore); }
     public LiveData<List<Integer>>  answerList() {
         return _answerList;
     }

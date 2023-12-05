@@ -23,18 +23,23 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseFragment;
+import com.example.hangman_java.base.EventObserver;
 import com.example.hangman_java.databinding.FragmentTriangleBinding;
 
+import com.example.hangman_java.hangman.view.PauseDialog;
+import com.example.hangman_java.hangman.view.ResultDialog;
 import com.example.hangman_java.main.view.SettingDialog;
 import com.example.hangman_java.memory.viewmodel.MemoryViewModel;
 import com.example.hangman_java.music.SfxManager;
 import com.example.hangman_java.record.model.Record;
 import com.example.hangman_java.record.viewmodel.RecordViewModel;
+import com.jetradarmobile.snowfall.SnowfallView;
 
 import java.util.List;
 
 public class TriangleFragment extends BaseFragment {
     private FragmentTriangleBinding binding;
+
     MemoryViewModel memoryViewModel;
     private Handler handler;
     public static SoundPool soundPool;
@@ -70,6 +75,10 @@ public class TriangleFragment extends BaseFragment {
 
     @Override
     public void initUi() {
+        recordViewModel.getBestScore(requireContext(), "memory", String.valueOf(memoryViewModel.getDifficulty()));
+        recordViewModel.bestScore().observe(requireActivity(), new EventObserver<>(bestScore -> {
+            memoryViewModel.setBestScore(bestScore);
+        }));
         memoryViewModel.setAnswerList();
         //memoryViewModel.setSoundPool(getContext().getApplicationContext());
         List<Integer> answer_list = memoryViewModel.getAnswerList();
@@ -83,7 +92,7 @@ public class TriangleFragment extends BaseFragment {
                 binding.tri1, binding.tri2, binding.tri3,
                 binding.tri4, binding.tri5, binding.tri6, binding.tri7, binding.tri8, binding.tri9
         };
-
+        binding.btnPause.setOnClickListener(new PauseListener());
         final Handler handler1 = new Handler();
         handler1.postDelayed(new Runnable() {
             @Override
@@ -102,9 +111,20 @@ public class TriangleFragment extends BaseFragment {
     }
 
     private void updateUi() {
+        memoryViewModel.onDialog().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (memoryViewModel.get_onDialog() == false){
+                    binding.snowing.stopFalling();
+                }else if(memoryViewModel.get_onDialog() == true){
+                    binding.snowing.restartFalling();
+                }
+            }
+        });
         memoryViewModel.InputOrder().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer number) {
+                handler = new Handler();
                 Log.d("testt", "변경 감지 ");
                 // _InputOrder의 값이 변경될 때 호출되는 콜백 메서드
                 // 변경된 값(number)을 이용한 처리를 여기에 추가
@@ -137,21 +157,37 @@ public class TriangleFragment extends BaseFragment {
                         }
                     } else {
                         //다음스테이지로 넘어가는게아니라 그냥 넘김
-
                     }
                 } else {
-                    gameOver();
+                    gameOver(handler);
                     //정답을 못맞췃을 때 로직
                 }
             }
         });
     }
-    private void gameOver(){
+    private void gameOver(Handler handler) {
         recordViewModel.insertRecord(requireContext(), new Record("memory","hard", memoryViewModel.getScore()));
         handler.postDelayed(() -> {
             FragmentManager fm = requireActivity().getSupportFragmentManager();
-            SettingDialog settingDialog = new SettingDialog();
-            settingDialog.show(fm, "test");
-        }, DELAY_TIME);
+            MemoryResultDialog resultDialog = new MemoryResultDialog();
+            resultDialog.show(fm, "test");
+        }, 2000);
     }
+    private class PauseListener implements View.OnClickListener {
+        public PauseListener() {
+
+        }
+        @Override
+        public void onClick(View view) {
+            sfxManager.playSound("sys_button");
+            Log.d("testt", "add");
+            // 눈 내리기를 멈춤
+            memoryViewModel.set_onDialog(false);
+            FragmentManager fm = requireActivity().getSupportFragmentManager();
+            MemoryPauseDialog pauseDialog = new MemoryPauseDialog();
+            pauseDialog.show(fm, "test");
+
+        }
+    }
+
 }

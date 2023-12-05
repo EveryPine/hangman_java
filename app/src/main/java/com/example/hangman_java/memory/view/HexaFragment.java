@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hangman_java.R;
 import com.example.hangman_java.base.BaseFragment;
+import com.example.hangman_java.base.EventObserver;
 import com.example.hangman_java.databinding.FragmentHexaBinding;
 
 import com.example.hangman_java.main.view.SettingDialog;
@@ -67,6 +68,10 @@ public class HexaFragment extends BaseFragment {
 
     @Override
     public void initUi() {
+        recordViewModel.getBestScore(requireContext(), "memory", String.valueOf(memoryViewModel.getDifficulty()));
+        recordViewModel.bestScore().observe(requireActivity(), new EventObserver<>(bestScore -> {
+            memoryViewModel.setBestScore(bestScore);
+        }));
         memoryViewModel.setAnswerList();
         //memoryViewModel.setSoundPool(getContext().getApplicationContext());
         List<Integer> answer_list = memoryViewModel.getAnswerList();
@@ -84,6 +89,7 @@ public class HexaFragment extends BaseFragment {
                 binding.hexa1, binding.hexa2, binding.hexa3,
                 binding.hexa4, binding.hexa5, binding.hexa6, binding.hexa7
         };
+        binding.btnPause.setOnClickListener(new PauseListener());
         final Handler handler1 = new Handler();
         handler1.postDelayed(new Runnable() {
             @Override
@@ -102,6 +108,17 @@ public class HexaFragment extends BaseFragment {
     }
 
     private void updateUi() {
+        handler = new Handler();
+        memoryViewModel.onDialog().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (memoryViewModel.get_onDialog() == false){
+                    binding.snowing.stopFalling();
+                }else if(memoryViewModel.get_onDialog() == true){
+                    binding.snowing.restartFalling();
+                }
+            }
+        });
         memoryViewModel.InputOrder().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer number) {
@@ -139,23 +156,36 @@ public class HexaFragment extends BaseFragment {
 
                     } else {
                         //다음스테이지로 넘어가는게아니라 그냥 넘김
-
                     }
-
                 }else{
-                    gameOver();
-
+                    gameOver(handler);
                     //정답을 못맞췃을 때 로직
                 }
             }
         });
     }
-    private void gameOver(){
-        recordViewModel.insertRecord(requireContext(), new Record("memory","normal", memoryViewModel.getScore()));
+    private void gameOver(Handler handler) {
+        recordViewModel.insertRecord(requireContext(), new Record("memory","hard", memoryViewModel.getScore()));
         handler.postDelayed(() -> {
             FragmentManager fm = requireActivity().getSupportFragmentManager();
-            SettingDialog settingDialog = new SettingDialog();
-            settingDialog.show(fm, "test");
-        }, DELAY_TIME);
+            MemoryResultDialog resultDialog = new MemoryResultDialog();
+            resultDialog.show(fm, "test");
+        }, 2000);
+    }
+    private class PauseListener implements View.OnClickListener {
+        public PauseListener() {
+
+        }
+        @Override
+        public void onClick(View view) {
+            sfxManager.playSound("sys_button");
+            Log.d("testt", "add");
+            // 눈 내리기를 멈춤
+            memoryViewModel.set_onDialog(false);
+            FragmentManager fm = requireActivity().getSupportFragmentManager();
+            MemoryPauseDialog pauseDialog = new MemoryPauseDialog();
+            pauseDialog.show(fm, "test");
+
+        }
     }
 }
