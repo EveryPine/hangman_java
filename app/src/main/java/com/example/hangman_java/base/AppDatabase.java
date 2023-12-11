@@ -24,7 +24,6 @@ public abstract class AppDatabase extends RoomDatabase{
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                         AppDatabase.class, "appdatebase.db")
                     .createFromAsset("appDatabase.db")
-                    .fallbackToDestructiveMigration()
                     .build();
             }
 
